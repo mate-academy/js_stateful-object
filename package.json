@@ -2,7 +2,7 @@
   "name": "stateful-object",
   "version": "1.0.0",
   "description": "Transforming state",
-  "main": "src/statefulObject.js",
+  "main": "src/transformState.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint **/*.js"
