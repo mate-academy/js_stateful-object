@@ -50,14 +50,15 @@
  */
 function transformState(state, transforms) {
   for (const item of transforms) {
-    switch (item.operation) {
+    const { operation, properties } = item; // деструктуризация объекта item
+    switch (operation) {
       case 'addProperties':
-        for (const key in item.properties) {
-          state[key] = item.properties[key];
+        for (const key in properties) {
+          state[key] = properties[key];
         }
         break;
       case 'removeProperties':
-        for (const key of item.properties) {
+        for (const key of properties) {
           delete state[key];
         }
         break;
