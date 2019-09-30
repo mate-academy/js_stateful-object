@@ -50,8 +50,7 @@
  */
 function transformState(state, transforms) {
   for (const key of transforms) {
-    const { operation = 'none operation',
-      properties = 'none properties' } = key;
+    const { operation = {}, properties = {} } = key;
 
     switch (operation) {
       case 'addProperties':
