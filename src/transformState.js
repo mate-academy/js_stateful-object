@@ -50,7 +50,7 @@
  */
 function transformState(state, transforms) {
 
-  for (let item of transforms) {
+  for (let value of transforms) {
 
     const { operation, properties } = value;
 
