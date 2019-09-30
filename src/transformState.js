@@ -50,18 +50,22 @@
  */
 function transformState(state, transforms) {
   for (const trans of transforms) {
-    if (trans['operation'] === 'addProperties') {
-      for (const keys in trans['properties']) {
-        state[keys] = trans['properties'][keys];
-      }
-    } else if (trans['operation'] === 'removeProperties') {
-      for (const del of trans['properties']) {
-        delete state[del];
-      }
-    } else if (trans['operation'] === 'clear') {
-      for (const cleaning in state) {
-        delete state[cleaning];
-      }
+    switch (trans['operation']) {
+      case 'addProperties':
+        for (const key in trans['properties']) {
+          state[key] = trans['properties'][key];
+        }
+        break;
+      case 'removeProperties':
+        for (const del of trans['properties']) {
+          delete state[del];
+        }
+        break;
+      case 'clear':
+        for (const cleaning in state) {
+          delete state[cleaning];
+        }
+        break;
     }
   }
 }
