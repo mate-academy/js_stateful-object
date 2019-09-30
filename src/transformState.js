@@ -49,24 +49,26 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const char of transforms) {
-    const CharOperations = char.operation;
-    const CharProperties = char.properties;
+  for (const chars of transforms) {
+    const { operation, properties } = chars;
+    switch (operation) {
+      case 'addProperties':
+        for (const i in properties) {
+          state[i] = properties[i];
+        }
+        break;
 
-    if (CharOperations === 'addProperties') {
-      for (const i in CharProperties) {
-        state[i] = CharProperties[i];
-      }
-    }
-    if (CharOperations === 'removeProperties') {
-      for (const key of CharProperties) {
-        delete state[key];
-      }
-    }
-    if (CharOperations === 'clear') {
-      for (const i in state) {
-        delete state[i];
-      }
+      case 'removeProperties':
+        for (const key of properties) {
+          delete state[key];
+        }
+        break;
+
+      case 'clear':
+        for (const i in state) {
+          delete state[i];
+        }
+        break;
     }
   }
 }
