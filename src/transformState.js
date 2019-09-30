@@ -50,20 +50,24 @@
  */
 function transformState(state, transforms) {
   transforms.forEach(transform => {
-    if (transform.operation === 'clear') {
-      for (const property in state) {
-        delete state[property];
+    switch (transform.operation) {
+      case 'addProperties': {
+        Object.assign(state, transform.properties);
+        break;
       }
-    }
-    if (transform.operation === 'addProperties') {
-      Object.assign(state, transform.properties);
-    }
-    if (transform.operation === 'removeProperties') {
-      transform.properties.forEach(propertyToDelete => {
-        if (state.hasOwnProperty(propertyToDelete)) {
-          delete state[propertyToDelete];
+      case 'removeProperties': {
+        transform.properties.forEach(propertyToDelete => {
+          if (state.hasOwnProperty(propertyToDelete)) {
+            delete state[propertyToDelete];
+          }
+        });
+        break;
+      }
+      case 'clear': {
+        for (const property in state) {
+          delete state[property];
         }
-      });
+      }
     }
   });
 }
