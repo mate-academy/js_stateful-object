@@ -66,15 +66,16 @@ function transformRemoveProperties(state, toRemove) {
 
 function transformState(state, transforms) {
   transforms.forEach(transform => {
-    switch (transform.operation) {
+    const { operation, properties } = transform;
+    switch (operation) {
       case 'addProperties':
-        transformAddProperties(state, transform.properties);
+        transformAddProperties(state, properties);
         break;
       case 'clear':
         transformClear(state);
         break;
       case 'removeProperties':
-        transformRemoveProperties(state, transform.properties);
+        transformRemoveProperties(state, properties);
         break;
     }
   });
