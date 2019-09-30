@@ -52,32 +52,32 @@ function transformClear(state) {
   for (const key in state) {
     delete state[key];
   }
-}
+};
 
 function transformAddProperties(state, toAdd) {
   for (const key in toAdd) {
     state[key] = toAdd[key];
   }
-}
+};
 
 function transformRemoveProperties(state, toRemove) {
-  toRemove.forEach(e => delete state[e]);
-}
+  toRemove.forEach(propToRemove => delete state[propToRemove]);
+};
 
 function transformState(state, transforms) {
-  transforms.forEach(e => {
-    switch (e.operation) {
+  transforms.forEach(transform => {
+    switch (transform.operation) {
       case 'addProperties':
-        transformAddProperties(state, e.properties);
+        transformAddProperties(state, transform.properties);
         break;
       case 'clear':
         transformClear(state);
         break;
       case 'removeProperties':
-        transformRemoveProperties(state, e.properties);
+        transformRemoveProperties(state, transform.properties);
         break;
     }
   });
-}
+};
 
 module.exports = transformState;
