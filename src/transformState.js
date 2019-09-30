@@ -15,7 +15,7 @@
  *   with `key: value` pairs to add to the state;
  *   if `operation` is `removeProperties`, this property contains an array
  *   with the list of property names to remove from the state;
- *   if `operation is `clear`, this property is not set; you should remove
+ *   if `operation` is `clear`, this property is not set; you should remove
  *   all the properties from the state instead.
  *
  * You may assume that all transformations are valid (e.g., there will be no
@@ -49,7 +49,27 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const value of transforms) {
+    switch (value['operation']) {
+      case 'addProperties':
+        for (const key in value['properties']) {
+          state[key] = value['properties'][key];
+        }
+        break;
+
+      case 'removeProperties':
+        for (const del of value['properties']) {
+          delete state[del];
+        }
+        break;
+
+      case 'clear':
+        for (const clean in state) {
+          delete state[clean];
+        }
+        break;
+    }
+  }
 }
 
 module.exports = transformState;
