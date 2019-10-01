@@ -50,9 +50,8 @@
  */
 function transformState(state, transforms) {
   // write code here
-  for (let i = 0; i < transforms.length; i++) {
-    const operation = transforms[i]['operation'];
-    const properties = transforms[i]['properties'];
+  for (const elem of transforms) {
+    const { operation, properties } = elem;
     if (operation === 'addProperties') {
       addPropertiesToObject(state, properties);
     }
@@ -74,8 +73,8 @@ function addPropertiesToObject(object, properties) {
 }
 
 function removePropertiesFromObject(object, properties) {
-  for (let i = 0; i < properties.length; i++) {
-    delete object[properties[i]];
+  for (const elem of properties) {
+    delete object[elem];
   }
 }
 
