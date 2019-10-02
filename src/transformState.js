@@ -62,8 +62,8 @@ function transformState(state, transforms) {
         break;
       }
       case 'addProperties': {
-        for (const key in object.properties) {
-          state[key] = object.properties[key];
+        for (const [key, value] of Object.entries(object.properties)) {
+          state[key] = value;
         }
         break;
       }
