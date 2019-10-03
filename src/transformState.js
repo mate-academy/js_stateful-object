@@ -56,19 +56,18 @@ const clearObject = (object) => {
 
 function transformState(state, transforms) {
   for (const object of transforms) {
-    switch (object.operation) {
+    const [operation, properties] = Object.values(object);
+    switch (operation) {
       case 'clear': {
         clearObject(state);
         break;
       }
       case 'addProperties': {
-        for (const [key, value] of Object.entries(object.properties)) {
-          state[key] = value;
-        }
+        state = Object.assign(state, properties);
         break;
       }
       case 'removeProperties': {
-        for (const key of object.properties) {
+        for (const key of properties) {
           delete state[key];
         }
         break;
