@@ -50,14 +50,15 @@
  */
 function transformState(state, transforms) {
   for (const key of transforms) {
-    switch (key.operation) {
+    const { operation, properties } = key;
+    switch (operation) {
       case 'addProperties' :
-        for (const addKey in key.properties) {
-          state[addKey] = key.properties[addKey];
+        for (const addKey in properties) {
+          state[addKey] = properties[addKey];
         }
         break;
       case 'removeProperties' :
-        for (const delKey of key.properties) {
+        for (const delKey of properties) {
           delete state[delKey];
         }
         break;
