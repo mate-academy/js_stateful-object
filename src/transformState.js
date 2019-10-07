@@ -49,22 +49,29 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  transforms.forEach(function(item, i, arr) {
-    if (item.operation === 'addProperties') {
-      for (const key in item.properties) {
-        state[key] = item.properties[key];
-      };
-    };
-    if (item.operation === 'removeProperties') {
-      for (const value of item.properties) {
-        delete state[value];
-      };
-    };
-    if (item.operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      };
-    };
+  transforms.forEach(item => {
+    switch (item.operation) {
+      case 'addProperties':
+        for (const key in item.properties) {
+          state[key] = item.properties[key];
+        };
+        break;
+
+      case 'removeProperties':
+        for (const value of item.properties) {
+          delete state[value];
+        };
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        };
+        break;
+
+      default:
+        break;
+    }
   });
 };
 
