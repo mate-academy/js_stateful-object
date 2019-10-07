@@ -52,9 +52,7 @@ function transformState(state, transforms) {
   transforms.forEach(item => {
     switch (item.operation) {
       case 'addProperties':
-        for (const key in item.properties) {
-          state[key] = item.properties[key];
-        };
+        Object.assign(state, item.properties);
         break;
 
       case 'removeProperties':
