@@ -1,4 +1,7 @@
 {
+  "jest": {
+    "testEnvironment": "node"
+  },
   "name": "stateful-object",
   "version": "1.0.0",
   "description": "Transforming state",
