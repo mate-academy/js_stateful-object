@@ -1,11 +1,11 @@
 'use strict';
 
 /**
- * Implement a function accepting 2 arguments `state` and `transforms`. It
- * should change the `state` basing on the given `transforms`
- *
- * `state` is an object. You are supposed to add, change, or delete its
- *  properties instead of creating a new object
+   * Implement a function accepting 2 arguments `state` and `transforms`. It
+   * should change the `state` basing on the given `transforms`
+   *
+   * `state` is an object. You are supposed to add, change, or delete its
+   *  properties instead of creating a new object
  *
  * `transforms` is an array of objects having the following properties:
  * `operation`: either `addProperties`, `removeProperties` or `clear`;
@@ -46,7 +46,22 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  transforms.forEach(item => {
+    switch (item.operation) {
+      case 'addProperties':
+        Object.assign(state, item.properties);
+        break;
+      case 'removeProperties':
+        item.properties.forEach(elem => delete state[elem]);
+        break;
+      default:
+        for (const key in state) {
+          delete state[key];
+        }
+    }
+  });
+
+  return state;
 }
 
 module.exports = transformState;
