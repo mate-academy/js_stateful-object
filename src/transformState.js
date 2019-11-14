@@ -59,9 +59,7 @@ function transformState(state, transforms) {
 
     if (transforms[i].operation === 'removeProperties') {
       for (let j = 0; j < transforms[i].properties.length; j++) {
-        if (transforms[i].properties[j] in state) {
-          delete state[transforms[i].properties[j]];
-        }
+        delete state[transforms[i].properties[j]];
       }
     }
   }
