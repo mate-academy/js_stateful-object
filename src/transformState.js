@@ -1,25 +1,22 @@
 'use strict';
 
 /**
- * Implement a function that transforms a state:
+ * Implement a function accepting 2 arguments `state` and `transforms`. It
+ * should change the `state` basing on the given `transforms`
  *
- * The first parameter your function accepts, `state`, is an object that you
- * are to modify inside your function. You must not reassign `state` to a new
- * object, instead you are supposed to add, change, or delete its properties.
+ * `state` is an object. You are supposed to add, change, or delete its
+ *  properties instead of creating a new object
  *
- * The second parameter your function accepts, `transforms`, is an array of
- * objects having the following properties:
- * `operation`: either `addProperties`, `removeProperties`, or `clear`;
+ * `transforms` is an array of objects having the following properties:
+ * `operation`: either `addProperties`, `removeProperties` or `clear`;
  * `properties`:
- *   if `operation` is `addProperties`, this property contains an object
+ *   - if `operation` is `addProperties`, this property contains an object
  *   with `key: value` pairs to add to the state;
- *   if `operation` is `removeProperties`, this property contains an array
- *   with the list of property names to remove from the state;
- *   if `operation is `clear`, this property is not set; you should remove
- *   all the properties from the state instead.
- *
- * You may assume that all transformations are valid (e.g., there will be no
- * request to remove a non-existent property).
+ *   - if `operation` is `removeProperties`, this property contains an array
+ *   with the list of property names to remove from the state; (Not existing
+ *   properties should be ignored)
+ *   - if `operation is `clear` you should remove all the properties from the
+ *   state
  *
  * Sample usage:
  *
