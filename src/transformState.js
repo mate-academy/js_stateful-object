@@ -63,11 +63,11 @@ function transformState(state, transforms) {
 
     if (transforms[i]['operation'] === 'removeProperties') {
       const stateKeysList = Object.keys(state);
-      for (let stateKey = 0;
-        stateKey <= (propertiesList.length + 1);
-        stateKey++) {
-        if (propertiesList.includes(stateKeysList[stateKey])) {
-          delete state[stateKeysList[stateKey]];
+      for (let propKey = 0;
+        propKey < propertiesList.length;
+        propKey++) {
+        if (stateKeysList.includes(propertiesList[propKey])) {
+          delete state[propertiesList[propKey]];
         }
       }
     }
