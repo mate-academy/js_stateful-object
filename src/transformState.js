@@ -48,18 +48,22 @@
 function transformState(state, transforms) {
   // write code here
   for (let i = 0; i < transforms.length; i++) {
-    if (transforms[i].operation === 'addProperties') {
-      for (const key in transforms[i].properties) {
-        state[key] = transforms[i].properties[key];
-      }
-    } else if (transforms[i].operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
-    } else if (transforms[i].operation === 'removeProperties') {
-      for (let j = 0; j < transforms[i].properties.length; j++) {
-        delete state[transforms[i].properties[j]];
-      }
+    switch (transforms[i].operation) {
+      case 'addProperties':
+        for (const key in transforms[i].properties) {
+          state[key] = transforms[i].properties[key];
+        }
+        break;
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+      case 'removeProperties':
+        for (let j = 0; j < transforms[i].properties.length; j++) {
+          delete state[transforms[i].properties[j]];
+        }
+        break;
     }
   }
 
