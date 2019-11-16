@@ -54,9 +54,9 @@ function transformState(state, transforms) {
         break;
 
       case ('removeProperties'):
-
-        for (let j = 0; j < transforms[i].properties.length; j++) {
-          delete state[transforms[i].properties[j]];
+        const a = transforms[i].properties;
+        for (let j = 0; j < a.length; j++) {
+          delete state[a[j]];
         }
         break;
 
