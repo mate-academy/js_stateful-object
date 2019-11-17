@@ -49,28 +49,21 @@ function transformState(state, transforms) {
   for (let i = 0; i < transforms.length; i++) {
     const objOperatPropert = transforms[i];
 
-    if (objOperatPropert.operation === 'addProperties') {
-      Object.assign(state, objOperatPropert.properties);
-    }
+    switch (objOperatPropert.operation) {
+      case 'addProperties':
+        Object.assign(state, objOperatPropert.properties); break;
 
-    if (objOperatPropert.operation === 'removeProperties') {
-      const arrayForRemove = objOperatPropert.properties;
-      for (let j = 0; j < arrayForRemove.length; j++) {
+      case 'removeProperties':
+        for (const key of objOperatPropert.properties) {
+          delete state[key];
+        } break;
+
+      case 'clear':
         for (const key in state) {
-          if (arrayForRemove[j] === key) {
-            delete state[key];
-          }
-        }
-      }
-    }
-
-    if (objOperatPropert.operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+          delete state[key];
+        } break;
     }
   }
   return state;
 }
-
 module.exports = transformState;
