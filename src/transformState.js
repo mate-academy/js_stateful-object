@@ -47,21 +47,22 @@
  */
 function transformState(state, transforms) {
   for (const variant in transforms) {
-    if (transforms[variant].operation === 'addProperties') {
-      Object.assign(state, transforms[variant].properties);
-    }
-    if (transforms[variant].operation === 'removeProperties') {
-      for (const key in transforms[variant].properties) {
-        delete state[transforms[variant].properties[key]];
-      }
-    }
-    if (transforms[variant].operation === 'clear') {
-      for (const prop in state) {
-        delete state[prop];
-      }
+    switch (transforms[variant].operation) {
+      case 'addProperties':
+        Object.assign(state, transforms[variant].properties);
+        break;
+
+      case 'removeProperties':
+        for (const key in transforms[variant].properties) {
+          delete state[transforms[variant].properties[key]];
+        } break;
+
+      case 'clear':
+        for (const prop in state) {
+          delete state[prop];
+        } break;
     }
   }
-
   return state;
 }
 
