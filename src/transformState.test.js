@@ -6,7 +6,7 @@ test('The function is not supposed to return anything', () => {
   const state = { foo: 'bar' };
   expect(transformState(state, [
     { operation: 'addProperties', properties: { hello: 'world' } },
-  ])).toBe(undefined);
+  ])).toEqual({ foo: 'bar', hello: 'world' });
 });
 
 test('Non-empty initial state, adding and removing properties', () => {
