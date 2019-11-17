@@ -47,24 +47,45 @@
  */
 function transformState(state, transforms) {
   for (let i = 0; i < transforms.length; i++) {
-    if (transforms[i].operation === 'addProperties') {
-      Object.assign(state, transforms[i].properties);
-    }
+    switch (transforms[i].operation) {
+      case 'addProperties':
+        Object.assign(state, transforms[i].properties);
+        break;
 
-    if (transforms[i].operation === 'removeProperties') {
-      for (let j = 0; j < transforms[i].properties.length; j++) {
-        if (state.hasOwnProperty(transforms[i].properties[j])) {
-          delete state[transforms[i].properties[j]];
+      case 'removeProperties':
+        for (let j = 0; j < transforms[i].properties.length; j++) {
+          if (state.hasOwnProperty(transforms[i].properties[j])) {
+            delete state[transforms[i].properties[j]];
+          }
         }
-      }
-    }
+        break;
 
-    if (transforms[i].operation === 'clear') {
-      Object.keys(state).forEach(key => delete state[key]);
+      default:
+        Object.keys(state).forEach(key => delete state[key]);
     }
   }
 
   return state;
+
+  // for (let i = 0; i < transforms.length; i++) {
+  //   if (transforms[i].operation === 'addProperties') {
+  //     Object.assign(state, transforms[i].properties);
+  //   }
+
+  //   if (transforms[i].operation === 'removeProperties') {
+  //     for (let j = 0; j < transforms[i].properties.length; j++) {
+  //       if (state.hasOwnProperty(transforms[i].properties[j])) {
+  //         delete state[transforms[i].properties[j]];
+  //       }
+  //     }
+  //   }
+
+  //   if (transforms[i].operation === 'clear') {
+  //     Object.keys(state).forEach(key => delete state[key]);
+  //   }
+  // }
+
+  // return state;
 }
 
 module.exports = transformState;
