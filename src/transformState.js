@@ -66,6 +66,7 @@ function transformState(state, transforms) {
     }
   }
 
-  return state;}
+  return state;
+}
 
 module.exports = transformState;
