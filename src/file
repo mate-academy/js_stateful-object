@@ -1,9 +1,0 @@
-const users = [
-  { id: 1, name: 'Sergey' },
-  { id: 2, name: 'Misha' },
-  { id: 3, name: 'Tanya' },
-];
-
-for (const key in users) {
-  console.log(users.name + 'is' + '#'+ users.id);
-}
