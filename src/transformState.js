@@ -65,16 +65,16 @@ function transformState(state, transforms) {
   }
 
   transforms.map(elem => {
-    if (elem.operation === 'addProperties') {
-      addProperties(state, elem.properties);
-    }
-
-    if (elem.operation === 'removeProperties') {
-      removeProperties(state, elem.properties);
-    }
-
-    if (elem.operation === 'clear') {
-      clear(state);
+    switch (elem.operation) {
+      case 'addProperties':
+        addProperties(state, elem.properties);
+        break;
+      case 'removeProperties':
+        removeProperties(state, elem.properties);
+        break;
+      case 'clear':
+        clear(state);
+        break;
     }
   });
 
