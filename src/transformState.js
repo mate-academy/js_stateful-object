@@ -47,16 +47,23 @@
  */
 function transformState(state, transforms) {
   for (let i = 0; i < transforms.length; i++) {
-    if (transforms[i].operation === 'addProperties') {
-      Object.assign(state, transforms[i].properties);
-    } else if (transforms[i].operation === 'removeProperties') {
-      transforms[i].properties.map(prop => {
-        delete state[prop];
-      });
-    } else {
-      Object.keys(state).map(prop => {
-        delete state[prop];
-      });
+    switch (transforms[i].operation) {
+      case 'addProperties':
+        Object.assign(state, transforms[i].properties);
+        break;
+      case 'removeProperties':
+        transforms[i].properties.map(prop => {
+          delete state[prop];
+        });
+        break;
+      case 'clear':
+        Object.keys(state).map(prop => {
+          delete state[prop];
+        });
+        break;
+      default:
+        return `Choose one of these operations:
+                addProperties, removeProperties, clear`;
     }
   }
 
