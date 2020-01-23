@@ -60,8 +60,9 @@ function transformState(state, transforms) {
         return Object.keys(state).map(key => delete state[key]);
       }
 
-      default:
+      default: {
         return state;
+      }
     }
   });
 }
