@@ -56,9 +56,7 @@ function transformState(state, transforms) {
         }
         break;
       case 'removeProperties':
-        const deletedKeys = props;
-
-        for (const key of deletedKeys) {
+        for (const key of props) {
           if (state.hasOwnProperty(key)) {
             delete state[key];
           }
