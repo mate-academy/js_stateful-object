@@ -52,12 +52,8 @@ function transformState(state, transforms) {
 
     switch (oparetionName) {
       case 'addProperties':
-        const keey = Object.keys(propertiesContent);
-        const descrp = Object.values(propertiesContent);
-        const entries = Object.entries(propertiesContent);
-
-        for (let j = 0; j < entries.length; j++) {
-          state[keey[j]] = descrp[j];
+        for (const key in propertiesContent) {
+          state[key] = propertiesContent[key];
         }
         break;
 
