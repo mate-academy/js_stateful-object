@@ -48,9 +48,10 @@
 function transformState(state, transforms) {
   for (let i = 0; i < transforms.length; i++) {
     switch (transforms[i].operation) {
-      case 'addProperties':
+      case 'addProperties': {
         Object.assign(state, transforms[i].properties);
         break;
+      }
 
       case 'removeProperties': {
         transforms[i].properties.map(prop => {
