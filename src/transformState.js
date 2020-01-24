@@ -71,6 +71,8 @@ function transformState(state, transforms) {
         break;
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
