@@ -66,15 +66,20 @@ function transformState(state, transforms) {
 
   transforms.map(elem => {
     switch (elem.operation) {
-      case 'addProperties':
+      case 'addProperties': {
         addProperties(state, elem.properties);
         break;
-      case 'removeProperties':
+      }
+
+      case 'removeProperties': {
         removeProperties(state, elem.properties);
         break;
-      case 'clear':
+      }
+
+      case 'clear': {
         clear(state);
         break;
+      }
     }
   });
 
