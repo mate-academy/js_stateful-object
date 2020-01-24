@@ -51,19 +51,20 @@ function transformState(state, transforms) {
       case 'addProperties':
         Object.assign(state, transforms[i].properties);
         break;
-      case 'removeProperties':
+
+      case 'removeProperties': {
         transforms[i].properties.map(prop => {
           delete state[prop];
         });
         break;
-      case 'clear':
+      }
+
+      case 'clear': {
         Object.keys(state).map(prop => {
           delete state[prop];
         });
         break;
-      default:
-        return `Choose one of these operations:
-                addProperties, removeProperties, clear`;
+      }
     }
   }
 
