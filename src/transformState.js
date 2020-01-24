@@ -54,14 +54,14 @@ function transformState(state, transforms) {
       }
 
       case 'removeProperties': {
-        transforms[i].properties.map(prop => {
+        transforms[i].properties.forEach(prop => {
           delete state[prop];
         });
         break;
       }
 
       case 'clear': {
-        Object.keys(state).map(prop => {
+        Object.keys(state).forEach(prop => {
           delete state[prop];
         });
         break;
