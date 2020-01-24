@@ -59,9 +59,8 @@ function transformState(state, transforms) {
 
     if (transforms[i].operation === 'removeProperties') {
       for (const prop of transforms[i].properties) {
-        if (prop in state) {
-          delete state[prop];
-        }
+        state.hasOwnProperty(prop);
+        delete state[prop];
       }
     }
   }
