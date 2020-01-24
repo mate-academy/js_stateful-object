@@ -49,21 +49,24 @@ function transformState(state, transforms) {
   // write code here
   transforms.forEach(obj => {
     switch (obj.operation) {
-      case 'addProperties':
+      case 'addProperties': {
         Object.assign(state, obj.properties);
         break;
+      }
 
-      case 'removeProperties':
+      case 'removeProperties': {
         for (const key of obj.properties) {
           delete state[key];
         };
         break;
+      }
 
-      case 'clear':
+      case 'clear': {
         for (const key in state) {
           delete state[key];
         };
         break;
+      }
     }
   });
 
