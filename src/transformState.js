@@ -46,7 +46,28 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const index of transforms) {
+    if (index.operation === 'addProperties') {
+      Object.assign(state, index.properties);
+    }
+
+    if (index.operation === 'removeProperties') {
+      for (const prop of index.properties) {
+        delete state[prop];
+      }
+    }
+
+    if (index.operation === 'clear') {
+      for (const prop in state) {
+        delete state[prop];
+      }
+      // my first version
+      // Why the test does not work with this????
+      // state = {};
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
