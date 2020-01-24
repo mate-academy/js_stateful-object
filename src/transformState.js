@@ -54,15 +54,15 @@ function transformState(state, transforms) {
       }
 
       case 'removeProperties': {
-        transforms[i].properties.forEach(prop => {
-          delete state[prop];
+        transforms[i].properties.forEach(key => {
+          delete state[key];
         });
         break;
       }
 
       case 'clear': {
-        Object.keys(state).forEach(prop => {
-          delete state[prop];
+        Object.keys(state).forEach(key => {
+          delete state[key];
         });
         break;
       }
