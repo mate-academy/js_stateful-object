@@ -47,8 +47,10 @@
  */
 function transformState(state, transforms) {
   for (let i = 0; i < transforms.length; i++) {
+    const properties = transforms[i].properties;
+
     if (transforms[i].operation === 'addProperties') {
-      Object.assign(state, transforms[i].properties);
+      Object.assign(state, properties);
     }
 
     if (transforms[i].operation === 'clear') {
@@ -58,8 +60,7 @@ function transformState(state, transforms) {
     }
 
     if (transforms[i].operation === 'removeProperties') {
-      for (const prop of transforms[i].properties) {
-        state.hasOwnProperty(prop);
+      for (const prop of properties) {
         delete state[prop];
       }
     }
