@@ -20,13 +20,12 @@
  *
  * Sample usage:
  *
- * If `state` is {foo: 'bar', bar: 'foo', name: 'Jim', hello: 'world'}, then
+ * If `state` is {foo: 'bar', bar: 'foo'}, then
  *
  * transformState(state, [
  *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
  *   {operation: 'removeProperties', properties: ['bar', 'hello']},
  *
- * for(const j in state)
  *   {operation: 'addProperties', properties: {another: 'one'}}
  * ])
  *
@@ -36,7 +35,7 @@
  * Then after calling
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}break
+ *   {operation: 'addProperties', properties: {yet: 'another property'}}
  *   {operation: 'clear'},
  *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
