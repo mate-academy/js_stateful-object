@@ -61,9 +61,9 @@ function transformState(state, item) {
       }
 
       case 'clear': {
-        for (const key in state) {
-          delete state[key];
-        }
+        Object.keys(state).forEach((value) => {
+          delete state[value];
+        });
         break;
       }
     }
