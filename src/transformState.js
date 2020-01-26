@@ -43,10 +43,33 @@
  * {foo: 'bar', name: 'Jim'}.
  *
  * @param {Object} state
- * @param {Object[]} transforms
+ * @param {Object[]} item
  */
-function transformState(state, transforms) {
-  // write code here
+function transformState(state, item) {
+  item.forEach((element) => {
+    switch (element.operation) {
+      case 'addProperties': {
+        Object.assign(state, element.properties);
+        break;
+      }
+
+      case 'removeProperties': {
+        element.properties.forEach((value) => {
+          delete state[value];
+        });
+        break;
+      }
+
+      case 'clear': {
+        Object.keys(state).forEach((value) => {
+          delete state[value];
+        });
+        break;
+      }
+    }
+  });
+
+  return state;
 }
 
 module.exports = transformState;
