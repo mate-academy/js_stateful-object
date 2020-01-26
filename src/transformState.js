@@ -68,4 +68,5 @@ function transformState(state, transforms) {
     }
   }
 }
+
 module.exports = transformState;
