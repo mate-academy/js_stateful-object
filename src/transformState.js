@@ -20,11 +20,13 @@
  *
  * Sample usage:
  *
- * If `state` is {foo: 'bar', bar: 'foo'}, then
+ * If `state` is {foo: 'bar', bar: 'foo', name: 'Jim', hello: 'world'}, then
  *
  * transformState(state, [
  *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
  *   {operation: 'removeProperties', properties: ['bar', 'hello']},
+ *
+ * for(const j in state)
  *   {operation: 'addProperties', properties: {another: 'one'}}
  * ])
  *
@@ -34,7 +36,7 @@
  * Then after calling
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}
+ *   {operation: 'addProperties', properties: {yet: 'another property'}}break
  *   {operation: 'clear'},
  *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
@@ -46,7 +48,30 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const key of transforms) {
+    switch (key.operation) {
+      case 'addProperties' : {
+        Object.assign(state, key.properties);
+        break;
+      }
+
+      case 'removeProperties' : {
+        for (const prop of key.properties) {
+          delete state[prop];
+        }
+        break;
+      }
+
+      case 'clear' : {
+        for (const del in state) {
+          delete state[del];
+        }
+        break;
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
