@@ -46,10 +46,10 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const elements in transforms) {
-    const props = transforms[elements]['properties'];
+  for (const element in transforms) {
+    const props = transforms[element]['properties'];
 
-    switch (transforms[elements]['operation']) {
+    switch (transforms[element]['operation']) {
       case 'addProperties': {
         Object.assign(state, props);
         break;
