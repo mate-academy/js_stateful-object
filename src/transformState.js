@@ -62,6 +62,9 @@ function transformState(state, transforms) {
         for (const prop in state) {
           delete state[prop];
         }
+        break;
+
+      default:
     }
   }
 
