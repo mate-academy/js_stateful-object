@@ -48,8 +48,7 @@
  */
 function transformState(state, transforms) {
   for (const key of transforms) {
-    const prop = key.properties;
-    const operationVal = key.operation;
+    const [prop, operationVal] = [key.properties, key.operation];
 
     switch (operationVal) {
       case 'addProperties' : {
