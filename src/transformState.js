@@ -50,6 +50,7 @@ function transformState(state, transforms) {
     switch (item.operation) {
       case 'addProperties' : {
         Object.assign(state, item.properties);
+
         break;
       }
 
@@ -57,6 +58,7 @@ function transformState(state, transforms) {
         item.properties.forEach(value => {
           delete state[value];
         });
+
         break;
       }
 
@@ -64,6 +66,7 @@ function transformState(state, transforms) {
         Object.keys(state).forEach(value => {
           delete state[value];
         });
+
         break;
       }
     }
