@@ -46,24 +46,21 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const index of transforms) {
-    if (index.operation === 'addProperties') {
-      Object.assign(state, index.properties);
-    }
+  for (const obj of transforms) {
+    switch (obj.operation) {
+      case 'addProperties':
+        Object.assign(state, obj.properties);
+        break;
+      case 'removeProperties':
+        for (const prop of obj.properties) {
+          delete state[prop];
+        }
+        break;
 
-    if (index.operation === 'removeProperties') {
-      for (const prop of index.properties) {
-        delete state[prop];
-      }
-    }
-
-    if (index.operation === 'clear') {
-      for (const prop in state) {
-        delete state[prop];
-      }
-      // my first version
-      // Why the test does not work with this????
-      // state = {};
+      case 'clear':
+        for (const prop in state) {
+          delete state[prop];
+        }
     }
   }
 
