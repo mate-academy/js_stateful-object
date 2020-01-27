@@ -50,23 +50,31 @@ function transformState(state, transforms) {
   const changedState = state;
 
   for (let i = 0; i < transforms.length; i++) {
-    switch (transforms[i].operation) {
+    const { operation, properties } = transforms[i];
+
+    // operation = transforms[i].operation
+    // properties = transforms[i].properties
+
+    switch (operation) {
       case 'addProperties':
-        for (const key in transforms[i].properties) {
-          changedState[key] = transforms[i].properties[key];
+        for (const key in properties) {
+          changedState[key] = properties[key];
         }
+
         break;
 
       case 'removeProperties':
-        for (const key of transforms[i].properties) {
+        for (const key of properties) {
           delete changedState[key];
         }
+
         break;
 
       case 'clear':
         for (const key in changedState) {
           delete changedState[key];
         }
+
         break;
     }
   }
