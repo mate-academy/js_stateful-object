@@ -51,20 +51,25 @@ function transformState(state, transforms) {
       case 'addProperties':
         for (const property in transform['properties']) {
           if (transform['properties'].hasOwnProperty(property)) {
-            state[property] = transform['properties'][property];
+            Object.assign(state, transform['properties']);
           }
         }
         break;
+
       case 'clear':
         for (const stateKey in state) {
           delete state[stateKey];
         }
         break;
+
       case 'removeProperties':
         for (const propertyToRemove of transform['properties']) {
           delete state[propertyToRemove];
         }
         break;
+
+      default:
+        throw new Error('Not supported operation');
     }
   }
 }
