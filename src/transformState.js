@@ -53,9 +53,9 @@ function transformState(state, transforms) {
     }
   }
 
-  function removeProperties(obj) {
-    for (const key of obj) {
-      delete state[key];
+  function removeProperties(arr) {
+    for (const item of arr) {
+      delete state[item];
     }
   }
 
@@ -66,12 +66,16 @@ function transformState(state, transforms) {
   }
 
   for (const item of transforms) {
-    if (item.operation === 'addProperties') {
-      addProperties(item.properties);
-    } else if (item.operation === 'removeProperties') {
-      removeProperties(item.properties);
-    } else if (item.operation === 'clear') {
-      clear();
+    switch (item.operation) {
+      case 'addProperties':
+        addProperties(item.properties);
+        break;
+      case 'removeProperties':
+        removeProperties(item.properties);
+        break;
+      case 'clear':
+        clear();
+        break;
     }
   }
 }
