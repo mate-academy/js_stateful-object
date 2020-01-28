@@ -65,6 +65,7 @@ function transformState(state, transforms) {
         break;
 
       default:
+        Object.assign(state);
     }
   }
 
