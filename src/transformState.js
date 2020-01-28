@@ -46,18 +46,18 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (let i = 0; i < transforms.length; i++) {
-    switch (transforms[i]['operation']) {
+  for (const item of transforms) {
+    const { properties, operation } = item;
+
+    switch (operation) {
       case 'addProperties': {
-        Object.assign(state, transforms[i]['properties']);
+        Object.assign(state, properties);
         break;
       }
 
       case 'removeProperties': {
-        for (let k = 0; k < transforms[i]['properties'].length; k++) {
-          const removeKey = transforms[i]['properties'][k];
-
-          delete state[removeKey];
+        for (const prop of properties) {
+          delete state[prop];
         }
         break;
       }
@@ -68,6 +68,9 @@ function transformState(state, transforms) {
         }
         break;
       }
+      default:
+        // eslint-disable-next-line no-undef
+        alert('=)');
     }
   }
 
