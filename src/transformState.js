@@ -69,8 +69,7 @@ function transformState(state, transforms) {
         break;
       }
       default:
-        // eslint-disable-next-line no-undef
-        alert('=)');
+        break;
     }
   }
 
