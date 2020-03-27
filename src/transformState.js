@@ -45,8 +45,33 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
 function transformState(state, transforms) {
-  // write code here
+  for (let i = 0; i < transforms.length; i++) {
+    const thisStepObj = transforms[i];
+    const thisStepOperation = thisStepObj.operation;
+    const thisStepPropertyObj = thisStepObj.properties;
+    const thisStepPropertiesToRemove = thisStepObj.properties;
+
+    if (thisStepOperation === 'clear') {
+      for (const property in state) {
+        delete state[property];
+      };
+    };
+
+    if (thisStepOperation === 'addProperties') {
+      for (const property in thisStepPropertyObj) {
+        state[property] = thisStepPropertyObj[property];
+      };
+    };
+
+    if (thisStepOperation === 'removeProperties') {
+      for (let arrCount = 0;
+        arrCount < thisStepPropertiesToRemove.length; arrCount++) {
+        delete state[thisStepPropertiesToRemove[arrCount]];
+      }
+    }
+  }
 }
 
 module.exports = transformState;
