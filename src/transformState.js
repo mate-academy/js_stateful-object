@@ -75,8 +75,6 @@ function transformState(state, transforms) {
       delete state[key];
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
