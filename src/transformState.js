@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * Implement a function accepting 2 arguments `state` and `transforms`. It
  * should change the `state` basing on the given `transforms`
@@ -45,8 +44,33 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
+function aplyTransform(state, transform) {
+  if (transform.operation === 'addProperties') {
+    for (const key in transform.properties) {
+      state[key] = transform.properties[key];
+    }
+  } else if (transform.operation === 'removeProperties') {
+    for (let i = 0; i < transform.properties.length; i++) {
+      const key = transform.properties[i];
+
+      delete state[key];
+    }
+  } else if (transform.operation === 'clear') {
+    for (const key in state) {
+      delete state[key];
+    }
+  }
+}
+
 function transformState(state, transforms) {
   // write code here
+
+  for (let i = 0; i < transforms.length; i++) {
+    const transform = transforms[i];
+
+    aplyTransform(state, transform);
+  }
 }
 
 module.exports = transformState;
