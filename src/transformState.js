@@ -47,25 +47,39 @@
  */
 function transformState(state, transforms) {
   for (const values of transforms) {
-    switch (values.operation) {
-      case 'clear':
-        for (const key in state) {
-          delete state[key];
-        }
-        break;
-
-      case 'removeProperties':
-        for (const key of values.properties) {
-          delete state[key];
-        }
-        break;
-
-      case 'addProperties':
-        for (const key in values.properties) {
-          state[key] = values.properties[key];
-        }
-        break;
+    if (values.operation === 'clear') {
+      for (const key in state) {
+        delete state[key];
+      }
+    } else if (values.operation === 'removeProperties') {
+      for (const key of values.properties) {
+        delete state[key];
+      }
+    } else if (values.operation === 'addProperties') {
+      for (const key in values.properties) {
+        state[key] = values.properties[key];
+      }
     }
+
+    // switch (values.operation) {
+    //   case 'clear':
+    //     for (const key in state) {
+    //       delete state[key];
+    //     }
+    //     break;
+
+    //   case 'removeProperties':
+    //     for (const key of values.properties) {
+    //       delete state[key];
+    //     }
+    //     break;
+
+    //   case 'addProperties':
+    //     for (const key in values.properties) {
+    //       state[key] = values.properties[key];
+    //     }
+    //     break;
+    // }
   }
 }
 
