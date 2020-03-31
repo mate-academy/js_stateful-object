@@ -47,26 +47,29 @@
  */
 function transformState(state, transforms) {
   for (const transformation of transforms) {
-    if (transformation.operation === 'addProperties') {
-      for (const key in transformation.properties) {
-        state[key] = transformation.properties[key];
-      }
-    }
+    switch (transformation.operation) {
+      case 'addProperties':
+        for (const key in transformation.properties) {
+          state[key] = transformation.properties[key];
+        }
+        break;
 
-    if (transformation.operation === 'removeProperties') {
-      for (const key of transformation.properties) {
-        delete state[key];
-      }
-    }
+      case 'removeProperties':
+        for (const key of transformation.properties) {
+          delete state[key];
+        }
+        break;
 
-    if (transformation.operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        return state;
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
