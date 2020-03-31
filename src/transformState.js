@@ -61,7 +61,9 @@ function transformState(state, transforms) {
         break;
       case 'clear':
         // eslint-disable-next-line no-param-reassign
-        state = {};
+        for (const key in state) {
+          delete state[key];
+        }
         break;
     }
   }
