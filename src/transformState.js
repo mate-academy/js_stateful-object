@@ -23,9 +23,26 @@
  * If `state` is {foo: 'bar', bar: 'foo'}, then
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
- *   {operation: 'removeProperties', properties: ['bar', 'hello']},
- *   {operation: 'addProperties', properties: {another: 'one'}}
+*                         {
+*                          operation: 'addProperties',
+*                          properties:
+                                      {
+*                                      name: 'Jim',
+*                                      hello: 'world'
+*                                     }
+*                          },
+ *
+ *                        {
+ *                         operation: 'removeProperties',
+ *                         properties: ['bar', 'hello']
+ *                        },
+ *
+ *                        {
+ *                         operation: 'addProperties',
+ *                         properties: {
+ *                                      another: 'one'
+ *                                     }
+ *                        }
  * ])
  *
  * should modify the `state` object so after the call it becomes
@@ -46,7 +63,25 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const obj of transforms) {
+    if (obj['operation'] === 'addProperties') {
+      for (const key in obj['properties']) {
+        state[key] = obj['properties'][key];
+      }
+    }
+
+    if (obj['operation'] === 'removeProperties') {
+      for (const key of obj['properties']) {
+        delete state[key];
+      }
+    }
+
+    if (obj['operation'] === 'clear') {
+      for (const key in state) {
+        delete state[key];
+      }
+    }
+  }
 }
 
 module.exports = transformState;
