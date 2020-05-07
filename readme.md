@@ -16,7 +16,7 @@ Implement a function accepting 2 arguments `state` and `transforms`. It should c
 - if `operation is `clear` you should remove all the properties from thestate
  
 Sample usage:
-If `state` is {foo: 'bar', bar: 'foo'}, then
+If `state` is `{foo: 'bar', bar: 'foo'}`, then
 ```
 transformState(state, [
   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
@@ -26,7 +26,7 @@ transformState(state, [
 ```
  
 should modify the `state` object so after the call it becomes
-{foo: 'bar', name: 'Jim', another: 'one'}.
+`{foo: 'bar', name: 'Jim', another: 'one'}`.
  
 Then after calling
 ```
@@ -37,4 +37,4 @@ transformState(state, [
 ])
 ```
 the `state` variable must contain
-{foo: 'bar', name: 'Jim'}.
+`{foo: 'bar', name: 'Jim'}`.
