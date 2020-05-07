@@ -17,23 +17,24 @@ Implement a function accepting 2 arguments `state` and `transforms`. It should c
  
 Sample usage:
 If `state` is {foo: 'bar', bar: 'foo'}, then
- 
+```
 transformState(state, [
   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
   {operation: 'removeProperties', properties: ['bar', 'hello']},
   {operation: 'addProperties', properties: {another: 'one'}}
 ]);
+```
  
 should modify the `state` object so after the call it becomes
 {foo: 'bar', name: 'Jim', another: 'one'}.
  
- Then after calling
- 
+Then after calling
+```
 transformState(state, [
   {operation: 'addProperties', properties: {yet: 'another property'}}
   {operation: 'clear'},
   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
 ])
- 
+```
 the `state` variable must contain
 {foo: 'bar', name: 'Jim'}.
