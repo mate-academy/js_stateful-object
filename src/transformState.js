@@ -33,11 +33,11 @@
  *
  * Then after calling
  *
- * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}
- *   {operation: 'clear'},
- *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
- * ])
+  transformState(state, [
+    {operation: 'addProperties', properties: {yet: 'another property'}}
+    {operation: 'clear'},
+    {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
+  ])
  *
  * the `state` variable must contain
  * {foo: 'bar', name: 'Jim'}.
@@ -46,7 +46,25 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const trans of transforms) {
+    switch (trans.operation) {
+      case 'addProperties':
+        for (const item in trans.properties) {
+          state[item] = trans.properties[item];
+        }
+        break;
+      case 'removeProperties':
+        for (const item of trans.properties) {
+          delete state[item];
+        }
+        break;
+      case 'clear':
+        for (const item in state) {
+          delete state[item];
+        }
+        break;
+    }
+  }
 }
 
 module.exports = transformState;
