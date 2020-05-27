@@ -47,26 +47,23 @@
  */
 
 function transformState(state, transforms) {
-  let stateMutated = state;
-
-  for (const action in transforms) {
-    switch (transforms[action].operation) {
+  for (const action of transforms) {
+    switch (action.operation) {
       case 'addProperties':
-        stateMutated = Object.assign(
-          stateMutated,
-          transforms[action].properties
-        );
+        for (const key in action.properties) {
+          state[key] = action.properties[key];
+        };
         break;
 
       case 'removeProperties':
-        for (const deleteMark in transforms[action].properties) {
-          delete stateMutated[transforms[action].properties[deleteMark]];
+        for (const key in action.properties) {
+          delete state[action.properties[key]];
         };
         break;
 
       case 'clear':
-        for (const i in stateMutated) {
-          delete stateMutated[i];
+        for (const key in state) {
+          delete state[key];
         }
         break;
     }
