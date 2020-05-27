@@ -46,19 +46,25 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const obj of transforms) {
-    if (obj.operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
-    } else if (obj.operation === 'addProperties') {
-      for (const key in obj.properties) {
-        state[key] = obj.properties[key];
-      }
-    } else if (obj.operation === 'removeProperties') {
-      for (const elem of obj.properties) {
-        delete state[elem];
-      }
+  for (const object of transforms) {
+    switch (object.operation) {
+      case ('clear'):
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      case ('addProperties'):
+        for (const key in object.properties) {
+          state[key] = object.properties[key];
+        }
+        break;
+
+      case ('removeProperties'):
+        for (const elem of object.properties) {
+          delete state[elem];
+        }
+        break;
     }
   }
 
