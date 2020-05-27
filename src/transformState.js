@@ -59,7 +59,7 @@ function transformState(state, transforms) {
         }
         break;
       case 'clear':
-        for (const key of Object.keys(state)) {
+        for (const key in state) {
           delete state[key];
         }
         break;
