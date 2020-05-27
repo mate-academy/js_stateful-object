@@ -45,27 +45,30 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
 function transformState(state, transforms) {
   let stateMutated = state;
 
   for (const action in transforms) {
-    if (transforms[action].operation === 'addProperties') {
-      stateMutated = Object.assign(
-        stateMutated,
-        transforms[action].properties
-      );
-    };
+    switch (transforms[action].operation) {
+      case 'addProperties':
+        stateMutated = Object.assign(
+          stateMutated,
+          transforms[action].properties
+        );
+        break;
 
-    if (transforms[action].operation === 'removeProperties') {
-      for (const deleteMark in transforms[action].properties) {
-        delete stateMutated[transforms[action].properties[deleteMark]];
-      }
-    };
+      case 'removeProperties':
+        for (const deleteMark in transforms[action].properties) {
+          delete stateMutated[transforms[action].properties[deleteMark]];
+        };
+        break;
 
-    if (transforms[action].operation === 'clear') {
-      for (const i in stateMutated) {
-        delete stateMutated[i];
-      }
+      case 'clear':
+        for (const i in stateMutated) {
+          delete stateMutated[i];
+        }
+        break;
     }
   }
 }
