@@ -4,7 +4,6 @@
   "description": "Transforming state",
   "main": "src/transformState.js",
   "scripts": {
-    "start": "node --nolazy --inspect-brk=9229 server.js",
     "test": "jest",
     "lint": "eslint **/*.js"
   },
