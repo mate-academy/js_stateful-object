@@ -10,10 +10,10 @@
  * `transforms` is an array of objects having the following properties:
  * `operation`: either `addProperties`, `removeProperties` or `clear`;
  * `properties`:
- *   - if `operation` is `addProperties`, this property contains an object
+ *   - if `operation` is `addProperties`, this attribute contains an object
  *   with `key: value` pairs to add to the state;
- *   - if `operation` is `removeProperties`, this property contains an array
- *   with the list of property names to remove from the state; (Not existing
+ *   - if `operation` is `removeProperties`, this attribute contains an array
+ *   with the list of attribute names to remove from the state; (Not existing
  *   properties should be ignored)
  *   - if `operation is `clear` you should remove all the properties from the
  *   state
@@ -34,7 +34,7 @@
  * Then after calling
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}
+ *   {operation: 'addProperties', properties: {yet: 'another attribute'}}
  *   {operation: 'clear'},
  *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
@@ -46,7 +46,29 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const attribute of transforms) {
+    switch (attribute.operation) {
+      case 'addProperties': {
+        for (const [addKey, addValue] of Object.entries(attribute.properties)) {
+          state[addKey] = addValue;
+        }
+        break;
+      }
+
+      case 'removeProperties': {
+        for (const removeKey of attribute.properties) {
+          delete state[removeKey];
+        }
+        break;
+      }
+
+      case 'clear': {
+        for (const key of Object.getOwnPropertyNames(state)) {
+          delete state[key];
+        }
+      }
+    }
+  }
 }
 
 module.exports = transformState;
