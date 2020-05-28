@@ -46,16 +46,16 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const [index] of transforms.entries()) {
-    switch (transforms[index].operation) {
+  for (const index of transforms) {
+    switch (index.operation) {
       case 'addProperties':
-        for (const prop in transforms[index].properties) {
-          state[prop] = transforms[index].properties[prop];
+        for (const prop in index.properties) {
+          state[prop] = index.properties[prop];
         }
         break;
 
       case 'removeProperties':
-        for (const value of transforms[index].properties) {
+        for (const value of index.properties) {
           if (state.hasOwnProperty(value)) {
             delete state[value];
           }
@@ -63,7 +63,9 @@ function transformState(state, transforms) {
         break;
 
       case 'clear':
-        Object.keys(state).forEach(key => delete state[key]);
+        for (const key in state) {
+          delete state[key];
+        };
     }
   }
 
