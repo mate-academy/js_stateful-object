@@ -46,39 +46,31 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  const copyState = state;
+  const operations = {
+    add: 'addProperties',
+    remove: 'removeProperties',
+    clear: 'clear',
+  };
 
   for (const key in transforms) {
     const { operation, properties } = transforms[key];
 
-    if (operation === 'addProperties') {
-      Object.assign(copyState, properties);
-    }
-
-    if (operation === 'removeProperties') {
-      for (const keyState in state) {
-        for (const keyOfProperty in properties) {
-          if (keyState === properties[keyOfProperty]) {
-            delete copyState[keyState];
-          }
+    switch (operation) {
+      case operations.add:
+        Object.assign(state, properties);
+        break;
+      case operations.remove:
+        for (const keyOfProperty of properties) {
+          delete state[keyOfProperty];
         }
-      }
-    }
-
-    if (operation === 'clear') {
-      for (const keyState in state) {
-        delete copyState[keyState];
-      }
+        break;
+      case operations.clear:
+        for (const keyState in state) {
+          delete state[keyState];
+        }
+        break;
     }
   }
-
-  return copyState;
 }
-
-transformState({ foo: 'bar' }, [
-  {
-    operation: 'removeProperties', properties: ['foo'],
-  },
-]);
 
 module.exports = transformState;
