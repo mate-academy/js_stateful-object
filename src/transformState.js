@@ -52,16 +52,16 @@ function transformState(state, transforms) {
     clear: 'clear',
   };
 
-  for (let i = 0; i < transforms.length; i++) {
-    switch (true) {
-      case (transforms[i].operation === OPERATIONS.add):
-        for (const keys in transforms[i].properties) {
-          state[keys] = transforms[i].properties[keys];
+  for (const transformsObject of transforms) {
+    switch (transformsObject.operation) {
+      case OPERATIONS.add:
+        for (const keys in transformsObject.properties) {
+          state[keys] = transformsObject.properties[keys];
         }
         break;
 
-      case (transforms[i].operation === OPERATIONS.remove):
-        for (const property of transforms[i].properties) {
+      case OPERATIONS.remove:
+        for (const property of transformsObject.properties) {
           delete state[property];
         }
         break;
