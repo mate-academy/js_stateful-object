@@ -48,37 +48,31 @@
 function transformState(state, transforms) {
   // write code here
   let objectTransforms = {};
-  // let objectProperties = {};
-  const fixedState = state;
 
-  for (const detail of transforms) {
+  for (const transform of transforms) {
     objectTransforms = {
       objectTransforms,
-      ...detail,
+      ...transform,
     };
 
     switch (objectTransforms.operation) {
       case 'addProperties':
-        const addProperties = objectTransforms.properties;
-
-        for (const key in addProperties) {
-          fixedState[key] = addProperties[key];
+        for (const key in objectTransforms.properties) {
+          state[key] = objectTransforms.properties[key];
         }
 
         break;
       case 'removeProperties':
-        const keyOfDelete = Object.values(objectTransforms.properties);
-
-        for (const key of keyOfDelete) {
-          if (fixedState.hasOwnProperty(key)) {
-            delete fixedState[key];
+        for (const property of objectTransforms.properties) {
+          if (state.hasOwnProperty(property)) {
+            delete state[property];
           }
         }
 
         break;
       case 'clear':
-        for (const key in fixedState) {
-          delete fixedState[key];
+        for (const key in state) {
+          delete state[key];
         }
         break;
       default :
@@ -86,7 +80,7 @@ function transformState(state, transforms) {
     }
   }
 
-  return fixedState;
+  return state;
 }
 
 module.exports = transformState;
