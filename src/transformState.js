@@ -47,6 +47,46 @@
  */
 function transformState(state, transforms) {
   // write code here
+  let objectTransforms = {};
+  // let objectProperties = {};
+  const fixedState = state;
+
+  for (const detail of transforms) {
+    objectTransforms = {
+      objectTransforms,
+      ...detail,
+    };
+
+    switch (objectTransforms.operation) {
+      case 'addProperties':
+        const addProperties = objectTransforms.properties;
+
+        for (const key in addProperties) {
+          fixedState[key] = addProperties[key];
+        }
+
+        break;
+      case 'removeProperties':
+        const keyOfDelete = Object.values(objectTransforms.properties);
+
+        for (const key of keyOfDelete) {
+          if (fixedState.hasOwnProperty(key)) {
+            delete fixedState[key];
+          }
+        }
+
+        break;
+      case 'clear':
+        for (const key in fixedState) {
+          delete fixedState[key];
+        }
+        break;
+      default :
+        break;
+    }
+  }
+
+  return fixedState;
 }
 
 module.exports = transformState;
