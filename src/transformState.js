@@ -47,6 +47,38 @@
  */
 function transformState(state, transforms) {
   // write code here
+  const result = [];
+
+  for (const transform of transforms) {
+    const addObj = {};
+
+    switch (transform.operation) {
+      case 'addProperties':
+        for (const key in transform.properties) {
+          state[key] = transform.properties[key];
+        }
+        break;
+
+      case 'removeProperties':
+        for (const key of transform.properties) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+    }
+
+    for (const key in state) {
+      addObj[key] = state[key];
+    }
+    result.push(addObj);
+  }
+
+  return result;
 }
 
 module.exports = transformState;
