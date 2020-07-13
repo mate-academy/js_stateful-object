@@ -39,13 +39,34 @@
  *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
  *
- * the `state` variable must contain
+ * the `state` variable must containk
  * {foo: 'bar', name: 'Jim'}.
  *
  * @param {Object} state
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
+  for (const keys of transforms) {
+    switch (keys.operation) {
+      case 'addProperties':
+        for (const key in keys.properties) {
+          state[key] = keys.properties[key];
+        }
+        break;
+      case 'removeProperties':
+        for (const key of keys.properties) {
+          delete state[key];
+        }
+        break;
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+    }
+  }
+
+  return state;
   // write code here
 }
 
