@@ -47,11 +47,7 @@
  */
 function transformState(state, transforms) {
   // write code here
-  const result = [];
-
   for (const transform of transforms) {
-    const addObj = {};
-
     switch (transform.operation) {
       case 'addProperties':
         for (const key in transform.properties) {
@@ -71,14 +67,9 @@ function transformState(state, transforms) {
         }
         break;
     }
-
-    for (const key in state) {
-      addObj[key] = state[key];
-    }
-    result.push(addObj);
   }
 
-  return result;
+  return state;
 }
 
 module.exports = transformState;
