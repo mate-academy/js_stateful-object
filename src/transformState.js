@@ -34,7 +34,7 @@
  * Then after calling
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}
+ *   {operation: 'addProperties', properties: {yet: 'another property'}},
  *   {operation: 'clear'},
  *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
@@ -45,8 +45,32 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+const clearObject = (object) => {
+  for (const key in object) {
+    delete object[key];
+  }
+};
+
 function transformState(state, transforms) {
-  // write code here
+  for (const object of transforms) {
+    const [operation, properties] = Object.values(object);
+    switch (operation) {
+      case 'clear': {
+        clearObject(state);
+        break;
+      }
+      case 'addProperties': {
+        state = Object.assign(state, properties);
+        break;
+      }
+      case 'removeProperties': {
+        for (const key of properties) {
+          delete state[key];
+        }
+        break;
+      }
+    }
+  }
 }
 
 module.exports = transformState;
