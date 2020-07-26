@@ -45,8 +45,37 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
-function transformState(state, transforms) {
-  // write code here
+
+/* Потрібно перебрати всі обєкти з правилами до статичного масиву
+статичний масив клонувати так як він сonst
+перебрати правила в об'єкті
+використати switch для тогого щоб застосувати правило */
+
+function transform(state, transforms) {
+  let cloneState = Object.assign({}, state);
+
+  for (let i = 0; i < transforms.length; i++) {
+    for (const key in transforms) {
+      switch (transforms[key].operation) {
+        case 'addProperties':
+          cloneState = Object.assign(state, (transforms[key].properties));
+          break;
+        case 'clear':
+          for (const index of Object.keys(state)) {
+            delete state[index];
+          }
+          break;
+        case 'removeProperties':
+          for (const key1 of transforms[key].properties) {
+            delete state[key1];
+          }
+          cloneState = Object.assign({}, (transforms[key].properties));
+          break;
+      }
+    }
+
+    return cloneState;
+  }
 }
 
-module.exports = transformState;
+module.exports = transform;
