@@ -8,14 +8,14 @@
  *  properties instead of creating a new object
  *
  * `transforms` is an array of objects having the following properties:
- * `operation`: either `addProperties`, `removeProperties` or `clear`;
+ * `operation': either `addProperties`, `removeProperties` or `clear`;
  * `properties`:
- *   - if `operation` is `addProperties`, this property contains an object
+ *   - if `operation' is `addProperties`, this property contains an object
  *   with `key: value` pairs to add to the state;
- *   - if `operation` is `removeProperties`, this property contains an array
+ *   - if `operation' is `removeProperties`, this property contains an array
  *   with the list of property names to remove from the state; (Not existing
  *   properties should be ignored)
- *   - if `operation is `clear` you should remove all the properties from the
+ *   - if `operation'is `clear` you should remove all the properties from the
  *   state
  *
  * Sample usage:
@@ -23,9 +23,9 @@
  * If `state` is {foo: 'bar', bar: 'foo'}, then
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
- *   {operation: 'removeProperties', properties: ['bar', 'hello']},
- *   {operation: 'addProperties', properties: {another: 'one'}}
+ *   {operation' 'addProperties', properties: {name: 'Jim', hello: 'world'}},
+ *   {operation' 'removeProperties', properties: ['bar', 'hello']},
+ *   {operation' 'addProperties', properties: {another: 'one'}}
  * ])
  *
  * should modify the `state` object so after the call it becomes
@@ -34,9 +34,9 @@
  * Then after calling
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}
- *   {operation: 'clear'},
- *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
+ *   {operation' 'addProperties', properties: {yet: 'another property'}}
+ *   {operation' 'clear'},
+ *   {operation' 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
  *
  * the `state` variable must contain
@@ -46,7 +46,27 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const action of transforms) {
+    if (action['operation'] === 'addProperties') {
+      Object.assign(state, action['properties']);
+    }
+
+    if (action['operation'] === 'removeProperties') {
+      for (const key in action['properties']) {
+        const toDelete = action['properties'][key];
+
+        delete state[toDelete];
+      }
+    }
+
+    if (action['operation'] === 'clear') {
+      for (const element in state) {
+        delete state[element];
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
