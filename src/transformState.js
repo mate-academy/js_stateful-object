@@ -47,6 +47,25 @@
  */
 function transformState(state, transforms) {
   // write code here
+  for (const i of transforms) {
+    if (i.operation === 'addProperties') {
+      for (const o in i.properties) {
+        state[o] = i.properties[o];
+      }
+    } else if (i.operation === 'removeProperties') {
+      for (const o of i.properties) {
+        if (state[o]) {
+          delete state[o];
+        }
+      }
+    } else if (i.operation === 'clear') {
+      for (const o in state) {
+        delete state[o];
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
