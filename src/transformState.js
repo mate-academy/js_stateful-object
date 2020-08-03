@@ -24,7 +24,9 @@
  *
  * transformState(state, [
  *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
+ *
  *   {operation: 'removeProperties', properties: ['bar', 'hello']},
+ *
  *   {operation: 'addProperties', properties: {another: 'one'}}
  * ])
  *
@@ -46,7 +48,39 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  let currentOperation = '';
+
+  for (const transform of transforms) {
+    for (const transformProp in transform) {
+      if (transformProp === 'operation') {
+        currentOperation = transform[transformProp];
+      }
+
+      if (currentOperation === 'addProperties') {
+        for (const propToAdd in transform['properties']) {
+          state[propToAdd] = transform['properties'][propToAdd];
+        }
+      }
+
+      if (currentOperation === 'removeProperties') {
+        for (const propToDel of transform['properties']) {
+          if (propToDel in state) {
+            delete state[propToDel];
+          }
+        }
+      }
+
+      if (currentOperation === 'clear') {
+        const stateKeys = Object.keys(state);
+
+        for (const key of stateKeys) {
+          delete state[key];
+        }
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
