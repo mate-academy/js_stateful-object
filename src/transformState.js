@@ -16,7 +16,7 @@
  *   with the list of property names to remove from the state; (Not existing
  *   properties should be ignored)
  *   - if `operation is `clear` you should remove all the properties from the
- *   state
+ *   statea
  *
  * Sample usage:
  *
@@ -40,13 +40,36 @@
  * ])
  *
  * the `state` variable must contain
- * {foo: 'bar', name: 'Jim'}.
- *
- * @param {Object} state
- * @param {Object[]} transforms
- */
+//  * {foo: 'bar', name: 'Jim'}.
+//  *
+//  * @param {Object} state
+//  * @param {Object[]} transforms
+//  */
+
 function transformState(state, transforms) {
-  // write code here
+  for (const obj in transforms) {
+    const main = transforms[obj];
+
+    switch (main.operation) {
+      case 'addProperties':
+        Object.assign(state, main.properties);
+        break;
+
+      case 'removeProperties':
+        for (const key of main.properties) {
+          delete state[key];
+        }
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
