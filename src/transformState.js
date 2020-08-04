@@ -46,24 +46,42 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (let i = 0; i < transforms.length; i++) {
-    const transformsItem = transforms[i];
+  for (const transformsItem of transforms) {
+    // const transformsItem = transforms[i];
 
-    if (transformsItem['operation'] === 'addProperties') {
-      Object.assign(state, transformsItem.properties);
+    switch (transformsItem['operation']) {
+      case 'addProperties':
+        Object.assign(state, transformsItem.properties);
+        break;
+
+      case 'removeProperties':
+        for (const property of transformsItem['properties']) {
+          delete state[property];
+        };
+        break;
+
+      case 'clear':
+        for (const stateProp in state) {
+          delete state[stateProp];
+        };
+        break;
     }
 
-    if (transformsItem['operation'] === 'removeProperties') {
-      for (const property of transformsItem['properties']) {
-        delete state[property];
-      };
-    }
+    // if (transformsItem['operation'] === 'addProperties') {
+    //   Object.assign(state, transformsItem.properties);
+    // }
 
-    if (transformsItem['operation'] === 'clear') {
-      for (const stateProp in state) {
-        delete state[stateProp];
-      }
-    }
+    // if (transformsItem['operation'] === 'removeProperties') {
+    //   for (const property of transformsItem['properties']) {
+    //     delete state[property];
+    //   };
+    // }
+
+    // if (transformsItem['operation'] === 'clear') {
+    //   for (const stateProp in state) {
+    //     delete state[stateProp];
+    //   }
+    // }
   }
 }
 
