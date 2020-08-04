@@ -54,12 +54,8 @@ function transformState(state, transforms) {
         break;
 
       case 'removeProperties':
-        for (const value in transform.properties) {
-          for (const property in state) {
-            if (transform.properties[value] === property) {
-              delete state[property];
-            }
-          }
+        for (const value of transform.properties) {
+          delete state[value];
         }
         break;
 
