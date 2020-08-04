@@ -71,12 +71,11 @@ function addProperties(state, properties) {
 }
 
 function removeProperties(state, properties) {
-  for (let i = 0; i < properties.length; i++) {
-    if (state.hasOwnProperty(properties[i])) {
-      delete state[properties[i]];
+  for (const properti in properties) {
+    if (state.hasOwnProperty(properties[properti])) {
+      delete state[properties[properti]];
     }
   }
-  //  console.log(state);
 
   return state;
 }
