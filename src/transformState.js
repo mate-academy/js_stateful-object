@@ -47,22 +47,26 @@
  */
 function transformState(state, transforms) {
   transforms.forEach(elem => {
-    for (const key in elem) {
-      if (elem[key] === 'clear') {
+    switch (elem.operation) {
+      case 'clear':
         for (const clearProperty in state) {
           delete state[clearProperty];
         }
-      } else if (elem[key] === 'addProperties') {
+        break;
+
+      case 'addProperties':
         for (const val in elem.properties) {
           state[val] = elem.properties[val];
         }
-      } else if (elem[key] === 'removeProperties') {
+        break;
+
+      case 'removeProperties':
         elem.properties.forEach(item => {
           if (item in state) {
             delete state[item];
           }
         });
-      }
+        break;
     }
   });
 
