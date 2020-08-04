@@ -58,12 +58,8 @@ function transformState(state, transforms) {
     }
 
     if (step.operation === 'removeProperties') {
-      const del = step.properties;
-
-      for (let j = 0; j < del.length; j++) {
-        const keyDeleted = del[j];
-
-        delete state[keyDeleted];
+      for (let j = 0; j < step.properties.length; j++) {
+        delete state[step.properties[j]];
       }
     }
 
@@ -74,7 +70,7 @@ function transformState(state, transforms) {
     }
   }
 
-  return state;// write code here
+  return state;
 }
 
 module.exports = transformState;
