@@ -64,6 +64,8 @@ function transformState(state, transforms) {
           delete state[index];
         };
         break;
+
+      default : return 'property doesnt have correct value';
     }
   }
 
