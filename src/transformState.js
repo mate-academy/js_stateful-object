@@ -52,13 +52,13 @@ function transformState(state, transforms) {
       case 'addProperties' : Object.assign(state, key.properties); break;
 
       case 'clear' :
-        for (const char in state) {
-          delete state[char];
+        for (const index in state) {
+          delete state[index];
         } ; break;
 
       case 'removeProperties' :
-        for (const char of key.properties) {
-          delete state[char];
+        for (const index of key.properties) {
+          delete state[index];
         } ; break;
     }
   }
