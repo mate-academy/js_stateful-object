@@ -23,24 +23,40 @@
  * If `state` is {foo: 'bar', bar: 'foo'}, then
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
- *   {operation: 'removeProperties', properties: ['bar', 'hello']},
- *   {operation: 'addProperties', properties: {another: 'one'}}
+ *   {
+ *     operation: 'addProperties',
+ *     properties: {
+ *       name: 'Jim',
+ *.      hello: 'world',
+ *.    }
+ *.  },
+ *   {
+ *     operation: 'removeProperties',
+ *     properties: ['bar', 'hello'],
+ *   },
+ *   {
+ *     operation: 'addProperties',
+ *     properties: { another: 'one' },
+ *   }
  * ])
  *
  * should modify the `state` object so after the call it becomes
- * {foo: 'bar', name: 'Jim', another: 'one'}.
+ * {
+ *   foo: 'bar',
+ *   name: 'Jim',
+ *   another: 'one',
+ * }
  *
  * Then after calling
  *
  * transformState(state, [
- *   {operation: 'addProperties', properties: {yet: 'another property'}}
- *   {operation: 'clear'},
- *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
+ *   { operation: 'addProperties', properties: { yet: 'another property' } }
+ *   { operation: 'clear' },
+ *   { operation: 'addProperties', properties: { foo: 'bar', name: 'Jim' } }
  * ])
  *
  * the `state` variable must contain
- * {foo: 'bar', name: 'Jim'}.
+ * { foo: 'bar', name: 'Jim' }
  *
  * @param {Object} state
  * @param {Object[]} transforms
