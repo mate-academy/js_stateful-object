@@ -47,22 +47,22 @@
  */
 function transformState(state, transforms) {
   // write code here
-  for (const i of (transforms)) {
-    if (i.operation === 'addProperties') {
-      for (const n in i['properties']) {
-        state[n] = i['properties'][n];
+  for (const value of transforms) {
+    if (value.operation === 'addProperties') {
+      for (const obj in value['properties']) {
+        state[obj] = value['properties'][obj];
       }
     }
 
-    if (i.operation === 'clear') {
-      for (const k in state) {
-        delete state[k];
+    if (value.operation === 'clear') {
+      for (const key in state) {
+        delete state[key];
       }
     }
 
-    if (i.operation === 'removeProperties') {
-      for (const a of (i.properties)) {
-        delete state[a];
+    if (value.operation === 'removeProperties') {
+      for (const prop of value.properties) {
+        delete state[prop];
       }
     }
   }
