@@ -46,8 +46,8 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const object in transforms) {
-    const currentObj = transforms[object];
+  for (const object of transforms) {
+    const currentObj = object;
 
     switch (currentObj.operation) {
       case 'addProperties':
