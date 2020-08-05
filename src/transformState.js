@@ -48,24 +48,26 @@
 
 function transformState(state, transforms) {
   for (const transKey of transforms) {
-    if (transKey.operation === 'addProperties') {
-      for (const propKey in transKey.properties) {
-        state[propKey] = transKey.properties[propKey];
-      }
-    }
-
-    if (transKey.operation === 'removeProperties') {
-      for (const propKey of transKey.properties) {
-        if (state.hasOwnProperty(propKey)) {
-          delete state[propKey];
+    switch (transKey.operation) {
+      case 'addProperties':
+        for (const propKey in transKey.properties) {
+          state[propKey] = transKey.properties[propKey];
         }
-      }
-    }
+        break;
 
-    if (transKey.operation === 'clear') {
-      for (const stateKey in state) {
-        delete state[stateKey];
-      }
+      case 'removeProperties':
+        for (const propKey of transKey.properties) {
+          if (state.hasOwnProperty(propKey)) {
+            delete state[propKey];
+          }
+        }
+        break;
+
+      case 'clear':
+        for (const stateKey in state) {
+          delete state[stateKey];
+        }
+        break;
     }
   }
 
