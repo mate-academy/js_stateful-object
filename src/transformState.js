@@ -66,22 +66,6 @@ function transformState(state, transforms) {
         };
         break;
     }
-
-    // if (transformsItem['operation'] === 'addProperties') {
-    //   Object.assign(state, transformsItem.properties);
-    // }
-
-    // if (transformsItem['operation'] === 'removeProperties') {
-    //   for (const property of transformsItem['properties']) {
-    //     delete state[property];
-    //   };
-    // }
-
-    // if (transformsItem['operation'] === 'clear') {
-    //   for (const stateProp in state) {
-    //     delete state[stateProp];
-    //   }
-    // }
   }
 }
 
