@@ -53,7 +53,7 @@ function transformState(state, transforms) {
         break;
 
       case 'removeProperties' :
-        for (const prop of transform['properties']) {
+        for (const prop of transform.properties) {
           delete state[prop];
         }
         break;
