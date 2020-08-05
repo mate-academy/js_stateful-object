@@ -47,17 +47,13 @@
  */
 
 function transformState(state, transforms) {
-  for (let i = 0; i < transforms.length; i++) {
-    if (transforms[i].operation === 'addProperties') {
-      addProperties(state, transforms[i].properties);
-    }
-
-    if (transforms[i].operation === 'removeProperties') {
-      removeProperties(state, transforms[i].properties);
-    }
-
-    if (transforms[i].operation === 'clear') {
-      clear(state, transforms[i].properties);
+  for (const transform in transforms) {
+    if (transforms[transform].operation === 'addProperties') {
+      addProperties(state, transforms[transform].properties);
+    } else if (transforms[transform].operation === 'removeProperties') {
+      removeProperties(state, transforms[transform].properties);
+    } else {
+      clear(state, transforms[transform].properties);
     }
   }
 
