@@ -62,6 +62,6 @@ const transformState = (state, transforms) => {
       }
     }
   }
-}
+};
 
 module.exports = transformState;
