@@ -62,40 +62,42 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  const addProperties = 'addProperties';
-  const removeProperties = 'removeProperties';
-  const clearProperties = 'clear';
+  const OPERATION = {
+    add: 'addProperties',
+    remove: 'removeProperties',
+    clear: 'clear',
+  };
 
   for (const transform of transforms) {
     const { properties, operation } = transform;
 
     switch (operation) {
-      case addProperties:
-        add(properties);
+      case OPERATION.add:
+        add(state, properties);
         break;
-      case removeProperties:
-        remove(properties);
+      case OPERATION.remove:
+        remove(state, properties);
         break;
-      case clearProperties:
-        clear();
+      case OPERATION.clear:
+        clear(state);
         break;
     }
   }
+}
 
-  function add(properties) {
-    Object.assign(state, properties);
+function add(obj, properties) {
+  Object.assign(obj, properties);
+}
+
+function remove(obj, properties) {
+  for (const property of properties) {
+    delete obj[property];
   }
+}
 
-  function remove(properties) {
-    for (const property of properties) {
-      delete state[property];
-    }
-  }
-
-  function clear() {
-    for (const stateElement in state) {
-      delete state[stateElement];
-    }
+function clear(obj) {
+  for (const stateElement in obj) {
+    delete obj[stateElement];
   }
 }
 
