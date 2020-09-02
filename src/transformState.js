@@ -93,8 +93,6 @@ function transformState(state, transforms) {
 
     transformsList[operation](properties);
   }
-
-  return state;
 }
 
 module.exports = transformState;
