@@ -23,46 +23,49 @@
  * If `state` is {foo: 'bar', bar: 'foo'}, then
  *
  * transformState(state, [
- *   {
- *     operation: 'addProperties',
- *     properties: {
- *       name: 'Jim',
- *.      hello: 'world',
- *.    }
- *.  },
- *   {
- *     operation: 'removeProperties',
- *     properties: ['bar', 'hello'],
- *   },
- *   {
- *     operation: 'addProperties',
- *     properties: { another: 'one' },
- *   }
+ *   {operation: 'addProperties', properties: {name: 'Jim', hello: 'world'}},
+ *   {operation: 'removeProperties', properties: ['bar', 'hello']},
+ *   {operation: 'addProperties', properties: {another: 'one'}}
  * ])
  *
  * should modify the `state` object so after the call it becomes
- * {
- *   foo: 'bar',
- *   name: 'Jim',
- *   another: 'one',
- * }
+ * {foo: 'bar', name: 'Jim', another: 'one'}.
  *
  * Then after calling
  *
  * transformState(state, [
- *   { operation: 'addProperties', properties: { yet: 'another property' } }
- *   { operation: 'clear' },
- *   { operation: 'addProperties', properties: { foo: 'bar', name: 'Jim' } }
+ *   {operation: 'addProperties', properties: {yet: 'another property'}}
+ *   {operation: 'clear'},
+ *   {operation: 'addProperties', properties: {foo: 'bar', name: 'Jim'}}
  * ])
  *
  * the `state` variable must contain
- * { foo: 'bar', name: 'Jim' }
+ * {foo: 'bar', name: 'Jim'}.
  *
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
 function transformState(state, transforms) {
-  // write code here
+  for (const transform of transforms) {
+    switch (transform.operation) {
+      case 'addProperties':
+        Object.assign(state, transform.properties);
+        break;
+
+      case 'removeProperties':
+        for (const property in transform.properties) {
+          delete state[transform.properties[property]];
+        };
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+    }
+  }
 }
 
 module.exports = transformState;
