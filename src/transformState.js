@@ -69,9 +69,7 @@ function transformState(state, transforms) {
         break;
       case 'removeProperties':
         for (const propertyToDelete of transform.properties) {
-          if (state.hasOwnProperty(propertyToDelete)) {
-            delete state[propertyToDelete];
-          }
+          delete state[propertyToDelete];
         }
         break;
       case 'clear':
