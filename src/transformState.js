@@ -59,7 +59,7 @@
  * { foo: 'bar', name: 'Jim' }
  *
  * @param {Object} state
- * @param {Object[]} transforms
+ * @param {Object[ ]} transforms
  */
 function transformState(state, transforms) {
   for (const { operation, properties } of transforms) {
