@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/*
  * Implement a function accepting 2 arguments `state` and `transforms`. It
  * should change the `state` basing on the given `transforms`
  *
@@ -62,7 +62,29 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  let result = state;
+
+  for (const prop in transforms) {
+    if (transforms[prop].operation === 'addProperties') {
+      result = Object.assign(result, transforms[prop].properties);
+    }
+
+    if (transforms[prop].operation === 'removeProperties') {
+      for (const el of transforms[prop].properties) {
+        if (result.hasOwnProperty(el)) {
+          delete result[el];
+        }
+      }
+    }
+
+    if (transforms[prop].operation === 'clear') {
+      for (const el of Object.getOwnPropertyNames(state)) {
+        delete result[el];
+      }
+    }
+  }
+
+  return result;
 }
 
 module.exports = transformState;
