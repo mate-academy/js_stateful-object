@@ -64,20 +64,24 @@
 function transformState(state, transforms) {
   for (const transform of transforms) {
     switch (transform.operation) {
-      case 'addProperties' : Object.assign(state, transform.properties);
+      case 'addProperties' : {
+        Object.assign(state, transform.properties);
         break;
+      }
 
-      case 'removeProperties' :
+      case 'removeProperties' : {
         for (const deleteProperties of transform.properties) {
           delete state[deleteProperties];
         }
         break;
+      }
 
-      case 'clear' :
+      case 'clear' : {
         for (const clearProperties in state) {
           delete state[clearProperties];
         }
         break;
+      }
     }
   }
 
