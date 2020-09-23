@@ -71,16 +71,16 @@ function transformState(state, transforms) {
       }
 
       case 'removeProperties': {
-        for (const i of properties) {
-          delete state[i];
+        for (const prop of properties) {
+          delete state[prop];
         }
 
         break;
       }
 
       case 'clear': {
-        for (const i in state) {
-          delete state[i];
+        for (const key in state) {
+          delete state[key];
         }
 
         break;
