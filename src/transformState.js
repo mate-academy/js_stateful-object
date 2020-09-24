@@ -84,7 +84,6 @@ function transformState(state, transforms) {
         for (const el of Object.getOwnPropertyNames(state)) {
           delete result[el];
         }
-        break;
       }
     }
   }
