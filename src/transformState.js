@@ -63,21 +63,23 @@
  */
 
 function transformState(state, transforms) {
-  for (const task of transforms) {
-    if (task.operation === 'addProperties') {
-      Object.assign(state, task.properties);
-    } else if (task.operation === 'clear') {
+  for (const { operation, properties } of transforms) {
+    if (operation === 'addProperties') {
+      Object.assign(state, properties);
+    }
+
+    if (operation === 'clear') {
       for (const toClear in state) {
         delete state[toClear];
       }
-    } else if (task.operation === 'removeProperties') {
-      for (const toRemove of task.properties) {
+    }
+
+    if (operation === 'removeProperties') {
+      for (const toRemove of properties) {
         delete state[toRemove];
       }
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
