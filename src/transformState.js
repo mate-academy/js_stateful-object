@@ -62,7 +62,6 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-
   for (const objectTransform of transforms) {
     const action = objectTransform.operation;
     const aimProperties = objectTransform.properties;
