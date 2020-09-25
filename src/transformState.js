@@ -62,25 +62,24 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  const aim = state;
 
   for (const objectTransform of transforms) {
     const action = objectTransform.operation;
     const aimProperties = objectTransform.properties;
 
     if (action === 'addProperties') {
-      Object.assign(aim, aimProperties);
+      Object.assign(state, aimProperties);
     }
 
     if (action === 'removeProperties') {
       for (const key of aimProperties) {
-        delete aim[key];
+        delete state[key];
       }
     }
 
     if (action === 'clear') {
-      for (const key in aim) {
-        delete aim[key];
+      for (const key in state) {
+        delete state[key];
       }
     }
   }
