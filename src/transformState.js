@@ -62,7 +62,41 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (let i = 0; i < transforms.length; i++) {
+    switch (transforms[i].operation) {
+      case 'addProperties':
+        Object.assign(state, transforms[i].properties);
+        break;
+      case 'removeProperties':
+        removeProperties(state, transforms[i].properties);
+        break;
+      case 'clear':
+        removeProperties(state, [], true);
+        break;
+      default:
+        return state;
+    }
+  }
+  return state;
+}
+
+/**
+ * This function allows to remove properties from object.
+ *
+ * @param {object} object
+ * @param {array} propToRemove
+ * @param {boolean} removeAll
+ */
+function removeProperties(object, propToRemove = [], removeAll = false) {
+  if (!removeAll) {
+    for (let i = 0; i < propToRemove.length; i++) {
+      delete object[propToRemove[i]];
+    }
+  } else {
+    for (const key in object) {
+      delete object[key];
+    }
+  }
 }
 
 module.exports = transformState;
