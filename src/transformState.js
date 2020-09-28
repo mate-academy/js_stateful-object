@@ -70,14 +70,14 @@ function transformState(state, transforms) {
         break;
 
       case 'clear':
-        for (const empty in state) {
-          delete state[empty];
+        for (const key in state) {
+          delete state[key];
         }
         break;
 
       case 'removeProperties':
-        for (const erase of properties) {
-          delete state[erase];
+        for (const key of properties) {
+          delete state[key];
         }
     }
   }
