@@ -78,7 +78,7 @@ function transformState(state, transforms) {
         }
         break;
       case 'clear' :
-        for (const clearProp of state) {
+        for (const clearProp in state) {
           delete state[clearProp];
         }
         break;
