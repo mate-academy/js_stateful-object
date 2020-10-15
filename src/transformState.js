@@ -64,8 +64,9 @@
 function transformState(state, transforms) {
   for (const oper in transforms) {
     const propertiesToOperate = transforms[oper].properties;
+    const operationsToDone = transforms[oper].operation;
 
-    switch (transforms[oper].operation) {
+    switch (operationsToDone) {
       case 'addProperties' :
 
         Object.assign(state, propertiesToOperate);
@@ -77,8 +78,8 @@ function transformState(state, transforms) {
         }
         break;
       case 'clear' :
-        for (const clerProp in state) {
-          delete state[clerProp];
+        for (const clearProp in state) {
+          delete state[clearProp];
         }
         break;
     }
