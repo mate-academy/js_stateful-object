@@ -61,8 +61,48 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
 function transformState(state, transforms) {
   // write code here
+  for (const valueArr of transforms) {
+    switch (valueArr.operation) {
+      case 'addProperties':
+        Object.assign(state, valueArr.properties);
+        break;
+      case 'removeProperties':
+        for (const property of valueArr.properties) {
+          delete state[property];
+        }
+        break;
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+    }
+  }
 }
+/* Ще один варіант розв'язку:
+function transformState(state, transforms) {
+  for (const valueArr of transforms) {
+    if (valueArr.operation === 'addProperties') {
+      for (const property in valueArr.properties) {
+        state[property] = valueArr.properties[property];
+      }
+    }
 
+    if (valueArr.operation === 'removeProperties') {
+      for (const property of valueArr.properties) {
+        delete state[property];
+      }
+    }
+
+    if (valueArr.operation === 'clear') {
+      for (const key in state) {
+        delete state[key];
+      }
+    }
+  }
+}
+*/
 module.exports = transformState;
