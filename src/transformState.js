@@ -80,12 +80,8 @@ function transformState(state, transforms) {
     // In case of 'removeProperties'-looking for and deleting the matching keys
 
     if (transforms[element].operation === 'removeProperties') {
-      for (const propertie in transforms[element].properties) {
-        for (const key in state) {
-          if (key === transforms[element].properties[propertie]) {
-            delete state[key];
-          }
-        }
+      for (const property in transforms[element].properties) {
+        delete state[transforms[element].properties[property]];
       }
     }
   }
