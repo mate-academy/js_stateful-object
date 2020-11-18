@@ -17,7 +17,7 @@
  *   properties should be ignored)
  *   - if `operation is `clear` you should remove all the properties from the
  *   state
- *
+ *sdsadasdds
  * Sample usage:
  *
  * If `state` is {foo: 'bar', bar: 'foo'}, then
