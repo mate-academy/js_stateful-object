@@ -17,7 +17,7 @@
  *   properties should be ignored)
  *   - if `operation is `clear` you should remove all the properties from the
  *   state
- *
+ *sdsadasdds
  * Sample usage:
  *
  * If `state` is {foo: 'bar', bar: 'foo'}, then
@@ -63,6 +63,26 @@
  */
 function transformState(state, transforms) {
   // write code here
+  for (let i = 0; i < transforms.length; i++) {
+    switch (transforms[i].operation) {
+      case 'addProperties': Object.assign(state, transforms[i].properties);
+        break;
+
+      case 'removeProperties':
+        for (const property in transforms[i].properties) {
+          delete state[transforms[i].properties[property]];
+        }
+        break;
+
+      case 'clear': {
+        for (const key in state) {
+          delete state[key];
+        }
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
