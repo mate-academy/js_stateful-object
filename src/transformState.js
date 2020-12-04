@@ -68,9 +68,9 @@ function transformState(state, transforms) {
         Object.assign(state, transforms[i].properties);
         break;
       case 'removeProperties':
-        for (let j = 0; j < transforms.properties.length; j++) {
+        for (let j = 0; j < transforms[i].properties.length; j++) {
           for (const key in state) {
-            if (key === transforms.properties[j]) {
+            if (key === transforms[i].properties[j]) {
               delete state[key];
             }
           }
@@ -79,8 +79,8 @@ function transformState(state, transforms) {
       case 'clear':
         for (const key in state) {
           delete state[key];
-        }
-    } break;
+        } break;
+    }
   }
 }
 
