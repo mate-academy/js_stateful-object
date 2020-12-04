@@ -62,7 +62,26 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (let i = 0; i < transforms.length; i++) {
+    switch (transforms[i].operation) {
+      case 'addProperties':
+        Object.assign(state, transforms[i].properties);
+        break;
+      case 'removeProperties':
+        for (let j = 0; j < transforms[i].properties.length; j++) {
+          for (const key in state) {
+            if (key === transforms[i].properties[j]) {
+              delete state[key];
+            }
+          }
+        } break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        } break;
+    }
+  }
 }
 
 module.exports = transformState;
