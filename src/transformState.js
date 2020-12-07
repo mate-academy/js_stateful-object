@@ -76,9 +76,7 @@ function transformState(state, transforms) {
 
     if (transforms[i].operation === 'clear') {
       for (const prop in state) {
-        const property = prop;
-
-        delete state[property];
+        delete state[prop];
       }
     }
   }
