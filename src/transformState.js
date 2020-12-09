@@ -63,11 +63,11 @@
  *  transformations that should be performed on the object.
  */
 function transformState(state, transforms) {
-  let transformed = state;
+  const transformed = state;
 
   for (const i in transforms) {
     if (transforms[i].operation === 'addProperties') {
-      transformed = Object.assign(transformed, transforms[i].properties);
+      Object.assign(transformed, transforms[i].properties);
     }
 
     if (transforms[i].operation === 'removeProperties') {
