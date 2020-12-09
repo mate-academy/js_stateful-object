@@ -83,7 +83,7 @@ function transformState(state, transforms) {
     }
   }
 
-  return state;
+  return transformed;
 }
 
 module.exports = transformState;
