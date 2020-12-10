@@ -58,11 +58,34 @@
  * the `state` variable must contain
  * { foo: 'bar', name: 'Jim' }
  *
- * @param {Object} state
+ * @param {Object} state object to be transformed.
  * @param {Object[]} transforms
+ *  transformations that should be performed on the object.
  */
 function transformState(state, transforms) {
-  // write code here
+  const transformed = state;
+
+  for (const i in transforms) {
+    switch (transforms[i].operation) {
+      case 'addProperties':
+        Object.assign(transformed, transforms[i].properties);
+        break;
+
+      case 'removeProperties':
+        for (const key in transforms[i].properties) {
+          delete transformed[transforms[i].properties[key]];
+        }
+        break;
+
+      case 'clear':
+        for (const property in transformed) {
+          delete transformed[property];
+        }
+        break;
+    }
+  }
+
+  return transformed;
 }
 
 module.exports = transformState;
