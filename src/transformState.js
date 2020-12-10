@@ -78,6 +78,7 @@ function transformState(state, transforms) {
         for (const key of properties) {
           delete state[key];
         }
+        break;
     }
   }
 }
