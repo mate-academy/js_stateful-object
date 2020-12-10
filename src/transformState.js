@@ -76,10 +76,14 @@ function transformState(state, transforms) {
         }
         break;
 
-      default:
+      case 'clear':
         for (const clearKey in state) {
           delete state[clearKey];
         }
+        break;
+
+      default:
+        throw Error;
     }
   }
 }
