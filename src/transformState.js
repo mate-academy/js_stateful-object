@@ -79,6 +79,9 @@ function transformState(state, transforms) {
           delete state[property];
         }
         break;
+
+      default:
+        return 'An error occured, please check the inputs';
     }
   }
 }
