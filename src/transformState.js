@@ -61,7 +61,6 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
-
 function transformState(state, transforms) {
   for (const obj of transforms) {
     if (obj.operation === 'addProperties') {
