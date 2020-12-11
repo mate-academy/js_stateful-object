@@ -79,6 +79,9 @@ function transformState(state, transforms) {
           delete state[property];
         }
         break;
+
+      default:
+        throw new Error('unkown operation');
     }
   }
 }
