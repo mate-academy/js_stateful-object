@@ -70,16 +70,19 @@ function transformState(state, transforms) {
         break;
 
       case 'removeProperties':
-        for (const i of key.properties) {
-          delete state[i];
+        for (const property of key.properties) {
+          delete state[property];
         }
         break;
 
       case 'clear':
-        for (const i in state) {
-          delete state[i];
+        for (const property in state) {
+          delete state[property];
         }
         break;
+
+      default:
+        // do nothing
     }
   }
 }
