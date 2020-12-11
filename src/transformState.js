@@ -62,18 +62,16 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // const copy = { ...state };
-
-  transforms.forEach(el => {
-    switch (el.operation) {
+  transforms.forEach(command => {
+    switch (command.operation) {
       case 'addProperties':
-        for (const key in el.properties) {
-          state[key] = el.properties[key];
+        for (const key in command.properties) {
+          state[key] = command.properties[key];
         };
         break;
       case 'removeProperties':
-        for (let i = 0; i < el.properties.length; i++) {
-          delete state[el.properties[i]];
+        for (let i = 0; i < command.properties.length; i++) {
+          delete state[command.properties[i]];
         }
         break;
       case 'clear':
