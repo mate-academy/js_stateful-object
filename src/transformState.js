@@ -79,6 +79,8 @@ function transformState(state, transforms) {
           delete state[key];
         }
         break;
+      default: 
+        return 'This is default selection';
     }
   }
 }
