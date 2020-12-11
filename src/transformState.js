@@ -64,11 +64,11 @@
 function transformState(state, transforms) {
   transforms.forEach(transform => {
     switch (transform['operation']) {
-      case ('addProperties') :
+      case ('addProperties'):
         Object.assign(state, transform.properties);
         break;
 
-      case ('removeProperties') :
+      case ('removeProperties'):
         transform.properties.forEach(property => {
           delete state[property];
         });
@@ -77,7 +77,11 @@ function transformState(state, transforms) {
       case ('clear'):
         for (const prop in state) {
           delete state[prop];
-        }
+        };
+        break;
+
+      default:
+        throw new Error('unknow operation');
     }
   });
 }
