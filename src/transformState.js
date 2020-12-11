@@ -73,6 +73,8 @@ function transformState(state, transforms) {
       case 'clear':
         Object.keys(state).forEach(key => delete state[key]);
         break;
+      default:
+        break;
     }
   });
 }
