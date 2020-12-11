@@ -84,7 +84,12 @@ function transformState(state, transforms) {
         for (const key in state) {
           delete state[key];
         }
+        break;
+      default:
+        break;
     }
+    // 'SOLUTION WITH 'if':
+
     // if (transforms[i].operation === 'addProperties') {
     //   for (const key in transforms[i].properties) {
     //     state[key] = transforms[i].properties[key];
