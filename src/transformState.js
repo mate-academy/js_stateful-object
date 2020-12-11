@@ -62,8 +62,6 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
-
   for (const object of transforms) {
     switch (object.operation) {
       case 'addProperties':
@@ -81,6 +79,9 @@ function transformState(state, transforms) {
           delete state[prop];
         }
         break;
+
+      default:
+        throw new Error('wrong property');
     }
   }
 }
