@@ -71,13 +71,19 @@ function transformState(state, transform) {
       case 'removeProperties':
         for (const key of transforms.properties) {
           delete state[key];
-        }
+        };
         break;
 
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
+
+        break;
+
+      default: {
+        throw new Error('Unknown');
+      }
     }
   }
 
