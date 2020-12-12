@@ -62,16 +62,10 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  let addKeys;
-  let addVul;
-
   for (const name in transforms) {
     if (transforms[name].operation === 'addProperties') {
-      addVul = Object.values(transforms[name].properties);
-      addKeys = Object.keys(transforms[name].properties);
-
-      for (let i = 0; i < addKeys.length; i++) {
-        state[addKeys[i]] = addVul[i];
+      for (const prop in transforms[name].properties) {
+        state[prop] = transforms[name].properties[prop];
       }
     }
 
@@ -87,6 +81,8 @@ function transformState(state, transforms) {
       }
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
