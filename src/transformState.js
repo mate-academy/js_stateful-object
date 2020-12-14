@@ -70,8 +70,8 @@ function transformState(state, transforms) {
         };
         break;
       case 'removeProperties':
-        for (let i = 0; i < command.properties.length; i++) {
-          delete state[command.properties[i]];
+        for (const property of command.properties) {
+          delete state[property];
         }
         break;
       case 'clear':
@@ -79,6 +79,8 @@ function transformState(state, transforms) {
           delete state[key];
         }
         break;
+      default:
+        return 'Error';
     }
   });
 
