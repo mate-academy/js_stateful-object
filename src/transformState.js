@@ -1,5 +1,7 @@
 'use strict';
 
+module.exports = transformState;
+
 /**
  * Implement a function accepting 2 arguments `state` and `transforms`. It
  * should change the `state` basing on the given `transforms`
@@ -61,8 +63,30 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
-function transformState(state, transforms) {
-  // write code here
-}
 
-module.exports = transformState;
+function transformState(state, transforms) {
+  transforms.forEach(transform => {
+    switch (transform['operation']) {
+      case 'addProperties':
+        Object.assign(state, transform['properties']);
+        break;
+
+      case 'removeProperties':
+        for (const keys of transform['properties']) {
+          delete state[keys];
+        }
+        break;
+
+      case 'clear':
+        for (const keys in state) {
+          delete state[keys];
+        }
+        break;
+
+      default:
+        throw new Error('not valid operation');
+    }
+  });
+
+  return state;
+}
