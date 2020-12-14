@@ -62,14 +62,14 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (const item of transforms) {
-    switch (item.operation) {
+  for (const transformation of transforms) {
+    switch (transformation.operation) {
       case 'addProperties':
-        Object.assign(state, item.properties);
+        Object.assign(state, transformation.properties);
         break;
 
       case 'removeProperties':
-        for (const key of item.properties) {
+        for (const key of transformation.properties) {
           delete state[key];
         }
         break;
