@@ -10,9 +10,7 @@ function transformState(state, transforms) {
 
     switch (operation) {
       case 'addProperties':
-        for (const key in properties) {
-          state[key] = properties[key];
-        }
+        Object.assign(state, properties);
 
         break;
 
@@ -29,6 +27,9 @@ function transformState(state, transforms) {
         }
 
         break;
+
+      default:
+        continue;
     }
   }
 
