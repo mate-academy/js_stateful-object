@@ -66,9 +66,7 @@ function transformState(state, transforms) {
   for (const value of transforms) {
     switch (value.operation) {
       case 'addProperties':
-        for (const key in value.properties) {
-          state[key] = (value.properties)[key];
-        }
+        Object.assign(state, value.properties);
 
         break;
 
