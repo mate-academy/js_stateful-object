@@ -1,5 +1,7 @@
 'use strict';
 
+module.exports = transformState;
+
 /**
  * Implement a function accepting 2 arguments `state` and `transforms`. It
  * should change the `state` basing on the given `transforms`
@@ -63,31 +65,28 @@
  */
 
 function transformState(state, transforms) {
-  for (const index of transforms) {
-    for (const obj in index) {
-      if (index[obj] === 'addProperties') {
-        for (const prop in index) {
-          if (prop === 'properties') {
-            Object.assign(state, index[prop]);
-          }
+  transforms.forEach(transform => {
+    switch (transform['operation']) {
+      case 'addProperties':
+        Object.assign(state, transform['properties']);
+        break;
+
+      case 'removeProperties':
+        for (const keys of transform['properties']) {
+          delete state[keys];
         }
-      } else if (index[obj] === 'removeProperties') {
-        for (const prop in index) {
-          if (prop === 'properties') {
-            for (const delArr of index[prop]) {
-              delete state[delArr];
-            }
-          }
-        }
-      } else if (index[obj] === 'clear') {
+        break;
+
+      case 'clear':
         for (const keys in state) {
           delete state[keys];
         }
-      }
+        break;
+
+      default:
+        throw new Error('not valid operation');
     }
-  }
+  });
 
   return state;
 }
-
-module.exports = transformState;
