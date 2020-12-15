@@ -65,9 +65,7 @@ function transformState(state, transforms) {
   for (const action of transforms) {
     switch (action.operation) {
       case 'addProperties':
-        for (const property in action.properties) {
-          state[property] = action.properties[property];
-        }
+        Object.assign(state, action.properties);
         break;
 
       case 'removeProperties':
@@ -81,6 +79,10 @@ function transformState(state, transforms) {
           delete state[property];
         }
         break;
+
+      default:
+        // eslint-disable-next-line no-throw-literal
+        throw 'Unexpected property!';
     }
   }
 
