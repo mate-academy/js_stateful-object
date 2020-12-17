@@ -62,26 +62,26 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
-  const obj = state;
+  transforms.forEach((instruction) => {
+    switch (instruction.operation) {
+      case 'addProperties':
+        Object.assign(state, instruction.properties);
+        break;
 
-  transforms.forEach((item) => {
-    if (item['operation'] === 'clear') {
-      for (const k of Object.keys(obj)) {
-        delete obj[k];
-      }
-    }
-
-    if (item['operation'] === 'addProperties') {
-      Object.assign(obj, item['properties']);
-    }
-
-    if (item['operation'] === 'removeProperties') {
-      for (const key of Object.values(item['properties'])) {
-        if (obj.hasOwnProperty(key)) {
-          delete obj[key];
+      case 'removeProperties':
+        for (const key of instruction.properties) {
+          delete state[key];
         }
-      }
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        throw new Error('Wrong instructions');
     }
   });
 }
