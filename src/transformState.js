@@ -62,7 +62,28 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  transforms.forEach((instruction) => {
+    switch (instruction.operation) {
+      case 'addProperties':
+        Object.assign(state, instruction.properties);
+        break;
+
+      case 'removeProperties':
+        for (const key of instruction.properties) {
+          delete state[key];
+        }
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        throw new Error('Wrong instructions');
+    }
+  });
 }
 
 module.exports = transformState;
