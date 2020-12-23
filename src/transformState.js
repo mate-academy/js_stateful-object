@@ -72,9 +72,7 @@ function transformState(state, transforms) {
 
       case 'removeProperties':
         for (const key in obj['properties']) {
-          if (state.hasOwnProperty(obj['properties'][key])) {
-            delete state[obj['properties'][key]];
-          }
+          delete state[obj['properties'][key]];
         }
         break;
 
@@ -84,22 +82,6 @@ function transformState(state, transforms) {
         }
         break;
     }
-
-    /*
-    if (operation === 'addProperties') {
-      Object.assign(state, obj['properties']);
-    } else if (operation === 'removeProperties') {
-      for (const key in obj['properties']) {
-        if (state.hasOwnProperty(obj['properties'][key])) {
-          delete state[obj['properties'][key]];
-        }
-      }
-    } else if (operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
-    }
-    */
   }
 }
 
