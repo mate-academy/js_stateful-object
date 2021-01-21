@@ -63,6 +63,30 @@
  */
 function transformState(state, transforms) {
   // write code here
+
+  for (const singleTransform of transforms) {
+    const { operation, properties } = singleTransform;
+
+    switch (operation) {
+      case 'addProperties':
+        Object.assign(state, properties);
+        break;
+      case 'removeProperties':
+        for (const item of properties) {
+          if (state[item]) {
+            delete state[item];
+          }
+        };
+        break;
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        };
+        break;
+      default:
+        return 'Invalid Operation';
+    }
+  }
 }
 
 module.exports = transformState;
