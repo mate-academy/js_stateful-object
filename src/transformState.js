@@ -62,7 +62,21 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  transforms.map(todo => {
+    if (todo.operation === 'addProperties') {
+      Object.assign(state, todo.properties);
+    } else if (todo.operation === 'removeProperties') {
+      todo.properties.map(property => {
+        delete state[property];
+      });
+    } else if (todo.operation === 'clear') {
+      for (const prop of Object.getOwnPropertyNames(state)) {
+        delete state[prop];
+      }
+    }
+  });
+
+  return state;
 }
 
 module.exports = transformState;
