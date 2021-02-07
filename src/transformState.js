@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-condition */
+/* eslint-disable no-cond-assign */
 'use strict';
 
 /**
@@ -62,7 +64,25 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const key in transforms) {
+    if (transforms[key]['operation'] === 'addProperties') {
+      Object.assign(state, transforms[key]['properties']);
+    }
+
+    if (transforms[key]['operation'] === 'clear') {
+      for (const val in state) {
+        delete state[val];
+      }
+    }
+
+    if (transforms[key]['operation'] === 'removeProperties') {
+      for (let i = 0; i < transforms[key]['properties'].length; i++) {
+        delete state[transforms[key]['properties'][i]];
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
