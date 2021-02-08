@@ -69,7 +69,7 @@ function transformState(state, transforms) {
       Object.assign(transformed, transform.properties);
     }
 
-    if (transform['operation'] === 'removeProperties') {
+    if (transform.operation === 'removeProperties') {
       for (const remove of transform.properties) {
         delete transformed[remove];
       }
