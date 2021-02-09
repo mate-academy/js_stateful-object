@@ -69,9 +69,9 @@ function transformState(state, transforms) {
         break;
 
       case 'removeProperties':
-        const keyArr = Object.keys(transform.properties);
+        const propertiesKeys = Object.keys(transform.properties);
 
-        if (keyArr.length === 0) {
+        if (propertiesKeys.length === 0) {
           continue;
         }
 
