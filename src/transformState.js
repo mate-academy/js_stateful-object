@@ -77,9 +77,9 @@ function transformState(state, transforms) {
         break;
 
       case 'clear':
-        for (const subProperty in state) {
-          if (state.hasOwnProperty(subProperty)) {
-            delete state[subProperty];
+        for (const property in state) {
+          if (state.hasOwnProperty(property)) {
+            delete state[property];
           }
         }
         break;
