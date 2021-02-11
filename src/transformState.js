@@ -89,20 +89,5 @@ function transformState(state, transforms) {
 
   return state;
 }
-/* const state = { foo: 'bar', name: 'Jim' };
-
-const transforms = [
-  { operation: 'addProperties', properties: { yet: 'another property' } },
-  { operation: 'clear' },
-  { operation: 'addProperties', properties: { foo: 'bar', name: 'Jim' } },
-]; */
-
-/*
-  transformState(state, [
-    {
-      operation: 'removeProperties',
-      properties: ['bar', 'hello'],
-    } ]);
-*/
 
 module.exports = transformState;
