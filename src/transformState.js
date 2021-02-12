@@ -65,20 +65,22 @@ function transformState(state, transforms) {
   const copyState = state;
 
   for (const transform of transforms) {
-    if (transform.operation === 'addProperties') {
-      Object.assign(copyState, transform.properties);
-    }
+    switch (transform.operation) {
+      case 'addProperties':
+        Object.assign(copyState, transform.properties);
+        break;
 
-    if (transform.operation === 'removeProperties') {
-      for (const property of transform.properties) {
-        delete copyState[property];
-      }
-    }
+      case 'removeProperties':
+        for (const property of transform.properties) {
+          delete copyState[property];
+        }
+        break;
 
-    if (transform.operation === 'clear') {
-      for (const keys in copyState) {
-        delete copyState[keys];
-      }
+      case 'clear':
+        for (const keys in copyState) {
+          delete copyState[keys];
+        }
+        break;
     }
   }
 
