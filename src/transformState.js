@@ -11,7 +11,7 @@
  * `operation`: either `addProperties`, `removeProperties` or `clear`;
  * `properties`:
  *   - if `operation` is `addProperties`, this property contains an object
- *   with `key: value` pairs to add to the state;
+ *   with `transform: value` pairs to add to the state;
  *   - if `operation` is `removeProperties`, this property contains an array
  *   with the list of property names to remove from the state; (Not existing
  *   properties should be ignored)
@@ -62,7 +62,19 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const transform of transforms) {
+    if (transform.operation === 'addProperties') {
+      Object.assign(state, transform.properties);
+    } else if (transform.operation === 'removeProperties') {
+      for (const property of transform.properties) {
+        delete state[property];
+      }
+    } else if (transform.operation === 'clear') {
+      for (const key in state) {
+        delete state[key];
+      }
+    }
+  }
 }
 
 module.exports = transformState;
