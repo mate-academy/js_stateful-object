@@ -69,10 +69,10 @@ function transformState(state, transforms) {
         Object.assign(state, transforms[i].properties);
         break;
       case 'removeProperties' :
-        transforms[i].properties.map(prop => delete state[prop]);
+        transforms[i].properties.forEach(key => delete state[key]);
         break;
       case 'clear' :
-        Object.keys(state).map(prop => delete state[prop]);
+        Object.keys(state).forEach(key => delete state[key]);
         break;
     }
   }
