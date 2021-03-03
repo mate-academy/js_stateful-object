@@ -63,6 +63,27 @@
  */
 function transformState(state, transforms) {
   // write code here
+
+  for (const keyTransform of transforms) {
+    switch (keyTransform.operation) {
+      case 'addProperties':
+        Object.assign(state, keyTransform.properties);
+        break;
+
+      case 'removeProperties':
+        for (const keyRemove of keyTransform.properties) {
+          delete state[keyRemove];
+        }
+        break;
+
+      case 'clear':
+        for (const keyClear in state) {
+          delete state[keyClear];
+        }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
