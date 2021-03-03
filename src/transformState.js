@@ -64,21 +64,21 @@
 function transformState(state, transforms) {
   // write code here
 
-  for (const keyTransform of transforms) {
-    switch (keyTransform.operation) {
+  for (const transform of transforms) {
+    switch (transform.operation) {
       case 'addProperties':
-        Object.assign(state, keyTransform.properties);
+        Object.assign(state, transform.properties);
         break;
 
       case 'removeProperties':
-        for (const keyRemove of keyTransform.properties) {
-          delete state[keyRemove];
+        for (const key of transform.properties) {
+          delete state[key];
         }
         break;
 
       case 'clear':
-        for (const keyClear in state) {
-          delete state[keyClear];
+        for (const key in state) {
+          delete state[key];
         }
     }
   }
