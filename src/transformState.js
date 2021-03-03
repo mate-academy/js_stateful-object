@@ -63,16 +63,20 @@
  */
 function transformState(state, transforms) {
   for (let i = 0; i < transforms.length; i++) {
-    if (transforms[i].operation === 'addProperties') {
-      Object.assign(state, transforms[i].properties);
-    } else if (transforms[i].operation === 'removeProperties') {
-      for (const key in transforms[i].properties) {
-        delete state[transforms[i].properties[key]];
-      }
-    } else if (transforms[i].operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+    switch (transforms[i].operation) {
+      case 'addProperties' :
+        Object.assign(state, transforms[i].properties);
+        break;
+      case 'removeProperties' :
+        for (const key in transforms[i].properties) {
+          delete state[transforms[i].properties[key]];
+        }
+        break;
+      case 'clear' :
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
     }
   }
 }
