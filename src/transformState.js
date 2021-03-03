@@ -63,16 +63,20 @@
  */
 function transformState(state, transforms) {
   for (const a of transforms) {
-    if (a.operation === 'addProperties') {
-      Object.assign(state, a.properties);
-    } else if (a.operation === 'removeProperties') {
-      for (const j of a.properties) {
-        delete state[j];
-      }
-    } else {
-      for (const i in state) {
-        delete state[i];
-      };
+    switch (a.operation) {
+      case 'addProperties':
+        Object.assign(state, a.properties);
+        break;
+      case 'removeProperties':
+        for (const j of a.properties) {
+          delete state[j];
+        }
+        break;
+      case 'clear':
+        for (const i in state) {
+          delete state[i];
+        };
+        break;
     }
   }
 
