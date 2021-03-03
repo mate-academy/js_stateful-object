@@ -79,11 +79,9 @@ function transformState(state, transforms) {
         for (const stateProprty of Object.keys(state)) {
           delete state[stateProprty];
         }
-
         break;
 
       default:
-
         break;
     }
   }
