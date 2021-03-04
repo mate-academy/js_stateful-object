@@ -63,14 +63,14 @@
  */
 function transformState(state, transforms) {
   // write code here
-  for (const tramsform of transforms) {
-    switch (tramsform.operation) {
+  for (const keyOfTramsform of transforms) {
+    switch (keyOfTramsform.operation) {
       case 'addProperties':
-        Object.assign(state, tramsform.properties);
+        Object.assign(state, keyOfTramsform.properties);
         break;
 
       case 'removeProperties':
-        for (const key of tramsform.properties) {
+        for (const key of keyOfTramsform.properties) {
           delete state[key];
         }
         break;
