@@ -8,15 +8,15 @@
  *  properties instead of creating a new object
  *
  * `transforms` is an array of objects having the following properties:
- * `operation`: either `addProperties`, `removeProperties` or `clear`;
- * `properties`:
- *   - if `operation` is `addProperties`, this property contains an object
- *   with `key: value` pairs to add to the state;
- *   - if `operation` is `removeProperties`, this property contains an array
- *   with the list of property names to remove from the state; (Not existing
- *   properties should be ignored)
- *   - if `operation is `clear` you should remove all the properties from the
- *   state
+ * - `operation`: either `addProperties`, `removeProperties` or `clear`;
+ * - `properties`:
+ *    - if `operation` is `addProperties`, this property contains an object
+ *    with `key: value` pairs to add to the state;
+ *    - if `operation` is `removeProperties`, this property contains an array
+ *    with the list of property names to remove from the state; (Not existing
+ *    properties should be ignored)
+ *    - if `operation is `clear` you should remove all the properties from the
+ *    state
  *
  * Sample usage:
  *
@@ -63,6 +63,26 @@
  */
 function transformState(state, transforms) {
   // write code here
+
+  for (const transformation of transforms) {
+    switch (transformation.operation) {
+      case 'addProperties':
+        Object.assign(state, transformation.properties);
+        break;
+
+      case 'removeProperties':
+        for (const removIt of transformation.properties) {
+          delete state[removIt];
+        };
+        break;
+
+      case 'clear':
+        for (const clearIt in state) {
+          delete state[clearIt];
+        };
+        break;
+    }
+  }
 }
 
 module.exports = transformState;
