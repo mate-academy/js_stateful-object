@@ -63,9 +63,7 @@
  */
 
 const addProperties = (state, properties) => {
-  for (const key in properties) {
-    state[key] = properties[key];
-  }
+  Object.assign(state, properties);
 };
 
 const removeProperties = (state, properties) => {
