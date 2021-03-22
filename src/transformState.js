@@ -2,7 +2,7 @@
 
 /**
  * Implement a function accepting 2 arguments `state` and `transforms`. It
- * should change the `state` basing on the given `transforms`
+ * should change the `state` based on the given `transforms`
  *
  * `state` is an object. You are supposed to add, change, or delete its
  *  properties instead of creating a new object
@@ -61,8 +61,33 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
+const addProperties = (state, properties) => {
+  Object.assign(state, properties);
+};
+
+const removeProperties = (state, properties) => {
+  for (const prop of properties) {
+    delete state[prop];
+  }
+};
+
+const clear = (state) => {
+  for (const key in state) {
+    delete state[key];
+  }
+};
+
 function transformState(state, transforms) {
-  // write code here
+  for (const { operation, properties } of transforms) {
+    if (operation === 'addProperties') {
+      addProperties(state, properties);
+    } else if (operation === 'removeProperties') {
+      removeProperties(state, properties);
+    } else if (operation === 'clear') {
+      clear(state);
+    }
+  }
 }
 
 module.exports = transformState;
