@@ -99,9 +99,7 @@ function removeProperties(state, properties) {
  * @param {Object} state
  */
 function clearProperties(state) {
-  for (const keys in state) {
-    delete state[keys];
-  }
+  removeProperties(state, Object.keys(state));
 }
 
 module.exports = transformState;
