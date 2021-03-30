@@ -64,12 +64,16 @@
 function transformState(state, transforms) {
   for (const transform of transforms) {
     if (transform.operation === 'clear') {
-      Object.keys(state).forEach(p => delete state[p]);
-    } else if (transform.operation === 'removeProperties') {
+      Object.keys(state).forEach(k => delete state[k]);
+    }
+
+    if (transform.operation === 'removeProperties') {
       for (const forDeletion of transform.properties) {
         delete state[forDeletion];
       }
-    } else if (transform.operation === 'addProperties') {
+    }
+
+    if (transform.operation === 'addProperties') {
       for (const key in transform.properties) {
         state[key] = transform.properties[key];
       }
