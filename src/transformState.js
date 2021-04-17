@@ -63,14 +63,13 @@
  */
 function transformState(state, transforms) {
   // write code here
-  let resObj = state;
+  const resObj = state;
 
   for (const obj of transforms) {
     if (obj.operation === 'addProperties') {
-      resObj = {
-        ...resObj,
-        ...obj.properties,
-      };
+      for (const val in obj.properties) {
+        resObj[val] = obj.properties[val];
+      }
     } else if (obj.operation === 'removeProperties') {
       for (const val in resObj) {
         if ((obj.properties).includes(val)) {
