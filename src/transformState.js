@@ -70,7 +70,7 @@
     }
 
     if (transforms[key].operation === 'addProperties') {
-      state = Object.assign(state, transforms[key].properties);
+      Object.assign(state, transforms[key].properties);
     }
 
     if (transforms[key].operation === 'removeProperties') {
