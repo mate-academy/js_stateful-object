@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 'use strict';
 
 /**
@@ -62,7 +63,30 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (const value of transforms) {
+    switch (value.operation) {
+      case 'addProperties':
+        Object.assign(state, value.properties);
+        break;
+
+      case 'clear':
+        for (const keys in state) {
+          delete state[keys];
+        }
+        break;
+
+      case 'removeProperties':
+        for (const k of value.properties) {
+          delete state[k];
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
