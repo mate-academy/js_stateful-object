@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 'use strict';
 
 /**
@@ -62,21 +63,23 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  for (let i = 0; i < transforms.length; i++) {
-    if (transforms[i].operation === 'addProperties') {
-      Object.assign(state, transforms[i].properties);
-    }
+  for (const value of transforms) {
+    switch (value.operation) {
+      case 'addProperties':
+        Object.assign(state, value.properties);
+        break;
 
-    if (transforms[i].operation === 'clear') {
-      for (const keys in state) {
-        delete state[keys];
-      }
-    }
+      case 'clear':
+        for (const keys in state) {
+          delete state[keys];
+        }
+        break;
 
-    if (transforms[i].operation === 'removeProperties') {
-      for (const k in transforms[i].properties) {
-        delete state[transforms[i].properties[k]];
-      }
+      case 'removeProperties':
+        for (const k of value.properties) {
+          delete state[k];
+        }
+        break;
     }
   }
 
