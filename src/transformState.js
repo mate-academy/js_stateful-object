@@ -62,7 +62,6 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
   transforms.forEach((item) => {
     const props = item.properties;
 
@@ -92,40 +91,5 @@ function transformState(state, transforms) {
     }
   });
 }
-
-// const state = {
-//   foo: 'bar', bar: 'foo',
-// };
-
-// transformState(state, [
-//   {
-//     operation: 'addProperties',
-//     properties: {
-//       name: 'Jim',
-//       hello: 'world',
-//     },
-//   },
-//   {
-//     operation: 'removeProperties',
-//     properties: ['bar', 'hello'],
-//   },
-//   {
-//     operation: 'addProperties',
-//     properties: { another: 'one' },
-//   },
-// ]);
-
-// transformState(state, [
-//   {
-//     operation: 'addProperties', properties: { yet: 'another property' },
-//   },
-//   { operation: 'clear' },
-//   {
-//     operation: 'addProperties',
-//     properties: {
-//       foo: 'bar', name: 'Jim',
-//     },
-//   },
-// ]);
 
 module.exports = transformState;
