@@ -62,32 +62,29 @@
  * @param {transformect[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
   for (const transform of transforms) {
-    // ADD
-
-    if (transform.operation === 'addProperties') {
-      for (const key in transform.properties) {
-        state[key] = transform.properties[key];
-      };
-    };
-    // REMOVE
-
-    if (transform.operation === 'removeProperties') {
-      for (const property of transform.properties) {
-        if (state.hasOwnProperty(property)) {
-          delete state[property];
+    switch (transform.operation) {
+      case 'addProperties':
+        for (const key in transform.properties) {
+          state[key] = transform.properties[key];
         };
-      };
-    };
-    // CLEAR
+        break;
 
-    if (transform.operation === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      };
+      case 'removeProperties':
+        for (const property of transform.properties) {
+          if (state.hasOwnProperty(property)) {
+            delete state[property];
+          };
+        };
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        };
+        break;
     };
   };
-}
+};
 
 module.exports = transformState;
