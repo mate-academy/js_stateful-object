@@ -4,13 +4,13 @@
  * Implement a function accepting 2 arguments `state` and `transforms`. It
  * should change the `state` basing on the given `transforms`
  *
- * `state` is an object. You are supposed to add, change, or delete its
- *  properties instead of creating a new object
+ * `state` is an transformect. You are supposed to add, change, or delete its
+ *  properties instead of creating a new transformect
  *
- * `transforms` is an array of objects having the following properties:
+ * `transforms` is an array of transformects having the following properties:
  * `operation`: either `addProperties`, `removeProperties` or `clear`;
  * `properties`:
- *   - if `operation` is `addProperties`, this property contains an object
+ *   - if `operation` is `addProperties`, this property contains an transformect
  *   with `key: value` pairs to add to the state;
  *   - if `operation` is `removeProperties`, this property contains an array
  *   with the list of property names to remove from the state; (Not existing
@@ -40,7 +40,7 @@
  *   }
  * ])
  *
- * should modify the `state` object so after the call it becomes
+ * should modify the `state` transformect so after the call it becomes
  * {
  *   foo: 'bar',
  *   name: 'Jim',
@@ -58,11 +58,33 @@
  * the `state` variable must contain
  * { foo: 'bar', name: 'Jim' }
  *
- * @param {Object} state
- * @param {Object[]} transforms
+ * @param {transformect} state
+ * @param {transformect[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
-}
+  for (const transform of transforms) {
+    switch (transform.operation) {
+      case 'addProperties':
+        for (const key in transform.properties) {
+          state[key] = transform.properties[key];
+        };
+        break;
+
+      case 'removeProperties':
+        for (const property of transform.properties) {
+          if (state.hasOwnProperty(property)) {
+            delete state[property];
+          };
+        };
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        };
+        break;
+    };
+  };
+};
 
 module.exports = transformState;
