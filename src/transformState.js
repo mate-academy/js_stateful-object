@@ -4,13 +4,13 @@
  * Implement a function accepting 2 arguments `state` and `transforms`. It
  * should change the `state` basing on the given `transforms`
  *
- * `state` is an objectect. You are supposed to add, change, or delete its
- *  properties instead of creating a new objectect
+ * `state` is an transformect. You are supposed to add, change, or delete its
+ *  properties instead of creating a new transformect
  *
- * `transforms` is an array of objectects having the following properties:
+ * `transforms` is an array of transformects having the following properties:
  * `operation`: either `addProperties`, `removeProperties` or `clear`;
  * `properties`:
- *   - if `operation` is `addProperties`, this property contains an objectect
+ *   - if `operation` is `addProperties`, this property contains an transformect
  *   with `key: value` pairs to add to the state;
  *   - if `operation` is `removeProperties`, this property contains an array
  *   with the list of property names to remove from the state; (Not existing
@@ -40,7 +40,7 @@
  *   }
  * ])
  *
- * should modify the `state` objectect so after the call it becomes
+ * should modify the `state` transformect so after the call it becomes
  * {
  *   foo: 'bar',
  *   name: 'Jim',
@@ -58,31 +58,31 @@
  * the `state` variable must contain
  * { foo: 'bar', name: 'Jim' }
  *
- * @param {objectect} state
- * @param {objectect[]} transforms
+ * @param {transformect} state
+ * @param {transformect[]} transforms
  */
 function transformState(state, transforms) {
   // write code here
-  for (const object of transforms) {
+  for (const transform of transforms) {
     // ADD
 
-    if (object.operation === 'addProperties') {
-      for (const key in object.properties) {
-        state[key] = object.properties[key];
+    if (transform.operation === 'addProperties') {
+      for (const key in transform.properties) {
+        state[key] = transform.properties[key];
       };
     };
     // REMOVE
 
-    if (object.operation === 'removeProperties') {
-      for (const element of object.properties) {
-        if (state.hasOwnProperty(element)) {
-          delete state[element];
+    if (transform.operation === 'removeProperties') {
+      for (const property of transform.properties) {
+        if (state.hasOwnProperty(property)) {
+          delete state[property];
         };
       };
     };
     // CLEAR
 
-    if (object.operation === 'clear') {
+    if (transform.operation === 'clear') {
       for (const key in state) {
         delete state[key];
       };
