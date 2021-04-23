@@ -65,25 +65,26 @@
 function transformState(state, transforms) {
   const linkToStateObj = state;
 
-  transforms.forEach((operationObj) => {
-    if (operationObj.operation === 'addProperties') {
-      for (const key in operationObj.properties) {
-        linkToStateObj[key] = operationObj.properties[key];
-      }
-    }
-
-    if (operationObj.operation === 'removeProperties') {
-      operationObj.properties.forEach((fieldName) => {
-        if (fieldName in linkToStateObj) {
+  transforms.forEach(({ properties, operation }) => {
+    switch (operation) {
+      case 'addProperties':
+        for (const key in properties) {
+          linkToStateObj[key] = properties[key];
+        }
+        break;
+      case 'removeProperties':
+        properties.forEach((fieldName) => {
+          if (fieldName in linkToStateObj) {
+            delete linkToStateObj[fieldName];
+          }
+        });
+        break;
+      case 'clear':
+        for (const fieldName in linkToStateObj) {
           delete linkToStateObj[fieldName];
         }
-      });
-    }
-
-    if (operationObj.operation === 'clear') {
-      for (const fieldName in linkToStateObj) {
-        delete linkToStateObj[fieldName];
-      }
+        break;
+      default: throw new Error('operation is not defined');
     }
   });
 
