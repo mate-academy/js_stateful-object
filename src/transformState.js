@@ -81,6 +81,9 @@ function transformState(state, transforms) {
           delete state[prop];
         });
         break;
+
+      default:
+        return 'Error';
     }
   });
 }
