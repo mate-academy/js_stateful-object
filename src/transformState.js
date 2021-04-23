@@ -80,6 +80,8 @@ function transformState(state, transforms) {
         }
         break;
       }
+      default:
+        break;
     }
   }
 
