@@ -50,7 +50,7 @@
  * Then after calling
  *
  * transformState(state, [
- *   { operation: 'addProperties', properties: { yet: 'another property' } }
+ *   { operation: 'addProperties', yet: 'another property' properties: {} }
  *   { operation: 'clear' },
  *   { operation: 'addProperties', properties: { foo: 'bar', name: 'Jim' } }
  * ])
@@ -62,7 +62,36 @@
  * @param {Object[]} transforms
  */
 function transformState(state, transforms) {
-  // write code here
+  for (let i = 0; i < transforms.length; i++) {
+    for (const key in transforms[i]) {
+      if (transforms[i][key] === 'addProperties') {
+        continue;
+      }
+
+      if (Array.isArray(transforms[i][key]) === false
+      && typeof transforms[i][key] !== 'string'
+      ) {
+        Object.assign(state, transforms[i][key]);
+        continue;
+      }
+
+      if (transforms[i][key] === 'removeProperties') {
+        continue;
+      }
+
+      if (Array.isArray(transforms[i][key]) === true) {
+        for (let k = 0; k < transforms[i][key].length; k++) {
+          delete state[transforms[i][key][k]];
+        }
+      }
+
+      if (transforms[i][key] === 'clear') {
+        for (const key3 in state) {
+          delete state[key3];
+        }
+      }
+    }
+  }
 }
 
 module.exports = transformState;
