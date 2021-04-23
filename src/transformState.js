@@ -80,6 +80,9 @@ function transformState(state, transforms) {
           delete state[property];
         }
         break;
+
+      default:
+        break;
     }
   }
 }
