@@ -61,8 +61,33 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
 function transformState(state, transforms) {
-  // write code here
+  const linkToStateObj = state;
+
+  transforms.forEach((operationObj) => {
+    if (operationObj.operation === 'addProperties') {
+      for (const key in operationObj.properties) {
+        linkToStateObj[key] = operationObj.properties[key];
+      }
+    }
+
+    if (operationObj.operation === 'removeProperties') {
+      operationObj.properties.forEach((fieldName) => {
+        if (fieldName in linkToStateObj) {
+          delete linkToStateObj[fieldName];
+        }
+      });
+    }
+
+    if (operationObj.operation === 'clear') {
+      for (const fieldName in linkToStateObj) {
+        delete linkToStateObj[fieldName];
+      }
+    }
+  });
+
+  return linkToStateObj;
 }
 
 module.exports = transformState;
