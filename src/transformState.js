@@ -77,6 +77,8 @@ function transformState(state, transforms) {
           delete state[key];
         }
         break;
+      default:
+        return state;
     }
   }
 }
