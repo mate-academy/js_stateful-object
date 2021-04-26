@@ -61,7 +61,7 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
- function transformState(state, transforms) {
+function transformState(state, transforms) {
   for (const transform of transforms) {
     switch (transform.operation) {
       case 'addProperties':
