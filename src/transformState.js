@@ -61,8 +61,32 @@
  * @param {Object} state
  * @param {Object[]} transforms
  */
+
 function transformState(state, transforms) {
-  // write code here
+  transforms.forEach(({ properties, operation }) => {
+    switch (operation) {
+      case 'addProperties':
+        for (const key in properties) {
+          state[key] = properties[key];
+        }
+        break;
+      case 'removeProperties':
+        properties.forEach((fieldName) => {
+          if (fieldName in state) {
+            delete state[fieldName];
+          }
+        });
+        break;
+      case 'clear':
+        for (const fieldName in state) {
+          delete state[fieldName];
+        }
+        break;
+      default: throw new Error('operation is not defined');
+    }
+  });
+
+  return state;
 }
 
 module.exports = transformState;
