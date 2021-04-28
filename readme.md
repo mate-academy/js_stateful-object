@@ -4,22 +4,22 @@
 
 # Task description
 
-Implement a function accepting 2 arguments: `state` and `transforms`. The function
-should change the `state` basing on the given `transforms` array.
+Implement a function accepting 2 arguments: `state` and `actions`. The function
+should change the `state` basing on the given `actions` array.
 
 - `state` is an object. You are supposed to add, change, or delete its
   properties instead of creating a new object
 
-- `transforms` is an array of objects. Each object in this array has the two following properties:
-  - First - `operation`: either `addProperties`, `removeProperties` or `clear`;
-  - Second - `properties`:
-    - if `operation` is `addProperties`, field `properties` contains an object
+- `actions` is an array of objects. Each object in this array has the next properties:
+  - `type` contains a string: either `'addProperties'`, `'removeProperties'` or `'clear'`;
+  - The second property of each object depends on `type` and may be one of the following:
+    - if `type` is `addProperties`, second property is `extraData`. It contains an object
       with `key: value` pairs to add to the state;
-    - if `operation` is `removeProperties`, field `properties` contains an array
+    - if `type` is `removeProperties`, second property is `keysToRemove`. It contains an array
       with the list of property names (keys) to remove from the `state`; (Not existing
       properties should be ignored)
-    - if `operation is `clear` you should remove all the properties from the
-      state
+    - if `type` is `clear` you should remove all the properties from the
+      state. No second property in this case;
 
 Example of usage:
 
@@ -27,19 +27,19 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
 ```
  transformState(state, [
    {
-     operation: 'addProperties',
-     properties: {
+     type: 'addProperties',
+     extraData: {
        name: 'Jim',
        hello: 'world',
      }
    },
    {
-     operation: 'removeProperties',
-     properties: ['bar', 'hello'],
+     type: 'removeProperties',
+     keysToRemove: ['bar', 'hello'],
    },
    {
-     operation: 'addProperties',
-     properties: { another: 'one' },
+     type: 'addProperties',
+     extraData: { another: 'one' },
    }
  ])
 ```
@@ -56,15 +56,17 @@ After these operations the object `state` will have the following look
    another: 'one',
  }
 ```
-Then after calling
+
+Another example:
+
 ```
+ const state = { x: 1 };
+
  transformState(state, [
-   { operation: 'addProperties', properties: { yet: 'another property' } }
-   { operation: 'clear' },
-   { operation: 'addProperties', properties: { foo: 'bar', name: 'Jim' } }
- ])
-```
-the `state` variable must contain
- ```
- { foo: 'bar', name: 'Jim' }
+   { type: 'addProperties', extraData: { yet: 'another property' } }
+   { type: 'clear' },
+   { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
+ ]);
+
+// state === { foo: 'bar', name: 'Jim' }
 ```

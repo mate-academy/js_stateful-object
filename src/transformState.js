@@ -2,9 +2,9 @@
 
 /**
  * @param {Object} state
- * @param {Object[]} transforms
+ * @param {Object[]} actions
  */
-function transformState(state, transforms) {
+function transformState(state, actions) {
   // write code here
 }
 
