@@ -7,7 +7,7 @@ test('Should add a single property to an empty state', () => {
 
   transformState(state, [
     {
-      operation: 'addProperties', properties: { name: 'Jim' },
+      type: 'addProperties', extraData: { name: 'Jim' },
     },
   ]);
 
@@ -20,8 +20,8 @@ test('Should add multiple properties to an empty state', () => {
 
   transformState(state, [
     {
-      operation: 'addProperties',
-      properties: {
+      type: 'addProperties',
+      extraData: {
         name: 'Jim', hello: 'world',
       },
     },
@@ -40,8 +40,8 @@ test('Should add multiple properties to non empty state', () => {
 
   transformState(state, [
     {
-      operation: 'addProperties',
-      properties: {
+      type: 'addProperties',
+      extraData: {
         name: 'Jim', hello: 'world',
       },
     },
@@ -60,8 +60,8 @@ test('Should replace existing properties', () => {
 
   transformState(state, [
     {
-      operation: 'addProperties',
-      properties: {
+      type: 'addProperties',
+      extraData: {
         foo: 'new', hello: 'world',
       },
     },
@@ -78,7 +78,7 @@ test('Should remove the only property from the state', () => {
 
   transformState(state, [
     {
-      operation: 'removeProperties', properties: ['foo'],
+      type: 'removeProperties', keysToRemove: ['foo'],
     },
   ]);
 
@@ -93,7 +93,7 @@ test('Should remove an existing property keeping the other ones', () => {
 
   transformState(state, [
     {
-      operation: 'removeProperties', properties: ['bar'],
+      type: 'removeProperties', keysToRemove: ['bar'],
     },
   ]);
 
@@ -108,7 +108,7 @@ test('Should remove several properties', () => {
 
   transformState(state, [
     {
-      operation: 'removeProperties', properties: ['hello', 'foo', 'name'],
+      type: 'removeProperties', keysToRemove: ['hello', 'foo', 'name'],
     },
   ]);
 
@@ -123,7 +123,7 @@ test('Should do nothing when removing no properties', () => {
 
   transformState(state, [
     {
-      operation: 'removeProperties', properties: [],
+      type: 'removeProperties', keysToRemove: [],
     },
   ]);
 
@@ -140,7 +140,7 @@ test('Should not fail when removing not existing property', () => {
 
   transformState(state, [
     {
-      operation: 'removeProperties', properties: ['test', 'bar'],
+      type: 'removeProperties', keysToRemove: ['test', 'bar'],
     },
   ]);
 
@@ -156,7 +156,7 @@ test('Should clear the state', () => {
   };
 
   transformState(state, [
-    { operation: 'clear' },
+    { type: 'clear' },
   ]);
 
   expect(state)
@@ -167,30 +167,30 @@ test('Should not fails when clearing an empty state', () => {
   const state = {};
 
   transformState(state, [
-    { operation: 'clear' },
+    { type: 'clear' },
   ]);
 
   expect(state)
     .toEqual({});
 });
 
-test('Should apply several operations', () => {
+test('Should apply several types', () => {
   const state = {
     foo: 'bar', bar: 'foo',
   };
 
   transformState(state, [
     {
-      operation: 'addProperties',
-      properties: {
+      type: 'addProperties',
+      extraData: {
         name: 'Jim', hello: 'world',
       },
     },
     {
-      operation: 'removeProperties', properties: ['bar', 'hello'],
+      type: 'removeProperties', keysToRemove: ['bar', 'hello'],
     },
     {
-      operation: 'addProperties', properties: { another: 'one' },
+      type: 'addProperties', extraData: { another: 'one' },
     },
   ]);
 
@@ -200,30 +200,30 @@ test('Should apply several operations', () => {
     });
 });
 
-test('Should work with a long list of operations', () => {
+test('Should work with a long list of types', () => {
   const state = {
     foo: 'bar', name: 'Jim', another: 'one',
   };
 
   transformState(state, [
     {
-      operation: 'removeProperties', properties: ['another'],
+      type: 'removeProperties', keysToRemove: ['another'],
     },
-    { operation: 'clear' },
-    { operation: 'clear' },
-    { operation: 'clear' },
+    { type: 'clear' },
+    { type: 'clear' },
+    { type: 'clear' },
     {
-      operation: 'addProperties', properties: { yet: 'another property' },
+      type: 'addProperties', extraData: { yet: 'another property' },
     },
-    { operation: 'clear' },
+    { type: 'clear' },
     {
-      operation: 'addProperties',
-      properties: {
+      type: 'addProperties',
+      extraData: {
         foo: 'bar', name: 'Jim',
       },
     },
     {
-      operation: 'removeProperties', properties: ['name', 'hello'],
+      type: 'removeProperties', keysToRemove: ['name', 'hello'],
     },
   ]);
 
