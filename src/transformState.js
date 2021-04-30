@@ -63,7 +63,7 @@
  */
 function transformState(state, transforms) {
   for (const transform of transforms) {
-    const { operation, properties } = transforms[task];
+    const { operation, properties } = transforms;
 
     if (operation === 'addProperties') {
       Object.assign(state, properties);
