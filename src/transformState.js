@@ -5,23 +5,17 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const i of actions) {
-    switch (true) {
-      case i['type'] === 'addProperties' :
+  for (const { type, extraData, keysToRemove } of actions) {
+    switch (type) {
+      case 'addProperties' :
 
-        /* It works, but linter isn't allow and some tests falls. Why? */
-
-        // state = {
-        //   ...state, ...i['extraData'],
-        // };
-
-        for (const key in i['extraData']) {
-          state[key] = i['extraData'][key];
+        for (const key in extraData) {
+          state[key] = extraData[key];
         }
         break;
 
-      case i['type'] === 'removeProperties' :
-        for (const property of i['keysToRemove']) {
+      case 'removeProperties' :
+        for (const property of keysToRemove) {
           delete state[property];
         }
         break;
