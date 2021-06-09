@@ -12,6 +12,10 @@ function transformState(state, actions) {
       for (const keys of key.keysToRemove) {
         delete state[keys];
       }
+    } else if (key.type === 'clear') {
+      for (const k in state) {
+        delete state[k];
+      }
     }
   }
 }
