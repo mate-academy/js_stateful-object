@@ -18,7 +18,7 @@ function transformState(state, actions) {
 
     if (actions[i].type === 'clear') {
       Object.keys(state).map(key => {
-        delete delete state[key];
+        delete state[key];
       });
     }
   }
