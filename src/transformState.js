@@ -22,7 +22,5 @@ function transformState(state, actions) {
       });
     }
   }
-
-  return state;
 }
 module.exports = transformState;
