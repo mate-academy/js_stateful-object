@@ -19,9 +19,6 @@ function transformState(state, actions) {
 
   const clearingObj = (obj) => {
     for (const prop in obj) {
-      // if (!obj.hasOwnProperty(prop)) {
-      //   return false;
-      // }
       delete obj[prop];
     };
   };
