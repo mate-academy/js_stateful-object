@@ -5,28 +5,29 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    for (const firstLevelKey in actions[i]) {
-      if (actions[i][firstLevelKey] === 'clear') {
+  for (const item of actions) {
+    for (const firstLevelKey in item) {
+      if (item[firstLevelKey] === 'clear') {
         for (const stateKey in state) {
           delete state[stateKey];
         }
+        continue;
       }
 
-      if (firstLevelKey === 'extraData') {
-        for (const secondLevelKey in actions[i][firstLevelKey]) {
-          state[secondLevelKey] = actions[i][firstLevelKey][secondLevelKey];
-        }
-      }
+      switch (firstLevelKey) {
+        case 'extraData':
+          Object.assign(state, item[firstLevelKey]);
+          break;
 
-      if (firstLevelKey === 'keysToRemove') {
-        for (let j = 0; j < actions[i][firstLevelKey].length; j++) {
-          for (const stateKey in state) {
-            if (stateKey === actions[i][firstLevelKey][j]) {
-              delete state[stateKey];
+        case 'keysToRemove':
+          for (let j = 0; j < item[firstLevelKey].length; j++) {
+            for (const stateKey in state) {
+              if (stateKey === item[firstLevelKey][j]) {
+                delete state[stateKey];
+              }
             }
           }
-        }
+          break;
       }
     }
   }
