@@ -9,14 +9,14 @@ function transformState(state, actions) {
   const commandForRemove = 'removeProperties';
   const commandForClear = 'clear';
 
-  for (const element of actions) {
-    switch (element.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case commandForAdd
-        : Object.assign(state, element.extraData);
+        : Object.assign(state, action.extraData);
         break;
 
       case commandForRemove
-        : for (const key of element.keysToRemove) {
+        : for (const key of action.keysToRemove) {
           delete state[key];
         }
         break;
