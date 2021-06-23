@@ -11,18 +11,18 @@ function transformState(state, actions) {
 
   for (const action of actions) {
     switch (action.type) {
-      case commandForAdd
-        : Object.assign(state, action.extraData);
+      case commandForAdd:
+        Object.assign(state, action.extraData);
         break;
 
-      case commandForRemove
-        : for (const key of action.keysToRemove) {
+      case commandForRemove:
+        for (const key of action.keysToRemove) {
           delete state[key];
         }
         break;
 
-      case commandForClear
-        : for (const key in state) {
+      case commandForClear:
+        for (const key in state) {
           delete state[key];
         }
         break;
