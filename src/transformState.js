@@ -7,7 +7,8 @@
 function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
     const actionsValues = Object.values(actions[i]);
-    let actionsValuesKeys, actionsValuesValues;
+    let actionsValuesKeys = [];
+    let actionsValuesValues = [];
 
     switch (actionsValues[0]) {
       case 'addProperties' :
