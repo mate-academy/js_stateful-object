@@ -59,17 +59,17 @@
  * { foo: 'bar', name: 'Jim' }
  *
  * @param {Object} state
- * @param {Object[]} transforms
+ * @param {Object[]} actions
  */
-function transformState(state, transforms) {
+function transformState(state, actions) {
   const addProperties = 'addProperties';
   const clear = 'clear';
   const removeProperties = 'removeProperties';
 
-  for (const char of transforms) {
-    switch (char.operation) {
+  for (const type of actions) {
+    switch (type.operation) {
       case addProperties:
-        Object.assign(state, char.properties);
+        Object.assign(state, type.properties);
         break;
 
       case clear:
@@ -79,7 +79,7 @@ function transformState(state, transforms) {
         break;
 
       case removeProperties:
-        for (const element of char.properties) {
+        for (const element of type.properties) {
           delete state[element];
         }
         break;
