@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 'use strict';
 
 /**
@@ -6,17 +7,24 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (actions) {
-      case action.type === 'addProperties':
+    switch (action.type) {
+      case 'addProperties':
         addProperties(state, action.extraData);
         break;
-      case action.type === 'removeProperties':
+      case 'removeProperties':
         removeProperties(state, action.keysToRemove);
         break;
-      case action.type === 'clear':
+      case 'clear':
         clear(state);
         break;
     }
+    // if (action.type === 'addProperties') {
+    //   addProperties(state, action.extraData);
+    // } else if (action.type === 'removeProperties') {
+    //   removeProperties(state, action.keysToRemove);
+    // } else if (action.type === 'clear') {
+    //   clear(state);
+    // }
   }
 
   return state;
