@@ -22,7 +22,7 @@ should change the `state` basing on the given `actions` array.
       state. No second property in this case;
 
 Example of usage:
-
+ 
 If `state` is {foo: 'bar', bar: 'foo'}, then
 ```
  transformState(state, [
