@@ -7,40 +7,19 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    let addStatus = false;
-    let removeStatus = false;
-    let clearStatus = false;
+    if (action.type === 'addProperties') {
+      Object.assign(state, action.extraData);
+    }
 
-    for (const actionValue in action) {
-      if (addStatus) {
-        Object.assign(state, action[actionValue]);
-        addStatus = false;
+    if (action.type === 'removeProperties') {
+      for (const key of action.keysToRemove) {
+        delete state[key];
       }
+    }
 
-      if (removeStatus) {
-        for (const keysToRemove of action[actionValue]) {
-          for (const key in state) {
-            if (key === keysToRemove) {
-              delete state[keysToRemove];
-            }
-          }
-        }
-        removeStatus = false;
-      }
-
-      if (action[actionValue] === 'addProperties') {
-        addStatus = true;
-      } else if (action[actionValue] === 'removeProperties') {
-        removeStatus = true;
-      } else if (action[actionValue] === 'clear') {
-        clearStatus = true;
-      }
-
-      if (clearStatus) {
-        for (const key in state) {
-          delete state[key];
-        }
-        clearStatus = false;
+    if (action.type === 'clear') {
+      for (const key in state) {
+        delete state[key];
       }
     }
   }
