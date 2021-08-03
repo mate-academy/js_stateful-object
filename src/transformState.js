@@ -1,25 +1,25 @@
 'use strict';
 
 function transformState(state, actions) {
+  // write code here
   for (const key of actions) {
-    if (key.type === 'addProperties') {
-      for (const keyObj in key.extraData) {
-        state[keyObj] = key.extraData[keyObj];
-      }
-    }
+    switch (key.type) {
+      case 'addProperties':
+        Object.assign(state, key.extraData);
+        break;
 
-    if (key.type === 'removeProperties') {
-      for (const keyArr of key.keysToRemove) {
-        if (state.hasOwnProperty(keyArr)) {
-          delete state[keyArr];
+      case 'removeProperties':
+        for (const keyArr of key.keysToRemove) {
+          if (state.hasOwnProperty(keyArr)) {
+            delete state[keyArr];
+          }
         }
-      }
-    }
+        break;
 
-    if (key.type === 'clear') {
-      for (const keys in state) {
-        delete state[keys];
-      }
+      case 'clear':
+        for (const keys in state) {
+          delete state[keys];
+        }
     }
   }
 }
