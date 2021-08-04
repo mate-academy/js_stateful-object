@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[properties];
         };
         break;
+
+      default:
+        break;
     }
   }
 }
