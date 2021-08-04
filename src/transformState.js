@@ -12,13 +12,16 @@ function transformState(state, actions) {
         break;
       case 'removeProperties':
         for (const key of action.keysToRemove) {
-          Reflect.deleteProperty(state, key);
+          delete state[key];
         }
         break;
       case 'clear':
         for (const parameter in state) {
-          Reflect.deleteProperty(state, parameter);
+          delete state[parameter];
         }
+        break;
+
+      default:
         break;
     }
   }
