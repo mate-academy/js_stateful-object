@@ -5,7 +5,25 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
+  for (const obgInAction of actions) {
+    if (obgInAction.type === 'addProperties') {
+      Object.assign(state, obgInAction.extraData);
+    }
+
+    if (obgInAction.type === 'removeProperties') {
+      for (const keyForDelete of obgInAction.keysToRemove) {
+        delete state[keyForDelete];
+      }
+    }
+
+    if (obgInAction.type === 'clear') {
+      for (const keyOfState in state) {
+        delete state[keyOfState];
+      }
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
