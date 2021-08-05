@@ -5,15 +5,15 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const ourObject of actions) {
-    switch (ourObject.type) {
+  for (const ourAcrion of actions) {
+    switch (ourAcrion.type) {
       case 'addProperties':
-        Object.assign(state, ourObject.extraData);
+        Object.assign(state, ourAcrion.extraData);
         break;
 
       case 'removeProperties':
-        for (let i = 0; i < ourObject.keysToRemove.length; i++) {
-          delete state[ourObject.keysToRemove[i]];
+        for (const itemToDelete of ourAcrion.keysToRemove) {
+          delete state[itemToDelete];
         }
         break;
 
