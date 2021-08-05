@@ -25,6 +25,10 @@ function transformState(state, actions) {
         }
 
         break;
+
+      default:
+
+        break;
     }
   }
 }
