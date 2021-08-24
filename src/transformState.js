@@ -5,9 +5,9 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
   for (const action of actions) {
     if (action.type === 'addProperties') {
+      Object.assign(state, action.extraData);
     }
 
     if (action.type === 'removeProperties') {
