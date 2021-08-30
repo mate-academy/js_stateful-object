@@ -12,15 +12,11 @@ function transformState(state, actions) {
       }
     } else if (actions[i].type === 'removeProperties') {
       for (let y = 0; y < actions[i].keysToRemove.length; y++) {
-        const removeItem = actions[i].keysToRemove[y];
-
-        delete state[removeItem];
+        delete state[actions[i].keysToRemove[y]];
       }
     } else if (actions[i].type === 'clear') {
       for (const key in state) {
-        const removeItem = key;
-
-        delete state[removeItem];
+        delete state[key];
       }
     }
   }
