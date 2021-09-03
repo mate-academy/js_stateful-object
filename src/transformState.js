@@ -15,7 +15,7 @@ function transformState(state, actions) {
         removeProperties(state, action.keysToRemove);
         break;
       case 'clear':
-        removeProperties(state, null, true);
+        clearProperties(state);
         break;
       default:
     }
@@ -28,15 +28,15 @@ const addProperties = (objTo, objFrom) => {
   }
 };
 
-const removeProperties = (objFrom, properties, clear = false) => {
-  if (!clear) {
-    for (const key of properties) {
-      delete objFrom[key];
-    }
-  } else {
-    for (const key of Object.keys(objFrom)) {
-      delete objFrom[key];
-    }
+const removeProperties = (objFrom, properties) => {
+  for (const key of properties) {
+    delete objFrom[key];
+  }
+};
+
+const clearProperties = (objFrom) => {
+  for (const key of Object.keys(objFrom)) {
+    delete objFrom[key];
   }
 };
 
