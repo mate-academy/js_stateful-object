@@ -6,21 +6,21 @@
  */
 // eslint-disable-next-line no-shadow
 function transformState(state, actions) {
-  for (const i of actions) {
-    if (i.type === 'addProperties') {
-      Object.assign(state, i.extraData);
-    }
-
-    if (i.type === 'removeProperties') {
-      for (const b of i.keysToRemove) {
-        delete state[b];
-      }
-    }
-
-    if (i.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
+      case 'removeProperties':
+        for (const keyToRemove of action.keysToRemove) {
+          delete state[keyToRemove];
+        }
+        break;
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
     }
   }
 
