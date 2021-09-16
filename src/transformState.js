@@ -14,16 +14,14 @@ function transformState(state, actions) {
     }
 
     if (action['type'] === 'removeProperties') {
-      for (const rem of action.keysToRemove) {
-        delete state[rem];
+      for (const key of action.keysToRemove) {
+        delete state[key];
       }
     }
 
     if (action['type'] === 'clear') {
       for (const key in state) {
-        if (state.hasOwnProperty(key)) {
-          delete state[key];
-        }
+        delete state[key];
       }
     }
   }
