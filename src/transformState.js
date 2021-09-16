@@ -11,12 +11,10 @@ function transformState(state, actions) {
         for (const key in act.extraData) {
           state[key] = act.extraData[key];
         }
-        // Object.assign(state, act.extraData);
         break;
 
       case 'removeProperties':
         for (const k of act.keysToRemove) {
-          // state[k] = act.keysToRemove[k];
           delete state[k];
         }
 
