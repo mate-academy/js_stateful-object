@@ -5,24 +5,6 @@
  * @param {Object[]} actions
  */
 
-//  transformState(state, [
-//   {
-//     type: 'addProperties',
-//     extraData: {
-//       name: 'Jim',
-//       hello: 'world',
-//     }
-//   },
-//   {
-//     type: 'removeProperties',
-//     keysToRemove: ['bar', 'hello'],
-//   },
-//   {
-//     type: 'addProperties',
-//     extraData: { another: 'one' },
-//   }
-// ])
-
 function transformState(state, actions) {
   for (const action of actions) {
     if (action.type === 'addProperties') {
