@@ -18,8 +18,12 @@ function transformState(state, actions) {
       case 'clear':
         Object.keys(state).forEach(key => delete state[key]);
         break;
+      default:
+        break;
     }
   });
+
+  return state;
 }
 
 module.exports = transformState;
