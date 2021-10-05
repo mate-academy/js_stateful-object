@@ -13,14 +13,11 @@ function transformState(state, actions) {
         Object.assign(state, action.extraData);
         break;
       case 'removeProperties':
-        action.keysToRemove.forEach(key => {
-          delete state[key];
-        });
+        action.keysToRemove.forEach(key => delete state[key]);
         break;
       case 'clear':
-        Object.keys(state).forEach(key => {
-          delete state[key];
-        });
+        Object.keys(state).forEach(key => delete state[key]);
+        break;
     }
   });
 }
