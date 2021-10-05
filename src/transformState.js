@@ -21,6 +21,8 @@ function transformState(state, actions) {
         clearProperties(state);
         break;
       }
+
+      default: console.log('Unknown action!');
     }
   }
 
