@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * @param {Object} state
+ * @param {Object[]} actions
+ */
+
 function transformState(state, actions) {
   for (const i of actions) {
     if (i.type === 'addProperties') {
