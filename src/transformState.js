@@ -7,9 +7,7 @@
 function transformState(state, actions) {
   for (const action of actions) {
     if (action.type === 'addProperties') {
-      for (const key in action.extraData) {
-        state[key] = action.extraData[key];
-      }
+      Object.assign(state, action.extraData);
     }
 
     if (action.type === 'removeProperties') {
