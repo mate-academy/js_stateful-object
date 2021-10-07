@@ -27,6 +27,9 @@ function transformState(state, actions) {
             delete state[iKey];
           }
           break;
+
+        default:
+          return 'undefined';
       }
     }
   }
