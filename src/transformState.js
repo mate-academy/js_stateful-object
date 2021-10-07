@@ -24,6 +24,9 @@ function transformState(state, actions) {
         for (const char in state) {
           delete state[char];
         }
+        break;
+
+      default:
     }
   }
 }
