@@ -22,9 +22,7 @@ function transformState(state, actions) {
 
       case 'clear':
         for (const key in state) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
 
