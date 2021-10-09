@@ -5,8 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // let newState = { ...state };
-
   for (const iterator of actions) {
     const { type, extraData, keysToRemove } = iterator;
 
