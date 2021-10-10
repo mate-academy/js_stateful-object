@@ -5,42 +5,29 @@
  * @param {Object[]} actions
  */
 
-function addProperties(object, objectModifier) {
-  for (const key in objectModifier) {
-    object[key] = objectModifier[key];
-  }
-
-  return object;
-};
-
-function removeProperties(object, objectModifier) {
-  for (const key of objectModifier) {
-    delete object[key];
-  }
-
-  return object;
-};
-
-function clearAll(object) {
-  for (const key in object) {
-    delete object[key];
-  }
-
-  return object;
-};
-
 function transformState(state, actions) {
   for (const index of actions) {
-    if (index.type === 'addProperties') {
-      addProperties(state, index.extraData);
-    }
+    switch (index.type) {
+      case 'addProperties':
+        for (const key in index.extraData) {
+          state[key] = index.extraData[key];
+        }
+        break;
 
-    if (index.type === 'removeProperties') {
-      removeProperties(state, index.keysToRemove);
-    }
+      case 'removeProperties':
+        for (const key of index.keysToRemove) {
+          delete state[key];
+        }
+        break;
 
-    if (index.type === 'clear') {
-      clearAll(state);
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        return state;
     }
   }
 
