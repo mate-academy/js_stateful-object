@@ -5,7 +5,36 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
+  const parse = (act, st) => {
+    const { type } = act;
+
+    switch (type) {
+      case 'addProperties':
+        const { extraData } = act;
+
+        Object.entries(extraData).forEach(([key, value]) => {
+          st[key] = value;
+        });
+        break;
+
+      case 'removeProperties':
+        const { keysToRemove } = act;
+
+        keysToRemove.map(key => delete st[key]);
+        break;
+
+      case 'clear':
+        // eslint-disable-next-line no-param-reassign
+        Object.keys(st).map(key => delete st[key]);
+        break;
+      default:
+        throw new Error('Something wrong!!!');
+    }
+  };
+
+  actions.map(act => parse(act, state));
+
+  // return obj;
 }
 
 module.exports = transformState;
