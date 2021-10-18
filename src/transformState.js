@@ -33,8 +33,6 @@ function transformState(state, actions) {
   };
 
   actions.map(act => parse(act, state));
-
-  // return obj;
 }
 
 module.exports = transformState;
