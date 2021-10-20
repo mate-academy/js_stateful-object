@@ -24,7 +24,6 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        // eslint-disable-next-line no-param-reassign
         Object.keys(st).map(key => delete st[key]);
         break;
       default:
