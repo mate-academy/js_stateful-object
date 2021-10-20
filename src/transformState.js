@@ -26,6 +26,7 @@ function transformState(state, actions) {
       case 'clear':
         Object.keys(st).map(key => delete st[key]);
         break;
+
       default:
         throw new Error('Something wrong!!!');
     }
