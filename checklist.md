@@ -15,5 +15,3 @@ for (const action of actions) {
 4. [CODE STYLE]: switch/case should always have default case for error handling.
 5. [CODE STYLE]: Nested loops === EVIL
 6. [CODE KNOWLEDGE]: Remember, if property key is a variable - use brackets `object[key]`. If it's called key - use dot access `object.key`.
-
-
