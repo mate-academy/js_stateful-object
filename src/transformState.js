@@ -10,11 +10,15 @@ function transformState(state, actions) {
       for (const key in value.extraData) {
         state[key] = value.extraData[key];
       }
-    } else if (value.type === 'removeProperties') {
+    }
+
+    if (value.type === 'removeProperties') {
       for (const key of value.keysToRemove) {
         delete state[key];
       }
-    } else if (value.type === 'clear') {
+    }
+
+    if (value.type === 'clear') {
       for (const key in state) {
         delete state[key];
       }
