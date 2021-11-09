@@ -5,7 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
   for (const direct of actions) {
     if (direct.type === 'addProperties') {
       Object.assign(state, direct.extraData);
