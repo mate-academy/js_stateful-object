@@ -6,22 +6,23 @@
  */
 function transformState(state, actions) {
   for (const direct of actions) {
-    if (direct.type === 'addProperties') {
-      Object.assign(state, direct.extraData);
-    }
+    switch (direct.type) {
+      case 'addProperties':
+        Object.assign(state, direct.extraData);
+        break;
 
-    if (direct.type === 'removeProperties') {
-      for (const key of direct.keysToRemove) {
-        if (key in state) {
-          delete state[key];
+      case 'removeProperties':
+        for (const key of direct.keysToRemove) {
+          if (key in state) {
+            delete state[key];
+          }
         }
-      }
-    }
+        break;
 
-    if (direct.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      };
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        };
     }
   }
 }
