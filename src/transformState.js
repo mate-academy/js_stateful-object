@@ -5,7 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
 
   for (const action of actions) {
     switch (action.type) {
@@ -24,6 +23,9 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        return 'Performing unknown action';
     }
   }
 }
