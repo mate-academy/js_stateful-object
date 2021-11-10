@@ -17,28 +17,27 @@ function transformState(state, actions) {
         break;
       case 'clear':
         clear(state);
-        break;
     }
   }
 }
 
-function addProperties(obj, extraData) {
+function addProperties(object, extraData) {
   for (const key in extraData) {
-    obj[key] = extraData[key];
+    Object.assign(object, { [key]: extraData[key] });
   }
 }
 
-function removeProperties(obj, arr) {
-  for (const key of arr) {
-    if (key in obj) {
-      delete obj[key];
+function removeProperties(object, array) {
+  for (const key of array) {
+    if (key in object) {
+      delete object[key];
     }
   }
 }
 
-function clear(obj) {
-  for (const key in obj) {
-    delete obj[key];
+function clear(object) {
+  for (const key in object) {
+    delete object[key];
   }
 }
 
