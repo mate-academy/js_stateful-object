@@ -24,9 +24,6 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, obj.extraData);
         break;
-
-      default:
-        break;
     }
   }
 
