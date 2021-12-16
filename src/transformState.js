@@ -14,8 +14,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (let n = 0; n < action.keysToRemove.length; n++) {
-          delete resultState[action.keysToRemove[n]];
+        for (const n of action.keysToRemove) {
+          delete resultState[n];
         }
         break;
 
