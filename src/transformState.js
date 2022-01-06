@@ -21,17 +21,11 @@ function transformState(state, actions) {
           state[record] = records[record];
         }
         break;
-      case 'removeProperties':
-        const removes = action.keysToRemove;
 
-        for (const remove of removes) {
-          for (const data in state) {
-            if (remove === data) {
-              delete state[data];
-            }
-          }
+      case 'removeProperties':
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
-        break;
     }
   }
 
