@@ -8,23 +8,21 @@ function transformState(state, actions) {
   let records = {};
 
   for (const action of actions) {
-    for (const key in action) {
-      if (action[key] === 'clear') {
+    switch (action.type) {
+      case 'clear':
         for (const data in state) {
           delete state[data];
         }
-      }
-
-      if (key === 'extraData') {
-        records = action[key];
+        break;
+      case 'addProperties':
+        records = action.extraData;
 
         for (const record in records) {
           state[record] = records[record];
         }
-      }
-
-      if (key === 'keysToRemove') {
-        const removes = action[key];
+        break;
+      case 'removeProperties':
+        const removes = action.keysToRemove;
 
         for (const remove of removes) {
           for (const data in state) {
@@ -33,7 +31,7 @@ function transformState(state, actions) {
             }
           }
         }
-      }
+        break;
     }
   }
 
