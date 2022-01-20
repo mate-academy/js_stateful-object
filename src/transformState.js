@@ -80,6 +80,7 @@ function transformState(state, transforms) {
           delete state[key2];
         }
         break;
+      default: return state;
     }
   }
 
