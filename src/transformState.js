@@ -8,10 +8,8 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'removeProperties':
-        if (typeof (action.keysToRemove) === 'object') {
-          for (const key of action.keysToRemove) {
-            delete state[key];
-          }
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
