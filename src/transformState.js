@@ -23,6 +23,10 @@ function transformState(state, actions) {
         for (const properties in state) {
           delete state[properties];
         }
+        break;
+
+      default:
+        throw Error('Wrong properties. Please contact with support');
     }
   }
 
