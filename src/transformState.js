@@ -20,10 +20,9 @@ function transformState(state, actions) {
         break;
 
       case ('clear') :
-        Object.keys(state).map(key => delete state[key]);
-        // for (const key in state) {
-        //   delete state[key];
-        // }
+        for (const key in state) {
+          delete state[key];
+        }
         break;
 
       default : ;
