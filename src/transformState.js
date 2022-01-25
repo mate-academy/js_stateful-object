@@ -12,16 +12,19 @@ function transformState(state, actions) {
           state[prop] = action.extraData[prop];
         }
         break;
+
       case 'removeProperties':
         for (const key of action.keysToRemove) {
           delete state[key];
         }
         break;
+
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
         break;
+
       default:
         break;
     }
