@@ -25,6 +25,7 @@ function transformState(state, actions) {
             delete modifiedState[actions[i].keysToRemove[j]];
           }
         }
+        break;
     }
   }
 
