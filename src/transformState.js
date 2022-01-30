@@ -16,7 +16,7 @@ function transformState(state, actions) {
         break;
 
       case 'addProperties':
-        Object.assign(state, actions[i].extraData);
+        Object.assign(modifiedState, actions[i].extraData);
         break;
 
       case 'removeProperties':
