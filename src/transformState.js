@@ -19,16 +19,22 @@ console.log(state)
 
 function transformState(state, actions) {
   for (const action of actions) {
-    if (action.type === 'clear') {
-      Object.keys(state).forEach(key => delete state[key]);
-    } else if (action.type === 'removeProperties') {
-      for (const K of Object.values(action.keysToRemove)) {
-        delete state[K];
-      }
-    } else {
-      for (const [K, V] of Object.entries(action.extraData)) {
-        state[K] = V;
-      }
+    switch (action.type) {
+      case 'clear':
+        Object
+          .keys(state)
+          .forEach(K => delete state[K]);
+        break;
+      case 'removeProperties':
+        Object
+          .values(action.keysToRemove)
+          .forEach(K => delete state[K]);
+        break;
+
+      default:
+        for (const [K, V] of Object.entries(action.extraData)) {
+          state[K] = V;
+        }
     }
   }
 }
