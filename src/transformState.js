@@ -5,27 +5,28 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  let res = Object.assign(state);
-
   for (const action of actions) {
-    if (action.type === 'addProperties') {
-      res = Object.assign(res, action.extraData);
-    }
+    switch (action.type) {
+      case 'addProperties' :
+        Object.assign(state, action.extraData);
+        break;
 
-    if (action.type === 'removeProperties') {
-      for (const removeKey of action.keysToRemove) {
-        delete res[removeKey];
-      }
-    }
+      case 'removeProperties' :
+        for (const removeKey of action.keysToRemove) {
+          delete state[removeKey];
+        }
+        break;
 
-    if (action.type === 'clear') {
-      for (const el in res) {
-        delete res[el];
-      }
+      case 'clear' :
+        for (const el in state) {
+          delete state[el];
+        }
+        break;
+
+      default :
+        return state;
     }
   }
-
-  return res;
 }
 
 module.exports = transformState;
