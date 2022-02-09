@@ -17,7 +17,6 @@ function transformState(state, actions) {
         break;
       case 'addProperties':
         Object.assign(state, action.extraData);
-        break;
     }
   });
 }
