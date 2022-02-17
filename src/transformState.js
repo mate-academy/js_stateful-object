@@ -11,24 +11,23 @@ function transformState(state, actions) {
         for (const [prop, value] of Object.entries(obj.extraData)) {
           state[prop] = value;
         }
-
-        return state;
+        break;
 
       case 'removeProperties':
         for (const prop of obj.keysToRemove) {
           delete state[prop];
         };
-
-        return state;
+        break;
 
       case 'clear':
         for (const prop in state) {
           delete state[prop];
         }
-
-        return state;
+        break;
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
