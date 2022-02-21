@@ -6,24 +6,25 @@
  */
 function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
-    if (actions[i].type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
-    }
+    switch (actions[i].type) {
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
 
-    if (actions[i].type === 'removeProperties') {
-      const arrKeyDelete = actions[i].keysToRemove;
+      case 'removeProperties':
+        const arrKeyDelete = actions[i].keysToRemove;
 
-      for (const key of arrKeyDelete) {
-        delete state[key];
-      }
-    }
+        for (const key of arrKeyDelete) {
+          delete state[key];
+        }
+        break;
 
-    if (actions[i].type === 'addProperties') {
-      const objKeyJoin = actions[i].extraData;
+      default:
+        const objKeyJoin = actions[i].extraData;
 
-      Object.assign(state, objKeyJoin);
+        Object.assign(state, objKeyJoin);
     }
   }
 
