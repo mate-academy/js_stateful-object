@@ -12,9 +12,9 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const key in action.keysToRemove) {
-          if (state[action.keysToRemove[key]]) {
-            delete state[action.keysToRemove[key]];
+        for (const key of action.keysToRemove) {
+          if (state[key]) {
+            delete state[key];
           }
         };
         break;
@@ -27,7 +27,7 @@ function transformState(state, actions) {
     }
   }
 
-  return (state);
+  return state;
 }
 
 module.exports = transformState;
