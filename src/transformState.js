@@ -24,23 +24,4 @@ function transformState(state, actions) {
   return state;
 }
 
-transformState({
-  foo: 'bar', bar: 'foo',
-}, [
-  {
-    type: 'addProperties',
-    extraData: {
-      name: 'Jim',
-      hello: 'world',
-    },
-  },
-  {
-    type: 'removeProperties',
-    keysToRemove: ['bar', 'hello'],
-  },
-  {
-    type: 'addProperties',
-    extraData: { another: 'one' },
-  },
-]);
 module.exports = transformState;
