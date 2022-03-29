@@ -16,10 +16,9 @@ function transformState(state, actions) {
       }
     } else if (act['type'] === 'removeProperties') {
       for (const proprem of act['keysToRemove']) {
-        if (!(proprem in state)) {
-          continue;
+        if (proprem in state) {
+          delete state[proprem];
         }
-        delete state[proprem];
       }
     }
   }
