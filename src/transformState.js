@@ -12,7 +12,9 @@ function transformState(state, actions) {
     }
 
     if (action.type === 'clear') {
-      Object.keys(state).forEach(key => delete state[key]);
+      Object.keys(state).forEach((key) => {
+        delete state[key];
+      });
     }
 
     if (action.type === 'removeProperties') {
