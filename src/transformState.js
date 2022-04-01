@@ -17,11 +17,14 @@ function transformState(state, actions) {
         };
         break;
 
-      default:
+      case 'clear':
         for (const item in state) {
           delete state[item];
         }
         break;
+
+      default:
+        throw new Error('unknown type');
     }
   }
 }
