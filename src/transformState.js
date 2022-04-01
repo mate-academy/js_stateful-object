@@ -6,29 +6,33 @@
  */
 function transformState(state, actions) {
   let keys = [];
-  let result = state;
 
-  for (const act of actions) {
-    switch (act.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        result = Object.assign(result, act.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        keys = act.keysToRemove;
+        keys = action.keysToRemove;
 
         for (const key of keys) {
-          delete result[key];
+          delete state[key];
         }
         break;
 
-      default: for (const st in state) {
-        delete result[st];
-      }
+      case 'clear':
+        for (const elementState in state) {
+          delete state[elementState];
+        }
+        break;
+
+      default:
+        throw new Error(`Unsupported action type:#{Saction.tipe}`);
     }
   }
 
-  return result;
+  return state;
 }
 
 module.exports = transformState;
