@@ -63,9 +63,11 @@ Another example:
  const state = { x: 1 };
 
  transformState(state, [
-   { type: 'addProperties', extraData: { yet: 'another property' } }
+   { type: 'addProperties',
+    extraData: { yet: 'another property' } }
    { type: 'clear' },
-   { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
+   { type: 'addProperties',
+    extraData: { foo: 'bar', name: 'Jim' } }
  ]);
 
 // state === { foo: 'bar', name: 'Jim' }
