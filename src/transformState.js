@@ -6,12 +6,20 @@
  */
 function transformState(state, actions) {
   actions.forEach(e => {
-    if (e.type === 'addProperties') {
-      Object.assign(state, e.extraData);
-    } else if (e.type === 'removeProperties') {
-      e.keysToRemove.forEach(el => delete state[el]);
-    } else if (e.type === 'clear') {
-      Object.keys(state).forEach(key => delete state[key]);
+    switch (e.type) {
+      case 'addProperties':
+        Object.assign(state, e.extraData);
+        break;
+      case 'removeProperties':
+        e.keysToRemove.forEach(el => delete state[el]);
+        break;
+      case 'clear':
+        Object.keys(state).forEach(key => delete state[key]);
+        break;
+
+      default: {
+        throw new Error(`Unsupported action type: ${actions.type}`);
+      }
     }
   });
 }
