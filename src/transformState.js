@@ -15,11 +15,13 @@ function transformState(state, actions) {
           delete state[keyToRemove];
         };
         break;
-
       case 'clear':
         for (const key in state) {
           delete state[key];
         };
+        break;
+      default:
+        continue;
     }
   }
 }
