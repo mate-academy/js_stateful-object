@@ -7,7 +7,8 @@ test('Should add a single property to an empty state', () => {
 
   transformState(state, [
     {
-      type: 'addProperties', extraData: { name: 'Jim' },
+      type: 'addProperties',
+      extraData: { name: 'Jim' },
     },
   ]);
 
@@ -78,7 +79,8 @@ test('Should remove the only property from the state', () => {
 
   transformState(state, [
     {
-      type: 'removeProperties', keysToRemove: ['foo'],
+      type: 'removeProperties',
+      keysToRemove: ['foo'],
     },
   ]);
 
@@ -108,7 +110,8 @@ test('Should remove several properties', () => {
 
   transformState(state, [
     {
-      type: 'removeProperties', keysToRemove: ['hello', 'foo', 'name'],
+      type: 'removeProperties',
+      keysToRemove: ['hello', 'foo', 'name'],
     },
   ]);
 
@@ -140,7 +143,8 @@ test('Should not fail when removing not existing property', () => {
 
   transformState(state, [
     {
-      type: 'removeProperties', keysToRemove: ['test', 'bar'],
+      type: 'removeProperties',
+      keysToRemove: ['test', 'bar'],
     },
   ]);
 
