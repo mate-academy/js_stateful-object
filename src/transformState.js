@@ -6,8 +6,6 @@
  */
 function transformState(state, actions) {
   // write code here
-  // const newState = { ...state };
-
   for (const act of actions) {
     if (act.type === 'addProperties') {
       Object.assign(state, act.extraData);
