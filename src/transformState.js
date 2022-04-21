@@ -9,11 +9,15 @@ function transformState(state, actions) {
   for (const act of actions) {
     if (act.type === 'addProperties') {
       Object.assign(state, act.extraData);
-    } else if (act.type === 'removeProperties') {
+    }
+
+    if (act.type === 'removeProperties') {
       for (const i of act.keysToRemove) {
         delete state[i];
       }
-    } else {
+    }
+
+    if (act.type === 'clear') {
       for (const key in state) {
         delete state[key];
       }
