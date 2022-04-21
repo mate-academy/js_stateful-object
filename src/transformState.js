@@ -11,14 +11,14 @@ function transformState(state, actions) {
     }
 
     if (parameter.type === 'removeProperties') {
-      for (const property in parameter.keysToRemove) {
-        delete state[parameter['keysToRemove'][property]];
+      for (const property of parameter.keysToRemove) {
+        delete state[property];
       }
     }
 
     if (parameter.type === 'clear') {
-      for (const property in state) {
-        delete state[property];
+      for (const key in state) {
+        delete state[key];
       }
     }
   }
