@@ -27,7 +27,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'action does no exist';
+        return 'action does not exist';
     }
   }
 
