@@ -6,20 +6,27 @@
  */
 function transformState(state, actions) {
   for (const parameter of actions) {
-    if (parameter.type === 'addProperties') {
-      Object.assign(state, parameter.extraData);
-    }
+    const { type, extraData, keysToRemove } = parameter;
 
-    if (parameter.type === 'removeProperties') {
-      for (const property of parameter.keysToRemove) {
-        delete state[property];
-      }
-    }
+    switch (type) {
+      case 'addProperties':
+        Object.assign(state, extraData);
+        break;
 
-    if (parameter.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+      case 'removeProperties':
+        for (const key of keysToRemove) {
+          delete state[key];
+        }
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        return 'Please enter a command';
     }
   }
 
