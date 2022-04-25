@@ -20,6 +20,9 @@ function transformState(state, actions) {
         Object.keys(state)
           .forEach(key => delete state[key]);
         break;
+
+      default:
+        return `Please provide valid data`;
     }
   }
 
