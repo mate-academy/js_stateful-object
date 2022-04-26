@@ -6,6 +6,7 @@
  */
 function transformState(state, actions) {
   // write code here
+
   for (let i = 0; i < actions.length; i++) {
     if (actions[i].type === 'clear') {
       Object.keys(state).forEach(key => delete state[key]);
