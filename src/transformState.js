@@ -23,23 +23,10 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        return state;
     }
-
-    // if (actions[i].type === 'addProperties') {
-    //   Object.assign(state, actions[i].extraData);
-    // }
-
-    // if (actions[i].type === 'removeProperties') {
-    //   for (const key of actions[i].keysToRemove) {
-    //     delete state[key];
-    //   }
-    // }
-
-    // if (actions[i].type === 'clear') {
-    //   for (const key in state) {
-    //     delete state[key];
-    //   }
-    // }
   }
 }
 
