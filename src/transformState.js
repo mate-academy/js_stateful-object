@@ -5,11 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const action of actions) {
-    const type = action.type;
-    const extraData = action.extraData;
-    const keysToRemove = action.keysToRemove;
-
+  for (const { type, extraData, keysToRemove } of actions) {
     switch (type) {
       case 'addProperties':
         Object.assign(state, extraData);
