@@ -13,23 +13,17 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         for (const key of action.keysToRemove) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
 
       case 'clear':
-        if (action.type === 'clear') {
-          for (const key in state) {
-            delete state[key];
-          }
+        for (const key in state) {
+          delete state[key];
         }
         break;
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
