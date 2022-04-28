@@ -7,11 +7,11 @@
 function transformState(state, actions) {
   for (const currentAction of actions) {
     if (currentAction.type === 'addProperties') {
-      Object.assign(state, currentAction['extraData']);
+      Object.assign(state, currentAction.extraData);
     }
 
     if (currentAction.type === 'removeProperties') {
-      const listToDelete = currentAction['keysToRemove'];
+      const listToDelete = currentAction.keysToRemove;
 
       for (let i = 0; i < listToDelete.length; i++) {
         const currentDeleteKey = listToDelete[i];
