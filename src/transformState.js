@@ -24,6 +24,9 @@ function transformState(state, actions) {
           state[key] = undefined;
         }
         break;
+
+      default:
+        return 'action doesn\'t exist';
     }
   }
 }
