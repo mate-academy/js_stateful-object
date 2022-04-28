@@ -6,20 +6,21 @@
  */
 function transformState(state, actions) {
   for (const object of actions) {
-    if (object.type === 'addProperties') {
-      Object.assign(state, object.extraData);
-    }
+    switch (object.type) {
+      case 'addProperties':
+        Object.assign(state, object.extraData);
+        break;
 
-    if (object.type === 'removeProperties') {
-      for (const element of object.keysToRemove) {
-        delete state[element];
-      }
-    }
+      case 'removeProperties':
+        for (const element of object.keysToRemove) {
+          delete state[element];
+        }
+        break;
 
-    if (object.type === 'clear') {
-      for (const char in state) {
-        delete state[char];
-      }
+      case 'clear':
+        for (const char in state) {
+          delete state[char];
+        }
     }
   }
 }
