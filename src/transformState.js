@@ -10,17 +10,21 @@ function transformState(state, actions) {
       case action.type === 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
       case action.type === 'removeProperties':
-        for (const del of action.keysToRemove) {
-          delete state[del];
+        for (const deletionElement of action.keysToRemove) {
+          delete state[deletionElement];
         }
         break;
 
       case action.type === 'clear':
-        for (const del in state) {
-          delete state[del];
+        for (const deletionElement in state) {
+          delete state[deletionElement];
         }
         break;
+
+      default:
+        return state;
     }
   }
 }
