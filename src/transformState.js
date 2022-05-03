@@ -22,8 +22,6 @@ function transformState(state, actions) {
           delete state[remove];
         }
         break;
-      default :
-        Object.assign(state, action.extraData);
     }
   }
 
