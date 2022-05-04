@@ -8,7 +8,7 @@ for (let item of actions) {
 
 ```
 
-GOOD EXAMPLE: 
+GOOD EXAMPLE:
 ```
 for (const action of actions) {
 ```
