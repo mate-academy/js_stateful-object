@@ -28,10 +28,7 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
  transformState(state, [
    {
      type: 'addProperties',
-     extraData: {
-       name: 'Jim',
-       hello: 'world',
-     }
+    const
    },
    {
      type: 'removeProperties',
