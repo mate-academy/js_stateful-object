@@ -7,25 +7,26 @@
 function transformState(state, actions) {
   // write code here
   let actionsObject = {};
-  let value = '';
+  let valueToRemove = '';
 
-  for (const ch of actions) {
-    actionsObject = ch;
-    Object.assign(state, actionsObject.extraData);
+  for (const action of actions) {
+    actionsObject = action;
 
-    for (const key in actionsObject.keysToRemove) {
-      value = actionsObject.keysToRemove[key];
+    if (actionsObject.type === 'addProperties') {
+      Object.assign(state, actionsObject.extraData);
+    }
 
-      for (const key2 in state) {
-        if (value === key2) {
-          delete state[key2];
-        }
+    for (const keyToRemove in actionsObject.keysToRemove) {
+      valueToRemove = actionsObject.keysToRemove[keyToRemove];
+
+      if (actionsObject.type === 'removeProperties') {
+        delete state[valueToRemove];
       }
     }
 
-    for (const key3 in state) {
+    for (const key in state) {
       if (actionsObject.type === 'clear') {
-        delete state[key3];
+        delete state[key];
       }
     }
   }
