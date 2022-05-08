@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
+  
   for (let i = 0; i < actions.length; i++) {
     if (actions[i].type === 'addProperties') {
       for (const prop in actions[i].extraData) {
