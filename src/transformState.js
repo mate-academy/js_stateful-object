@@ -20,8 +20,8 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const stateKey in state) {
-          delete state[stateKey];
+        for (const key in state) {
+          delete state[key];
         }
         break;
 
