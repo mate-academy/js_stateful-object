@@ -70,3 +70,61 @@ Another example:
 
 // state === { foo: 'bar', name: 'Jim' }
 ```
+
+Реалізуйте функцію, яка приймає 2 аргументи: `state` і `actions`. Функція повинна змінити `state` на основі заданого масиву `actions`.
+`state` - це об'єкт. Ви повинні додати, змінити або видалити його властивості замість створення нового об’єкта
+
+`actions` — це масив об’єктів. Кожен об’єкт у цьому масиві має такі властивості:
+тип містить рядок: `addProperties`, `removeProperties` або `clear`;
+Друга властивість кожного об'єкта залежить від типу і може бути однією з наступних:
+якщо тип — `addProperties`, друга властивість — `extraData`. Він містить об'єкт з парами ключа: значення для додавання до `state`;
+якщо типом є `removeProperties`, другою властивістю є `keysToRemove`. Він містить масив зі списком імен властивостей (ключів), які потрібно видалити зі `state`; (Неіснуючі властивості слід ігнорувати)
+якщо тип `clear`, ви повинні видалити всі властивості зі стану. Другої власності в даному випадку немає;
+
+Example of usage:
+
+If state is {foo: 'bar', bar: 'foo'}, then
+
+ transformState(state, [
+   {
+     type: 'addProperties',
+     extraData: {
+       name: 'Jim',
+       hello: 'world',
+     }
+   },
+   {
+     type: 'removeProperties',
+     keysToRemove: ['bar', 'hello'],
+   },
+   {
+     type: 'addProperties',
+     extraData: { another: 'one' },
+   }
+ ])
+
+
+ слід змінити стан, виконавши наступне:
+
+додати дві властивості до `state`
+потім видаліть ключі `bar` і `hello` зі `state`
+і, нарешті, додати ще одну властивість до `state`
+Після цих операцій `state` матиме такий вигляд
+
+
+{
+  foo: 'bar',
+  name: 'Jim',
+  another: 'one',
+}
+Another example:
+
+ const state = { x: 1 };
+
+ transformState(state, [
+   { type: 'addProperties', extraData: { yet: 'another property' } }
+   { type: 'clear' },
+   { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
+ ]);
+
+// state === { foo: 'bar', name: 'Jim' }
