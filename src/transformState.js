@@ -18,11 +18,9 @@ function transformState(state, actions) {
           delete result[wey];
         }
       }
-    }
 
-    for (const wey in key) {
-      if (wey === `keysToRemove`) {
-        for (const sey of key[wey]) {
+      if (hey === `keysToRemove`) {
+        for (const sey of key[hey]) {
           delete result[sey];
         }
       }
