@@ -5,23 +5,19 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    for (const key in actions[i]) {
-      /*  CLEAR  */
-
-      if (actions[i][key] === 'clear') {
+  for (const action of actions) {
+    for (const key in action) {
+      if (action[key] === 'clear') {
         for (const keyState in state) {
           delete state[keyState];
         }
       }
 
-      /*   REMOVE  */
-
-      if (actions[i][key] === 'removeProperties') {
+      if (action[key] === 'removeProperties') {
         const values = [];
 
-        for (const keyAct in actions[i]) {
-          values.push(actions[i][keyAct]);
+        for (const keyAct in action) {
+          values.push(action[keyAct]);
         }
 
         for (let j = 0; j < values[1].length; j++) {
@@ -33,13 +29,11 @@ function transformState(state, actions) {
         }
       }
 
-      /*  ADD  */
-
-      if (actions[i][key] === 'addProperties') {
+      if (action[key] === 'addProperties') {
         const values = [];
 
-        for (const keyAct in actions[i]) {
-          values.push(actions[i][keyAct]);
+        for (const keyAct in action) {
+          values.push(action[keyAct]);
         }
 
         for (const addKey in values[1]) {
