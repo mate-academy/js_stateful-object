@@ -6,8 +6,8 @@
  */
 function transformState(state, actions) {
   for (const key in actions) {
-
     switch (actions[key].type) {
+
       case 'addProperties':
         Object.assign(state, actions[key].extraData);
 
