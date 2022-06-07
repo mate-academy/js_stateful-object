@@ -20,7 +20,7 @@ function transformState(state, actions) {
         break;
       }
 
-      default: {
+      case 'clear': {
         for (const key in state) {
           delete state[key];
         }
