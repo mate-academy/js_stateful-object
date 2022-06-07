@@ -13,7 +13,9 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         for (const item of action.keysToRemove) {
-          delete state[item];
+          if (Object.keys(state).includes(item)) {
+            delete state[item];
+          }
         }
         break;
 
