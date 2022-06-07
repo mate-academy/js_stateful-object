@@ -6,14 +6,14 @@
  */
 
 function transformState(state, actions) {
-  for (const prop of actions) {
-    switch (prop.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        Object.assign(state, prop.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        for (const value of prop.keysToRemove) {
+        for (const value of action.keysToRemove) {
           delete state[value];
         }
         break;
@@ -25,8 +25,6 @@ function transformState(state, actions) {
         break;
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
