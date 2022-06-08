@@ -1,17 +1,17 @@
 'use strict';
 
 function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    switch (actions[i].type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        for (const action in actions[i].extraData) {
-          state[action] = actions[i].extraData[action];
+        for (const value in action.extraData) {
+          state[value] = action.extraData[value];
         }
         break;
 
       case 'removeProperties':
-        for (const action of actions[i].keysToRemove) {
-          delete state[action];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
