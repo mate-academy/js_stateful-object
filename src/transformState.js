@@ -5,8 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const newState = {};
-
   for (const action of actions) {
     switch (action.type) {
       case 'clear':
@@ -27,8 +25,6 @@ function transformState(state, actions) {
         break;
     }
   }
-
-  return newState;
 }
 
 module.exports = transformState;
