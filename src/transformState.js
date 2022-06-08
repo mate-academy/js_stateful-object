@@ -6,24 +6,25 @@
  */
 function transformState(state, actions) {
   for (const types of actions) {
-    switch (true) {
-      case types.type === 'addProperties':
+    switch (types.type) {
+      case 'addProperties':
         for (const addKey in types.extraData) {
           state[`${addKey}`] = types.extraData[`${addKey}`];
         }
         break;
 
-      case types.type === 'removeProperties':
+      case 'removeProperties':
         for (const removeKey of types.keysToRemove) {
           delete state[`${removeKey}`];
         }
         break;
 
-      case types.type === 'clear':
+      case 'clear':
         for (const clearKey in state) {
           delete state[`${clearKey}`];
         }
         break;
+
       default:
         break;
     }
