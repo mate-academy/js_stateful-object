@@ -25,7 +25,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return state;
+        break;
     }
   }
 }
