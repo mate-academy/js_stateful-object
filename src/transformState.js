@@ -5,24 +5,6 @@
  * @param {Object[]} actions
  */
 
-// const actionsExample = [
-//   {
-//     type: 'addProperties',
-//     extraData: {
-//       name: 'Jim',
-//       hello: 'world',
-//     },
-//   },
-//   {
-//     type: 'removeProperties',
-//     keysToRemove: ['bar', 'hello'],
-//   },
-//   {
-//     type: 'addProperties',
-//     extraData: { another: 'one' },
-//   },
-// ];
-
 function transformState(state, actions) {
   const arr = Object.values(actions);
 
