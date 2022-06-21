@@ -6,9 +6,7 @@
  */
 
 function transformState(state, actions) {
-  const arr = Object.values(actions);
-
-  for (const { type, extraData, keysToRemove } of arr) {
+  for (const { type, extraData, keysToRemove } of actions) {
     switch (type) {
       case 'addProperties':
         Object.assign(state, extraData);
