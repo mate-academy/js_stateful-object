@@ -30,6 +30,4 @@ function transformState(state, actions) {
   return state;
 }
 
-transformState();
-
 module.exports = transformState;
