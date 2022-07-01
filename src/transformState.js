@@ -18,8 +18,6 @@ function transformState(state, actions) {
         break;
 
       default:
-        // console.warning('unknown action type');
-        break;
     }
   });
 }
@@ -35,34 +33,7 @@ function removePropertiesMutation(state, keys) {
 }
 
 function clearAllMutation(state) {
-  // if we need to save the pointer to the same state object, then:
   removePropertiesMutation(state, Object.keys(state));
-
-  // otherwise:
-  // state = {};
 }
-
-/// ////////////////////////////////////////////////////////////
-// const state = { foo: 1 };
-
-// console.log(1, state);
-
-// transformState(state, [
-//   {
-//     type: 'addProperties',
-//     extraData: {
-//       name: 'Jim',
-//       hello: 'world',
-//     },
-//   },
-//   {
-//     type: 'removeProperties',
-//     keysToRemove: ['bar', 'hello'],
-//   },
-//   {
-//     type: 'addProperties',
-//     extraData: { another: 'one' },
-//   },
-// ]);
 
 module.exports = transformState;
