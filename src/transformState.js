@@ -23,8 +23,8 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const key of Object.keys(state)) {
-          delete state[key];
+        for (const deleted in state) {
+          delete state[deleted];
         }
 
         break;
