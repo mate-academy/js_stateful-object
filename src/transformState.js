@@ -6,20 +6,22 @@
  */
 function transformstateate(state, actions) {
   for (const e of actions) {
-    if (e.type === 'addProperties') {
-      Object.assign(state, e.extraData);
-    }
+    switch (e.type) {
+      case 'addProperties':
+        Object.assign(state, e.extraData);
+        break;
 
-    if (e.type === 'removeProperties') {
-      for (const propRemove of e.keysToRemove) {
-        delete state[propRemove];
-      }
-    }
+      case 'removeProperties':
+        for (const propRemove of e.keysToRemove) {
+          delete state[propRemove];
+        }
+        break;
 
-    if (e.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
     }
   }
 }
