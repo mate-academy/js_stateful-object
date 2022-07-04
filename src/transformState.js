@@ -13,13 +13,13 @@ function transformState(state, actions) {
 
     if (action.type === 'removeProperties') {
       for (const key of action.keysToRemove) {
-        state[key] = undefined;
+        delete state[key];
       }
     }
 
     if (action.type === 'clear') {
       for (const key in state) {
-        state[key] = undefined;
+        delete state[key];
       }
     }
   }
