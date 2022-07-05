@@ -23,8 +23,7 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
-        break;
+      default: throw new Error('error');
     }
   }
 }
