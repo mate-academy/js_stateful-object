@@ -1,11 +1,32 @@
 'use strict';
 
 /**
- * @param {Object} state
- * @param {Object[]} actions
+
  */
 function transformState(state, actions) {
-  // write code here
-}
+  actions.forEach(obj => {
+    switch (obj.type) {
+      case 'addProperties':
+        Object.assign(state, obj.extraData);
+        break;
 
+      case 'removeProperties':
+        obj.keysToRemove.forEach(key => {
+          delete state[key];
+        });
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        throw new Error('Unknow action type');
+    }
+  });
+
+  return state;
+}
 module.exports = transformState;
