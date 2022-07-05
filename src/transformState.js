@@ -4,7 +4,7 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-function transformstateate(state, actions) {
+function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -26,4 +26,4 @@ function transformstateate(state, actions) {
   }
 }
 
-module.exports = transformstateate;
+module.exports = transformState;
