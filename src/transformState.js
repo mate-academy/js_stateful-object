@@ -24,6 +24,9 @@ function transformState(state, actions) {
           delete state[removeProperties];
         }
         break;
+
+      default:
+        return 'Enter an existing type';
     }
   }
 
