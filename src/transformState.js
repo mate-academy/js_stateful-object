@@ -26,7 +26,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Use the right action';
+        throw new Error('There is no action to make');
     }
   }
 }
