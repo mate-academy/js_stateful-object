@@ -7,17 +7,16 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    const act = action.type;
-    const data = action.extraData;
+    const { type, extraData, keysToRemove } = action;
 
-    switch (act) {
+    switch (type) {
       case 'addProperties':
-        for (const key in data) {
-          state[key] = data[key];
+        for (const key in extraData) {
+          state[key] = extraData[key];
         }
         break;
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
+        for (const key of keysToRemove) {
           delete state[key];
         }
         break;
@@ -27,7 +26,7 @@ function transformState(state, actions) {
         }
         break;
       default:
-        return 'No actions needed';
+        throw new Error('Type is not right');
     }
   }
 }
