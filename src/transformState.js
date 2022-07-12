@@ -4,30 +4,30 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-function transformState(state, actions) {
-  let stateCopy = state;
 
+function transformState(state, actions) {
   for (const action of actions) {
-    switch (action['type']) {
+    switch (action.type) {
       case 'addProperties':
-        stateCopy = Object.assign(state, action['extraData']);
+        Object.assign(state, action.extraData);
+
         break;
       case 'removeProperties':
-        for (const keyToRemove of action['keysToRemove']) {
-          delete stateCopy[keyToRemove];
+        for (const keyToRemove of action.keysToRemove) {
+          delete state[keyToRemove];
         }
         break;
 
       case 'clear':
-        for (const key in stateCopy) {
-          if (stateCopy.hasOwnProperty(key)) {
-            delete stateCopy[key];
+        for (const key in state) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
           }
         }
     }
   }
 
-  return stateCopy;
+  return state;
 }
 
 module.exports = transformState;
