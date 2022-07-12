@@ -23,10 +23,11 @@ function transformState(state, actions) {
           delete state[stateElement];
         }
         break;
+
+      default:
+        console.log("Unknown property")
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
