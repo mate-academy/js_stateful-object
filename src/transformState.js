@@ -29,6 +29,7 @@ function transformState(state, actions) {
         for (const keyRemove of keysArr) {
           delete myState[keyRemove];
         }
+        break;
     }
   }
 
