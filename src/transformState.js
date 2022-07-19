@@ -12,9 +12,7 @@ function transformState(state, actions) {
     switch (action.type) {
       case 'addProperties' :
 
-        for (const key in action.extraData) {
-          myState[key] = action.extraData[key];
-        }
+        Object.assign(myState, action.extraData);
         break;
 
       case 'clear':
@@ -29,6 +27,9 @@ function transformState(state, actions) {
         for (const keyRemove of keysArr) {
           delete myState[keyRemove];
         }
+        break;
+
+      default : /* new Error('This action is not included in the programm'); */
         break;
     }
   }
