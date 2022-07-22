@@ -78,8 +78,6 @@ function transformState(state, transforms) {
     }
 
     if (transformsItems.operation === 'removeProperties') {
-      console.log(transformsItems.properties);
-
       for (const value of transformsItems.properties) {
         delete state[value];
       }
