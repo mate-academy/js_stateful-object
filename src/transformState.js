@@ -64,23 +64,25 @@
 function transformState(state, transforms) {
   const result = state;
 
-  for (const transformsItems of transforms) {
-    if (transformsItems.operation === 'clear') {
-      for (const stateItem in state) {
-        delete state[stateItem];
-      }
-    }
+  for (const transformsItem of transforms) {
+    switch (transformsItem.operation) {
+      case 'clear':
+        for (const stateItem in state) {
+          delete state[stateItem];
+        }
+        break;
 
-    if (transformsItems.operation === 'addProperties') {
-      for (const key in transformsItems.properties) {
-        result[key] = transformsItems.properties[key];
-      }
-    }
+      case 'addProperties':
+        for (const key in transformsItem.properties) {
+          result[key] = transformsItem.properties[key];
+        }
+        break;
 
-    if (transformsItems.operation === 'removeProperties') {
-      for (const value of transformsItems.properties) {
-        delete state[value];
-      }
+      case 'removeProperties':
+        for (const value of transformsItem.properties) {
+          delete state[value];
+        }
+        break;
     }
   }
 
