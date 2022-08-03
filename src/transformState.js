@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 'use strict';
 
 /**
@@ -6,18 +5,18 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const obj of actions) {
-    if (obj.type === 'addProperties') {
-      Object.assign(state, obj.extraData);
+  for (const action of actions) {
+    if (action.type === 'addProperties') {
+      Object.assign(state, action.extraData);
     }
 
-    if (obj.type === 'removeProperties') {
-      for (const key of obj.keysToRemove) {
+    if (action.type === 'removeProperties') {
+      for (const key of action.keysToRemove) {
         delete state[key];
       }
     }
 
-    if (obj.type === 'clear') {
+    if (action.type === 'clear') {
       for (const key in state) {
         delete state[key];
       }
