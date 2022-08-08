@@ -12,7 +12,7 @@ function transformState(state, actions) {
 
     if (action.type === 'removeProperties') {
       for (const key of action.keysToRemove) {
-        delete state[`${key}`];
+        delete state[key];
       }
     }
 
