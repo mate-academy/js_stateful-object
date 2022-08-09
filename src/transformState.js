@@ -11,7 +11,7 @@ function transformState(state, actions) {
     }
 
     if (object.type === 'removeProperties') {
-      Object.keysToRemove.forEach(el => {
+      object.keysToRemove.forEach(el => {
         if (state[el]) {
           delete state[el];
         }
