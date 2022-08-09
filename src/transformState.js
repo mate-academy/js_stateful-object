@@ -6,28 +6,28 @@
  */
 
 function transformState(state, actions) {
-  // console.log(actions);
   for (const item of actions) {
-    // console.log(item);
-    // console.log(item.type);
     if (item.type === 'addProperties') {
-      // console.log("hi");
-      // state = { ...item.extraData };
+      // или мне сделать обект который будет
+      // ссылкой на стейт и при его изменеии и стейт будет меняться?
+      // это копирование state и item.extraData
+      // state = {
+      //   ...state, ...item.extraData,
+      // };
+      Object.assign(state, item.extraData);
+      // let obj = { ...item.extraData };
     }
 
-    // console.log(state);
-
     if (item.type === 'removeProperties') {
-      // console.log(item.keysToRemove);
       for (const i of item.keysToRemove) {
+        // поскольку я работаю в рамках
+        //  state то все изменения из любого условия
+        // должны видны в других условиях
         delete state[i];
       }
-      // console.log(item);
-      // state = { ...item.extraData };
     }
 
     if (item.type === 'clear') {
-      // console.log(state);
       for (const key in state) {
         delete state[key];
       }
