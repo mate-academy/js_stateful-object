@@ -7,10 +7,6 @@
 function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
-      default: {
-        break;
-      }
-
       case 'addProperties': {
         Object.assign(state, action.extraData);
         break;
@@ -27,6 +23,10 @@ function transformState(state, actions) {
         for (const key in state) {
           delete state[key];
         }
+        break;
+      }
+
+      default: {
         break;
       }
     }
