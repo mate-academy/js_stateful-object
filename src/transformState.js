@@ -27,7 +27,7 @@ function transformState(state, actions) {
       }
 
       default: {
-        throw new Error(`Unknown action type ${action.type}`);
+        return state;
       }
     }
   }
