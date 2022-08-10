@@ -7,31 +7,24 @@
 function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
-      case 'addProperties': {
+      case 'addProperties':
         const { extraData } = action;
 
         Object.assign(state, extraData);
-
         break;
-      }
 
-      case 'removeProperties': {
+      case 'removeProperties':
         const { keysToRemove } = action;
 
         removeProp(state, keysToRemove);
-
         break;
-      }
 
-      case 'clear': {
+      case 'clear':
         clear(state);
-
         break;
-      }
 
-      default: {
+      default:
         throw new Error(`Unknowm action type: ${action.type}`);
-      }
     }
   }
 }
