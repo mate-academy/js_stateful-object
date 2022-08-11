@@ -13,9 +13,7 @@ function transformState(state, actions) {
         };
         break;
       case 'addProperties':
-        const data = action.extraData;
-
-        Object.assign(state, data);
+        Object.assign(state, action.extraData);
         break;
       case 'removeProperties':
         for (const keyToRemove of action.keysToRemove) {
