@@ -31,7 +31,7 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
      extraData: {
        name: 'Jim',
        hello: 'world',
-     }
+     
    },
    {
      type: 'removeProperties',
