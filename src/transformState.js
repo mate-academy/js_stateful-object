@@ -23,6 +23,10 @@ function transformState(state, actions) {
         for (const clear in state) {
           delete state[clear];
         }
+        break;
+
+      default:
+        throw new Error('Error: obj.type is not defined');
     }
   }
 }
