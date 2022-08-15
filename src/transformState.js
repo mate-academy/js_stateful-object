@@ -11,11 +11,11 @@ function transformState(state, actions) {
     }
 
     if (actions[i].type === 'removeProperties') {
-      toRemove(actions[i].keysToRemove, i);
+      toRemove(actions[i].keysToRemove);
     }
 
     if (actions[i].type === 'addProperties') {
-      toAdd(i);
+      toAdd(actions[i].extraData);
     }
   }
 
@@ -25,7 +25,7 @@ function transformState(state, actions) {
     }
   }
 
-  function toRemove(x, i) {
+  function toRemove(x) {
     for (const key in state) {
       if (x.includes(key)) {
         delete state[key];
@@ -33,8 +33,8 @@ function transformState(state, actions) {
     }
   }
 
-  function toAdd(i) {
-    Object.assign(state, actions[i].extraData);
+  function toAdd(x) {
+    Object.assign(state, x);
   }
 }
 
