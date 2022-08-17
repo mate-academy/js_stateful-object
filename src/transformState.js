@@ -11,26 +11,28 @@ function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
     const obj = actions[i];
 
-    if (obj.type === 'addProperties') {
-      copy = Object.assign(copy, obj.extraData);
-    }
+    switch (obj.type) {
+      case 'addProperties' :
+        copy = Object.assign(copy, obj.extraData);
+        break;
 
-    if (obj.type === 'removeProperties') {
-      const arr = obj.keysToRemove;
+      case 'removeProperties' :
+        const arr = obj.keysToRemove;
 
-      for (let b = 0; b < arr.length; b++) {
-        for (const key in copy) {
-          if (key === arr[b]) {
-            delete copy[key];
+        for (let b = 0; b < arr.length; b++) {
+          for (const key in copy) {
+            if (key === arr[b]) {
+              delete copy[key];
+            }
           }
         }
-      }
-    }
+        break;
 
-    if (obj.type === 'clear') {
-      for (const key1 in copy) {
-        delete copy[key1];
-      }
+      case 'clear' :
+        for (const key1 in copy) {
+          delete copy[key1];
+        }
+        break;
     }
   }
 
