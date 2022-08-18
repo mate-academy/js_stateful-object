@@ -17,15 +17,10 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties' :
-        const arr = obj.keysToRemove;
 
-        for (let b = 0; b < arr.length; b++) {
-          for (const key in copy) {
-            if (key === arr[b]) {
-              delete copy[key];
-            }
-          }
-        }
+        for (const key of obj.keysToRemove) {
+          delete copy[key];
+        };
         break;
 
       case 'clear' :
