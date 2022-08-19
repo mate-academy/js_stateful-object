@@ -9,24 +9,24 @@ function transformState(state, actions) {
     const currentObject = actions[i];
 
     for (const key in currentObject) {
-      if (currentObject[key] === 'addProperties') {
-        const { extraData } = currentObject;
+      switch (true) {
+        case currentObject[key] === 'addProperties':
+          Object.assign(state, currentObject.extraData);
+          break;
 
-        Object.assign(state, extraData);
-      }
+        case currentObject[key] === 'removeProperties':
+          const deleteKeys = currentObject.keysToRemove;
 
-      if (currentObject[key] === 'removeProperties') {
-        const deleteKeys = currentObject.keysToRemove;
+          for (const ch of deleteKeys) {
+            delete state[ch];
+          }
+          break;
 
-        for (const ch of deleteKeys) {
-          delete state[ch];
-        }
-      }
-
-      if (currentObject[key] === 'clear') {
-        for (const keyObject in state) {
-          delete state[keyObject];
-        }
+        case currentObject[key] === 'clear':
+          for (const keyObject in state) {
+            delete state[keyObject];
+          }
+          break;
       }
     }
   }
