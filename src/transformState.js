@@ -12,8 +12,8 @@ function transformState(state, actions) {
     if (actionType === 'addProperties') {
       Object.assign(state, actions[action].extraData);
     } else if (actionType === 'removeProperties') {
-      for (let i = 0; i < removeArr.length; i++) {
-        delete state[removeArr[i]];
+      for (const removeProp of removeArr) {
+        delete state[removeProp];
       }
     } else if (actionType === 'clear') {
       for (const key in state) {
