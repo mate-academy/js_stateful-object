@@ -22,15 +22,4 @@
   return (state);
 }
 
-/* const first = {
-  foo: 'bar',
-  bar: 'foo',
-};
-
-transformState(first, [
-  {
-    type: 'addProperties', extraData: {name: 'Jim'},
-  },
-]); */
-
 module.exports = transformState;
