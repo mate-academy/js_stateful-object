@@ -28,26 +28,4 @@ function transformState(state, actions) {
   return state;
 }
 
-// const states = {
-//   foo: 'bar',
-//   bar: 'foo',
-// };
-
-// const actionss = [
-//   {
-//     type: 'addProperties',
-//     extraData: {
-//       yet: 'another property',
-//     },
-//   },
-//   { type: 'clear' },
-//   {
-//     type: 'addProperties',
-//     extraData: {
-//       foo: 'bar', name: 'Jim',
-//     },
-//   },
-// ];
-
-// transformState(states, actionss);
 module.exports = transformState;
