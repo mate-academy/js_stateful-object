@@ -13,11 +13,13 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, extraData);
         break;
+
       case 'removeProperties':
         for (const removeProp of removeArr) {
           delete state[removeProp];
         };
         break;
+
       case 'clear':
         for (const key in state) {
           delete state[key];
