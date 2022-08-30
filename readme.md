@@ -43,10 +43,10 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
    }
  ])
 ```
-should modify the `state`, doing the following:
-- add two properties to the `state`
-- then remove keys `bar` and `hello` from the `state`
-- and finally add another one property to the `state`
+повинен змінювати `` `, роблячи наступне:
+- Додайте два властивості до `State`
+- потім видаліть клавіші `bar` і` Привіт 'з `State`'
+- і, нарешті, додайте ще одне властивість до "стану"
 
 After these operations the object `state` will have the following look
  ```
