@@ -17,8 +17,8 @@ function transformState(state, actions) {
         break;
 
       default:
-        for (const property in state) {
-          delete state[property];
+        for (const key of Object.keys(state)) {
+          delete state[key];
         }
     }
   }
