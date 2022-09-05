@@ -5,29 +5,26 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    for (const key in actions[i]) {
-      if (actions[i][key] === 'clear') {
-        for (const x in state) {
-          delete state[x];
-        }
-      }
+  for (const action of actions) {
+    const { extraData, keysToRemove, type } = action;
 
-      if (key === 'keysToRemove') {
-        for (const j of actions[i][key]) {
-          for (const x in state) {
-            if (j === x) {
-              delete state[x];
-            }
-          }
-        }
-        // eslint-disable-next-line no-console
-        console.log(actions[i][key]);
-      }
+    switch (type) {
+      case 'addProperties':
+        Object.assign(state, extraData);
+        break;
 
-      if (key === 'extraData') {
-        Object.assign(state, actions[i][key]);
-      }
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      case 'removeProperties':
+        for (const key of keysToRemove) {
+          delete state[key];
+        }
+        break;
+      default: return [];
     }
   }
 
