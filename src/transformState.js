@@ -23,8 +23,6 @@ function transformState(state, actions) {
         for (const key of keysToRemove) {
           delete state[key];
         }
-        break;
-      default: return [];
     }
   }
 
