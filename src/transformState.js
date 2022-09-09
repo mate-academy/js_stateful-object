@@ -9,12 +9,12 @@ function transformState(state, actions) {
     const currentObject = actions[i];
 
     for (const key in currentObject) {
-      switch (true) {
-        case currentObject[key] === 'addProperties':
+      switch (currentObject[key]) {
+        case 'addProperties':
           Object.assign(state, currentObject.extraData);
           break;
 
-        case currentObject[key] === 'removeProperties':
+        case 'removeProperties':
           const deleteKeys = currentObject.keysToRemove;
 
           for (const ch of deleteKeys) {
@@ -22,7 +22,7 @@ function transformState(state, actions) {
           }
           break;
 
-        case currentObject[key] === 'clear':
+        case 'clear':
           for (const keyObject in state) {
             delete state[keyObject];
           }
