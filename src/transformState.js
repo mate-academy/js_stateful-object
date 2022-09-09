@@ -7,21 +7,27 @@
 function transformState(state, actions) {
   // Main Loop:
   for (const action of actions) {
-    // For the type of 'addProperties':
-    if (action['type'] === 'addProperties') {
-      for (const extraItem in action['extraData']) {
-        state[extraItem] = action['extraData'][extraItem];
-      }
+    switch (action['type']) {
+      // For the type of 'addProperties':
+      case 'addProperties':
+        for (const extraItem in action['extraData']) {
+          state[extraItem] = action['extraData'][extraItem];
+        }
+        break;
+
       // For the type of 'removeProperties':
-    } else if (action['type'] === 'removeProperties') {
-      for (const delItem of action['keysToRemove']) {
-        delete state[delItem];
-      }
+      case 'removeProperties':
+        for (const delItem of action['keysToRemove']) {
+          delete state[delItem];
+        }
+        break;
+
       // For the type of 'clear':
-    } else if (action['type'] === 'clear') {
-      for (const delAllItem in state) {
-        delete state[delAllItem];
-      }
+      case 'clear':
+        for (const delAllItem in state) {
+          delete state[delAllItem];
+        }
+        break;
     }
   }
 
