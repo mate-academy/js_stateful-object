@@ -10,9 +10,7 @@ function transformState(state, actions) {
     switch (action['type']) {
       // For the type of 'addProperties':
       case 'addProperties':
-        for (const extraItem in action['extraData']) {
-          state[extraItem] = action['extraData'][extraItem];
-        }
+        Object.assign(state, action['extraData']);
         break;
 
       // For the type of 'removeProperties':
