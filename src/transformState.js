@@ -6,26 +6,27 @@
  */
 function transformState(state, actions) {
   // write code here
-  const obj = state;
+  const copyState = state;
 
-  for (const key of actions) {
-    if (key.type === 'addProperties') {
-      Object.assign(obj, key.extraData);
-    }
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(copyState, action.extraData);
+        break;
 
-    if (key.type === 'removeProperties') {
-      for (const remove of key.keysToRemove) {
-        delete obj[remove];
-      }
-    }
+      case 'removeProperties':
+        for (const remove of action.keysToRemove) {
+          delete copyState[remove];
+        }
+        break;
 
-    if (key.type === 'clear') {
-      for (const properties in state) {
-        delete obj[properties];
-      }
+      case 'clear':
+        for (const properties in state) {
+          delete copyState[properties];
+        }
     }
   }
 
-  return obj;
+  return copyState;
 }
 module.exports = transformState;
