@@ -7,8 +7,6 @@
 function transformState(state, actions) {
   // write code here
 
-  console.log(actions);
-
   for (let i = 0; i < actions.length; i++) {
     if (actions[i].type === 'clear') {
       for (const key in state) {
