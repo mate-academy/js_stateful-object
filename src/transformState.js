@@ -24,9 +24,9 @@ function transformState(state, actions) {
         }
         break;
     }
-
-    return state;
   });
+
+  return state;
 }
 
 module.exports = transformState;
