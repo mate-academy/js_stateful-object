@@ -4,6 +4,7 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
+
 function transformState(state, actions) {
   for (const objects of actions) {
     const { type, extraData, keysToRemove } = objects;
