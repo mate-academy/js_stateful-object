@@ -25,9 +25,7 @@ function transformState(state, actions) {
 }
 
 function addProperties(state, action) {
-  for (const prop in action) {
-    state[prop] = action[prop];
-  }
+  Object.assign(state, action);
 }
 
 function removeProperties(state, action) {
