@@ -25,6 +25,8 @@ function transformState(state, actions) {
           delete state[deleteAll];
         }
         break;
+      default:
+        throw new Error('Wrong type!');
     }
   }
 
