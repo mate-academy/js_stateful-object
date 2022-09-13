@@ -5,11 +5,8 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
-  // let nowAction;
 
   for (const action of actions) {
-    // nowAction = Object.values(actions[i]);
 
     switch (action.type) {
       case 'addProperties':
