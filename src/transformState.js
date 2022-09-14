@@ -6,13 +6,13 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (action['type']) {
+    switch (action.type) {
       case 'addProperties':
-        Object.assign(state, action['extraData']);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        for (const delProp of action['keysToRemove']) {
+        for (const delProp of action.keysToRemove) {
           delete state[delProp];
         }
         break;
@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[delAllProp];
         }
         break;
+
+      default:
+        return 'Unknown action type';
     }
   }
 
