@@ -6,23 +6,26 @@
  */
 function transformState(state, actions) {
   // write code here
-  for (const obj of actions) {
-    if (obj['type'] === 'addProperties') {
-      Object.assign(state, obj['extraData']);
-    }
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action['extraData']);
+        break;
 
-    if (obj['type'] === 'removeProperties') {
-      for (const property of obj['keysToRemove']) {
-        if (state[property]) {
+      case 'removeProperties':
+        for (const property of action['keysToRemove']) {
           delete state[property];
         }
-      }
-    }
+        break;
 
-    if (obj['type'] === 'clear') {
-      for (const property in state) {
-        delete state[property];
-      }
+      case 'clear':
+        for (const property in state) {
+          delete state[property];
+        }
+        break;
+
+      default:
+        throw Error('unknown action type');
     }
   }
 }
