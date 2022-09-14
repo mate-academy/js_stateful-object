@@ -24,6 +24,9 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        throw Error('unknown action type');
     }
   }
 
