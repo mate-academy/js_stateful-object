@@ -5,35 +5,34 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const actionV = [];
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
 
-  for (let i = 0; i < actions.length; i++) {
-    actionV[i] = actions[i].type;
-  }
+      case 'clear':
+        const stateKeys = Object.keys(state);
 
-  for (let i = 0; i < actionV.length; i++) {
-    if (actionV[i] === 'addProperties') {
-      Object.assign(state, actions[i].extraData);
-    }
+        for (let j = 0; j < stateKeys.length; j++) {
+          const clearProp = stateKeys[j];
 
-    if (actionV[i] === 'clear') {
-      const stateKeys = Object.keys(state);
+          delete state[clearProp];
+        }
+        break;
 
-      for (let j = 0; j < stateKeys.length; j++) {
-        const clearProp = stateKeys[j];
+      case 'removeProperties':
+        const remProp = action.keysToRemove;
 
-        delete state[clearProp];
-      }
-    }
+        for (let j = 0; j < remProp.length; j++) {
+          const t = remProp[j];
 
-    if (actionV[i] === 'removeProperties') {
-      const remProp = actions[i].keysToRemove;
+          delete state[t];
+        }
+        break;
 
-      for (let j = 0; j < remProp.length; j++) {
-        const t = remProp[j];
-
-        delete state[t];
-      }
+      default:
+        throw Error('error');
     }
   }
 
