@@ -7,43 +7,27 @@
 function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
-      case 'clear': {
-        toClear();
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
         break;
-      }
 
-      case 'removeProperties': {
-        toRemove(action.keysToRemove);
+      case 'removeProperties':
+        for (const key in state) {
+          if (action.keysToRemove.includes(key)) {
+            delete state[key];
+          }
+        }
         break;
-      }
 
-      case 'addProperties': {
-        toAdd(action.extraData);
+      case 'addProperties':
+        Object.assign(state, action.extraData);
         break;
-      }
 
-      default: {
+      default:
         window.alert('no similar data find');
-      }
     }
-  }
-
-  function toClear() {
-    for (const key in state) {
-      delete state[key];
-    }
-  }
-
-  function toRemove(x) {
-    for (const key in state) {
-      if (x.includes(key)) {
-        delete state[key];
-      }
-    }
-  }
-
-  function toAdd(x) {
-    Object.assign(state, x);
   }
 }
 
