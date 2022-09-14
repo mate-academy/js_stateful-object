@@ -15,14 +15,14 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties' :
-        for (const deleteValue of keysToRemove) {
-          delete state[deleteValue];
+        for (const keyToRemove of keysToRemove) {
+          delete state[keyToRemove];
         }
         break;
 
       case 'clear' :
-        for (const deleteAll in state) {
-          delete state[deleteAll];
+        for (const key in state) {
+          delete state[key];
         }
         break;
       default:
