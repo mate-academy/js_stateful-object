@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[clearedKey];
         }
         break;
+
+      default:
+        throw Error('Unknown action type');
     }
   }
 
