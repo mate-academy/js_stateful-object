@@ -6,22 +6,22 @@
  */
 function transformState(state, actions) {
   for (const char of actions) {
-    if (char['type'] === 'addProperties') {
-      for (const keys in char['extraData']) {
-        state[keys] = char['extraData'][keys];
-      }
-    }
-
-    if (char['type'] === 'removeProperties') {
-      for (const keys of char['keysToRemove']) {
-        delete state[keys];
-      }
-    }
-
-    if (char['type'] === 'clear') {
-      for (const keys in state) {
-        delete state[keys];
-      }
+    switch (char['type']) {
+      case 'addProperties' :
+        for (const key in char['extraData']) {
+          state[key] = char['extraData'][key];
+        }
+        break;
+      case 'removeProperties' :
+        for (const key of char['keysToRemove']) {
+          delete state[key];
+        }
+        break;
+      case 'clear' :
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
     }
   }
 }
