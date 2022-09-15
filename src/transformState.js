@@ -23,12 +23,14 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
-        if (state) {
-          for (const key of Object.keys(state)) {
-            delete state[key];
-          }
+      case 'clear':
+        for (const key of Object.keys(state)) {
+          delete state[key];
         }
+        break;
+
+      default:
+        return state;
     }
   }
 }
