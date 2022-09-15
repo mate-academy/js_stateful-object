@@ -12,22 +12,15 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        const stateKeys = Object.keys(state);
-
-        for (let j = 0; j < stateKeys.length; j++) {
-          const clearProp = stateKeys[j];
-
-          delete state[clearProp];
+        for (const stateKeys in state) {
+          delete state[stateKeys];
         }
         break;
 
       case 'removeProperties':
-        const remProp = action.keysToRemove;
 
-        for (let j = 0; j < remProp.length; j++) {
-          const t = remProp[j];
-
-          delete state[t];
+        for (const Prop of action.keysToRemove) {
+          delete state[Prop];
         }
         break;
 
