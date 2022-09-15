@@ -26,8 +26,7 @@ function transformState(state, actions) {
           delete state[states];
         }
         break;
-      default:
-        return 'unknown action input';
+      default:;
     }
   }
 }
