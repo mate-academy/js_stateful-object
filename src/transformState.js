@@ -20,12 +20,16 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
+      case 'clear':
         if (state) {
           for (const key of Object.keys(state)) {
             delete state[key];
           }
         }
+        break;
+
+      default:
+        return 'Error';
     }
   }
 }
