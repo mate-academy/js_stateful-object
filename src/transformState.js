@@ -19,9 +19,7 @@ function transformState(state, actions) {
         return state;
       case DELETE:
         keysToRemove.forEach(key => {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         });
 
         return state;
