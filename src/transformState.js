@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[property];
         }
         break;
+
+      default:
+        throw Error('Action type ERROR');
     }
   }
 
