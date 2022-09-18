@@ -9,9 +9,7 @@ function transformState(state, actions) {
   const reducer = (reducerState, action) => {
     switch (action.type) {
       case 'addProperties':
-        for (const key in action.extraData) {
-          reducerState[key] = action.extraData[key];
-        }
+        Object.assign(reducerState, action.extraData);
         break;
       case 'removeProperties':
         for (const key of action.keysToRemove) {
