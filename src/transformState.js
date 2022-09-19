@@ -1,18 +1,18 @@
 'use strict';
 
 /**
- * @param {Object} state
- * @param {Object[]} actions
+ * @param {action} state
+ * @param {action[]} actions
  */
 function transformState(state, actions) {
-  for (const object of actions) {
-    switch (object.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        Object.assign(state, object.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        for (const values of object.keysToRemove) {
+        for (const values of action.keysToRemove) {
           delete state[values];
         }
         break;
