@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[keys];
         }
         break;
+
+      default:
+        return 'Error!';
     }
   }
 
