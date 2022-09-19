@@ -7,7 +7,7 @@
 function transformState(state, actions) {
   // write code here
 
-  for (const key in actions) {
+  for (let key = 0; key < actions.length; key++) {
     if (actions[key].type === 'addProperties') {
       for (const keyProp in actions[key].extraData) {
         state[keyProp] = actions[key].extraData[keyProp];
@@ -22,11 +22,10 @@ function transformState(state, actions) {
 
     if (actions[key].type === 'clear') {
       for (const keyProp in state) {
-        delete state[keyProp]
+        delete state[keyProp];
       }
     }
   }
-
 }
 
 module.exports = transformState;
