@@ -19,10 +19,8 @@ function transformState(state, actions) {
     }
 
     if (obj.type === 'clear') {
-      const stateKeys = Object.keys(state);
-
-      for (const word of stateKeys) {
-        delete state[word];
+      for (const stateKey in state) {
+        delete state[stateKey];
       }
     }
   }
