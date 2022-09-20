@@ -20,9 +20,10 @@ function transformState(state, actions) {
           delete state[action.keysToRemove[j]];
         }
         break;
-      default: for (const property in state) {
-        delete state[property];
-      }
+      case 'clear':
+        for (const property in state) {
+          delete state[property];
+        }
         break;
     }
   }
