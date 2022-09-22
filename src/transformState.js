@@ -18,7 +18,7 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const key in state) {
+        for (const key of Object.getOwnPropertyNames(state)) {
           delete state[key];
         }
         break;
