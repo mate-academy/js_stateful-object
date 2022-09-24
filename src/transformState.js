@@ -13,8 +13,8 @@ function transformState(state, actions) {
         Object.assign(state, action.extraData);
         break;
       case 'removeProperties':
-        for (let i = 0; i < action.keysToRemove.length; i++) {
-          delete state[action.keysToRemove[i]];
+        for (const i of action.keysToRemove) {
+          delete state[i];
         }
         break;
       case 'clear':
