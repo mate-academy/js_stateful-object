@@ -12,19 +12,15 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const property of action.keysToRemove) {
-          if (state[property]) {
-            delete state[property];
-          }
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
-      default:
-        const objKeys = Object.keys(state);
-
-        objKeys.forEach(key => {
+      case 'clear':
+        for (const key in state) {
           delete state[key];
-        });
+        } break;
     }
   }
 }
