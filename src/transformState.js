@@ -7,13 +7,12 @@
 function transformState(state, actions) {
   for (const middleActions of actions) {
     switch (middleActions.type) {
-      
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
         break;
-        
+
       case 'addProperties':
         Object.assign(state, middleActions.extraData);
         break;
