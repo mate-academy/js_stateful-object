@@ -10,7 +10,7 @@ function transformState(state, actions) {
       Object.keys(state).forEach(key => delete state[key]);
     } else {
       if (action.type === 'addProperties') {
-        state = Object.assign(state, action.extraData);
+        Object.assign(state, action.extraData);
       } else {
         action.keysToRemove.forEach(key => delete state[key]);
       }
