@@ -14,8 +14,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const names in action.keysToRemove) {
-          delete state[action.keysToRemove[names]];
+        for (const names of action.keysToRemove) {
+          delete state[names];
         }
         break;
 
@@ -24,7 +24,8 @@ function transformState(state, actions) {
           delete state[states];
         }
         break;
-      default:;
+      default:
+        break;
     }
   }
 }
