@@ -5,7 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // let state2 = {};
 
   Object.assign(state, state);
 
