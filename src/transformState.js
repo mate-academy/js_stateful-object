@@ -24,6 +24,10 @@ function transformState(state, actions) {
         for (const [key, value] of Object.entries(action.extraData)) {
           state[key] = value;
         }
+        break;
+
+      default:
+        return 'Something went wrong';
     }
   }
 
