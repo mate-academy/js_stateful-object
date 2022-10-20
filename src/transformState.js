@@ -20,8 +20,6 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        state.extraData = action.extraData;
-
         for (const property in state) {
           delete state[property];
         }
