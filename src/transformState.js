@@ -24,6 +24,9 @@ function transformState(state, actions) {
           delete state[del];
         }
         break;
+
+      default:
+        return state;
     }
   }
 
