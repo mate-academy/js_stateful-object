@@ -27,8 +27,6 @@ function transformState(state, actions) {
         return 'Error.';
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
