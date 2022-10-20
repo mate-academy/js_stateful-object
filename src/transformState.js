@@ -19,14 +19,17 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         continue;
+
       case `removeProperties`:
         for (let i = 0; i < action.keysToRemove.length; i++) {
           delete state[action.keysToRemove[i]];
         }
         continue;
+
       case `clear`:
         deleteAllProperties(state);
         continue;
+
       default:
     }
   }
