@@ -18,17 +18,18 @@ function transformState(state, actions) {
     switch (action.type) {
       case 'addProperties':
         Object.assign(state, action.extraData);
-        continue;
+        break;
 
       case `removeProperties`:
-        for (let i = 0; i < action.keysToRemove.length; i++) {
-          delete state[action.keysToRemove[i]];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
-        continue;
+        // Do i need blank line between cycle and break?
+        break;
 
       case `clear`:
         deleteAllProperties(state);
-        continue;
+        break;
 
       default:
     }
