@@ -6,14 +6,6 @@
  */
 
 function transformState(state, actions) {
-  // Is it OK to create a function inside function or better move it above?
-  // Is it OK to create function in this task or better use cycle?
-  function deleteAllProperties() {
-    for (const key in state) {
-      delete state[key];
-    }
-  }
-
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -28,7 +20,10 @@ function transformState(state, actions) {
         break;
 
       case `clear`:
-        deleteAllProperties(state);
+        for (const key in state) {
+          delete state[key];
+        }
+
         break;
 
       default:
