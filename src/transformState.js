@@ -34,7 +34,8 @@ function transformState(state, actions) {
         break;
 
       default:
-        // Should I leave default: empty or what should I write there?
+        // Is it ok to leave default empty?
+        return 'Error';
     }
   }
 
