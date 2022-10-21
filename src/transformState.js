@@ -5,23 +5,27 @@
  * @param {Object[]} actions
  */
 const transformState = (state, actions) => {
-  for (const item of actions) {
-    switch (true) {
-      case (item.type === 'clear') :
-        for (const prop of Object.keys(state)) {
-          delete state[prop];
+  for (const action of actions) {
+    switch (action.type) {
+      case 'clear' :
+        for (const property in state) {
+          delete state[property];
         }
         break;
 
-      case (item.type === 'removeProperties') :
-        for (let i = 0; i < item.keysToRemove.length; i++) {
-          delete state[item.keysToRemove[i]];
+      case 'removeProperties':
+        for (const property of action.keysToRemove) {
+          delete state[property];
         }
         break;
 
-      case (item.type === 'addProperties') :
-        Object.assign(state, item.extraData);
+      case 'addProperties' :
+        Object.assign(state, action.extraData);
         break;
+
+      default: {
+        throw new Error('Error. Check input');
+      }
     }
   }
 
