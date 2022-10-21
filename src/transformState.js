@@ -26,7 +26,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw new Error('invalid actions was entred');
+        throw new Error('invalid actions were entred');
     }
   }
 
