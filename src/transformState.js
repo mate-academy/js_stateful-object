@@ -21,13 +21,11 @@ function transformState(state, actions) {
         break;
 
       case 'addProperties':
-        for (const [key, value] of Object.entries(action.extraData)) {
-          state[key] = value;
-        }
+        Object.assign(state, action.extraData);
         break;
 
       default:
-        return 'Something went wrong';
+        throw new Error('Smth went wrong');
     }
   }
 
