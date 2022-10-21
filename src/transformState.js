@@ -6,6 +6,13 @@
  */
 
 function transformState(state, actions) {
+  // At first I've created such function for case `clear`.
+  // Is it OK for this task or better use only cycle?
+  // function deleteAllProperties(state) {
+  //   for (const key in state) {
+  //     delete state[key];
+  //   }
+  // }
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -27,6 +34,7 @@ function transformState(state, actions) {
         break;
 
       default:
+        // Should I leave default: empty or what should I write there?
     }
   }
 
