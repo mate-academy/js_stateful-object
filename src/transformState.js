@@ -26,7 +26,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Wrong type of transformState');
     }
   }
 }
