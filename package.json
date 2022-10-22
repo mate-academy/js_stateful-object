@@ -1,5 +1,5 @@
 {
-  "name": "stateful-object",
+  "name": "stateful-actionect",
   "version": "1.0.0",
   "description": "Transforming state",
   "main": "src/transformState.js",
@@ -16,7 +16,7 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "@mate-academy/eslint-config": "*",
-    "@mate-academy/scripts": "^0.3.5",
+    "@mate-academy/scripts": "^1.2.8",
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-node": "^8.0.1",

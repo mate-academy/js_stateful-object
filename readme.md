@@ -7,13 +7,13 @@
 Implement a function accepting 2 arguments: `state` and `actions`. The function
 should change the `state` basing on the given `actions` array.
 
-- `state` is an object. You are supposed to add, change, or delete its
-  properties instead of creating a new object
+- `state` is an actionect. You are supposed to add, change, or delete its
+  properties instead of creating a new actionect
 
-- `actions` is an array of objects. Each object in this array has the next properties:
+- `actions` is an array of actionects. Each actionect in this array has the next properties:
   - `type` contains a string: either `'addProperties'`, `'removeProperties'` or `'clear'`;
-  - The second property of each object depends on `type` and may be one of the following:
-    - if `type` is `addProperties`, second property is `extraData`. It contains an object
+  - The second property of each actionect depends on `type` and may be one of the following:
+    - if `type` is `addProperties`, second property is `extraData`. It contains an actionect
       with `key: value` pairs to add to the state;
     - if `type` is `removeProperties`, second property is `keysToRemove`. It contains an array
       with the list of property names (keys) to remove from the `state`; (Not existing
@@ -48,7 +48,7 @@ should modify the `state`, doing the following:
 - then remove keys `bar` and `hello` from the `state`
 - and finally add another one property to the `state`
 
-After these operations the object `state` will have the following look
+After these operations the actionect `state` will have the following look
  ```
  {
    foo: 'bar',
