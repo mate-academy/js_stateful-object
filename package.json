@@ -1,5 +1,5 @@
 {
-  "name": "stateful-object",
+  "name": "stateful-actionect",
   "version": "1.0.0",
   "description": "Transforming state",
   "main": "src/transformState.js",

@@ -1,26 +1,30 @@
 'use strict';
 
 /**
- * @param {Object} state
- * @param {Object[]} actions
+ * @param {actionect} state
+ * @param {actionect[]} actions
  */
 function transformState(state, actions) {
-  for (const obj of actions) {
-    switch (obj.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        Object.assign(state, obj.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        for (const keys of obj.keysToRemove) {
-          delete state[keys];
+        for (const keyToRemove of action.keysToRemove) {
+          delete state[keyToRemove];
+        }
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
         }
         break;
 
       default:
-        for (const key in state) {
-          delete state[key];
-        }
+        throw new Error('Error');
     }
   }
 }
