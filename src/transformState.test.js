@@ -1,3 +1,4 @@
+
 'use strict';
 
 const transformState = require('./transformState');
