@@ -21,6 +21,9 @@ function transformState(state, actions) {
         for (const value in state) {
           delete state[value];
         }
+        break;
+
+      default: Error('No matches found');
     }
   }
 
