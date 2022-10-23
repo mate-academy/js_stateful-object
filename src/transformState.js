@@ -5,7 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -26,7 +25,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Wrong type of transformState');
     }
   }
 }
