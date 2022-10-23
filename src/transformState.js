@@ -23,7 +23,7 @@ function transformState(state, actions) {
         }
         break;
 
-      default: Error('No matches found');
+      default:
     }
   }
 
