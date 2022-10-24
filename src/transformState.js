@@ -17,13 +17,14 @@ function transformState(state, actions) {
     switch (action.type) {
       case 'addProperties':
         Object.assign(state, action.extraData);
+
         break;
 
       case `removeProperties`:
         for (const key of action.keysToRemove) {
           delete state[key];
         }
-        // Do i need blank line between cycle and break?
+
         break;
 
       case `clear`:
@@ -35,7 +36,7 @@ function transformState(state, actions) {
 
       default:
         // Is it ok to leave default empty?
-        return 'Error';
+        throw new Error('Error');
     }
   }
 
