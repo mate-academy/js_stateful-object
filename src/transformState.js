@@ -27,7 +27,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Oops';
+        throw new Error('error description');
     }
   }
 }
