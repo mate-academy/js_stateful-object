@@ -12,20 +12,18 @@ function transformState(state, actions) {
         break;
 
       case ('removeProperties'):
-        for (const removed of action.keysToRemove) {
-          delete state[removed];
+        for (const keyToRemove of action.keysToRemove) {
+          delete state[keyToRemove];
         }
         break;
       case ('clear'):
-        Object.keys(state).forEach(removed => delete state[removed]);
+        Object.keys(state).forEach(key => delete state[key]);
         break;
 
       default:
         throw new Error('Action type is invalid');
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
