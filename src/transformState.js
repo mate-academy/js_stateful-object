@@ -27,7 +27,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw new Error('error');
+        throw new Error('Wrong object properties');
     }
   }
 }
