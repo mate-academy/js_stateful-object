@@ -12,8 +12,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const el of action.keysToRemove) {
-          delete state[el];
+        for (const property of action.keysToRemove) {
+          delete state[property];
         }
         break;
 
@@ -22,7 +22,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Check the action type');
     }
   }
 }
