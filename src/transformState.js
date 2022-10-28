@@ -13,19 +13,19 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const property of action.keysToRemove) {
-          delete state[property];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
 
         break;
 
       case 'clear':
         Object.keys(state).forEach(key => delete state[key]);
-        
+
         break;
 
       default:
-        throw new Error('Check the action type');
+        throw new Error('Wrong action type');
     }
   }
 }
