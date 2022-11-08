@@ -22,6 +22,10 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        // eslint-disable-next-line no-console
+        console.log("There's no such command");
     }
   }
 }
