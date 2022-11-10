@@ -23,6 +23,9 @@ function transformState(state, actions) {
           delete state[prop];
         }
         break;
+
+      default:
+        throw new Error('Unknown command');
     }
   }
 }
