@@ -8,17 +8,7 @@ function transformState(state, actions) {
   for (const a of actions) {
     switch (a.type) {
       case 'addProperties':
-        const steps = a.extraData;
-
-        for (const key in steps) {
-          if (!state[key]) {
-            state[key] = steps[key];
-          }
-
-          if (state[key]) {
-            state[key] = steps[key];
-          }
-        };
+        Object.assign(state, a.extraData);
 
         break;
 
@@ -41,8 +31,6 @@ function transformState(state, actions) {
         break;
     }
   };
-
-  return state;
 }
 
 module.exports = transformState;
