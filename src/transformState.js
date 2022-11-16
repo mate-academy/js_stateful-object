@@ -23,6 +23,10 @@ function transformState(state, actions) {
         for (const clear in state) {
           delete state[clear];
         }
+        break;
+
+      default:
+        return;
     }
   }
 }
