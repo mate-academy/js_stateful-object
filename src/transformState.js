@@ -24,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return undefined;
+        throw new Error('Error');
     }
   }
 
