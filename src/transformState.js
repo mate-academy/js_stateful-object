@@ -7,17 +7,19 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (action.type) {
+    const { type } = action;
+
+    switch (type) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        action.keysToRemove.map((key) => delete state[key]);
+        action.keysToRemove.forEach((key) => delete state[key]);
         break;
 
-      default:
-        Object.keys(state).map((key) => delete state[key]);
+      case 'clear':
+        Object.keys(state).forEach((key) => delete state[key]);
     }
   }
 
