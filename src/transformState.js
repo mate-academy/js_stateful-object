@@ -4,36 +4,29 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-// eslint-disable-next-line no-shadow,strict
-function transformState(state, actions) {
-  const result = state;
 
+function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
-    // changes in 'result' when type = addProperties
     if (actions[i].type === 'addProperties') {
-      for (const key1 in actions[i].extraData) {
-        result[key1] = actions[i].extraData[key1];
+      for (const key in actions[i].extraData) {
+        state[key] = actions[i].extraData[key];
       }
     }
 
-    // changes in 'result' when type = removeProperties
     if (actions[i].type === 'removeProperties') {
       for (let j = 0; j < actions[i].keysToRemove.length; j++) {
-        if (result[actions[i].keysToRemove[j]]) {
-          delete result[actions[i].keysToRemove[j]];
+        if (state[actions[i].keysToRemove[j]]) {
+          delete state[actions[i].keysToRemove[j]];
         }
       }
     }
 
-    // deleting all properties from 'result'
     if (actions[i].type === 'clear') {
-      for (const key in result) {
-        delete result[key];
+      for (const key in state) {
+        delete state[key];
       }
     }
   }
-
-  return result;
 }
 
 module.exports = transformState;
