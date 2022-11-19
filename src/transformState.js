@@ -6,10 +6,12 @@
  */
 
 function transformState(state, actions) {
-  for (const key in actions) {
-    switch (key.type) {
+  for (const i in actions) {
+    switch (actions[i].type) {
       case 'addProperties' : {
-        Object.assign(state, key. extraData);
+        for (const key in actions[i].extraData) {
+          state[key] = actions[i].extraData[key];
+        }
         break;
       }
 
