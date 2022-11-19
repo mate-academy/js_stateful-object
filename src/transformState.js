@@ -21,6 +21,10 @@ function transformState(state, [...actions]) {
         for (const states in state) {
           delete state[states];
         }
+        break;
+
+      default:
+        break;
     }
   }
 
