@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        throw new Error(`Type ${action.type} is invalid!`);
     }
   }
 
