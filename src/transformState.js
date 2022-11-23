@@ -15,7 +15,7 @@ function transformState(state, actions) {
       case 'removeProperties':
         obj.keysToRemove.forEach(el => delete state[el]);
         break;
-      case 'clear':
+      default:
         for (const key in state) {
           delete state[key];
         }
