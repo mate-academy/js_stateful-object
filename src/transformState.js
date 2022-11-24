@@ -11,10 +11,10 @@ function transformState(state, actions) {
         Object.assign(state, obj.extraData);
         break;
       case 'removeProperties':
-        obj.keysToRemove.forEach(e => delete state[e]);
+        obj.keysToRemove.forEach(key => delete state[key]);
         break;
       case 'clear':
-        Object.keys(state).forEach(e => delete state[e]);
+        Object.keys(state).forEach(key => delete state[key]);
         break;
       default:
         break;
