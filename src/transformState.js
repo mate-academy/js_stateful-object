@@ -15,6 +15,9 @@ function transformState(state, actions) {
         break;
       case 'clear':
         Object.keys(state).forEach(e => delete state[e]);
+        break;
+      default:
+        break;
     }
   }
 }
