@@ -23,7 +23,11 @@ should change the `state` basing on the given `actions` array.
 
 Example of usage:
 
-If `state` is {foo: 'bar', bar: 'foo'}, then
+If `state` is {
+  foo: 'bar',
+  bar: 'foo'
+
+  }, then
 ```
  transformState(state, [
    {
