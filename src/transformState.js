@@ -25,7 +25,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('action is not supported');
     }
   }
 }
