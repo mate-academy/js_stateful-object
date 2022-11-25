@@ -34,13 +34,3 @@ function transformState(state, actions) {
 }
 
 module.exports = transformState;
-
-// const state = { x: 1 };
-
-// console.log(transformState(state, [
-//   { type: 'addProperties', extraData: { yet: 'another property' } },
-//   { type: 'clear' },
-//   { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
-// ]));
-
-// state === { foo: 'bar', name: 'Jim' }
