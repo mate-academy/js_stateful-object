@@ -12,9 +12,9 @@ function transformState(state, actions) {
         break;
 
       case (action.type === 'removeProperties'):
-        action.keysToRemove.map(curr => {
-          if (state.hasOwnProperty(curr)) {
-            delete state[curr];
+        action.keysToRemove.map(currentKey => {
+          if (state.hasOwnProperty(currentKey)) {
+            delete state[currentKey];
           }
 
           return state;
@@ -22,8 +22,8 @@ function transformState(state, actions) {
         break;
 
       case (action.type === 'clear'):
-        Object.getOwnPropertyNames(state).forEach(function(prop) {
-          delete state[prop];
+        Object.getOwnPropertyNames(state).forEach((stateProperty) => {
+          delete state[stateProperty];
         });
         break;
 
