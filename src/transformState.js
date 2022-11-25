@@ -23,7 +23,7 @@ function transformState(state, actions) {
         }
         break;
 
-      case 'default':
+      default:
         break;
     }
   }
