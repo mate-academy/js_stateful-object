@@ -24,9 +24,11 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('action is not supported');
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
