@@ -6,13 +6,13 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (true) {
-      case (action.type === 'addProperties'):
+    switch (action.type) {
+      case 'addProperties':
         Object.assign(state, action.extraData);
         break;
 
-      case (action.type === 'removeProperties'):
-        action.keysToRemove.map(currentKey => {
+      case 'removeProperties':
+        action.keysToRemove.forEach(currentKey => {
           if (state.hasOwnProperty(currentKey)) {
             delete state[currentKey];
           }
@@ -21,14 +21,14 @@ function transformState(state, actions) {
         });
         break;
 
-      case (action.type === 'clear'):
+      case 'clear':
         Object.getOwnPropertyNames(state).forEach((stateProperty) => {
           delete state[stateProperty];
         });
         break;
 
       default:
-        return Error;
+        throw Error;
     }
   }
 
