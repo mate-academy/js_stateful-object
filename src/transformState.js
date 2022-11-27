@@ -5,22 +5,24 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    switch (actions[i].type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        for (const key in actions[i].extraData) {
-          state[key] = actions[i].extraData[key];
+        for (const key in action.extraData) {
+          state[key] = action.extraData[key];
         }
         break;
       case 'removeProperties':
-        for (let k = 0; k < actions[i].keysToRemove.length; k++) {
-          delete state[actions[i].keysToRemove[k]];
+        for (const keyToRemove of action.keysToRemove) {
+          delete state[keyToRemove];
         }
         break;
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
+        break;
+      default:
         break;
     }
   }
