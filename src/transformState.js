@@ -20,10 +20,10 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const key in changedState) {
-          if (changedState.hasOwnProperty(key)) {
-            delete changedState[key];
-          }
+        const keys = Object.keys(changedState);
+
+        for (const key of keys) {
+          delete changedState[key];
         }
         break;
 
