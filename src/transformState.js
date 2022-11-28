@@ -8,8 +8,8 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'clear':
-        for (const prop in state) {
-          delete state[prop];
+        for (const property in state) {
+          delete state[property];
         }
         break;
 
