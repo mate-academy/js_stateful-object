@@ -28,8 +28,6 @@ function transformState(state, actions) {
         break;
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
