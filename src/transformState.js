@@ -16,17 +16,17 @@ function transformState(state, actions) {
         state[action.keysToRemove];
 
         if (action.keysToRemove.length > 1) {
-          for (const i of action.keysToRemove) {
+          for (const value of action.keysToRemove) {
             delete
-            state[i];
+            state[value];
           }
         }
       }
 
       if (action[key] === 'clear') {
-        for (const i in state) {
-          if (i in state) {
-            delete state[i];
+        for (const property in state) {
+          if (property in state) {
+            delete state[property];
           }
         }
       }
