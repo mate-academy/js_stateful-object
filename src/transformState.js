@@ -5,28 +5,27 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const total = Object.assign({}, actions);
-
-  for (const type in total) {
-    const bot = total[type];
+  for (const type in actions) {
+    const bot = actions[type];
 
     for (const pool in bot) {
-      if (bot[pool] === 'addProperties') {
-        Object.assign(state, { ...bot.extraData });
-      }
+      switch (bot[pool]) {
+        case 'addProperties':
+          Object.assign(state, { ...bot.extraData });
+          break;
 
-      if (bot[pool] === 'removeProperties') {
-        const bro = bot.keysToRemove;
+        case 'removeProperties':
+          const bro = bot.keysToRemove;
 
-        for (const n of bro) {
-          delete state[n];
-        }
-      }
+          for (const n of bro) {
+            delete state[n];
+          }
+          break;
 
-      if (bot[pool] === 'clear') {
-        for (const ch in state) {
-          delete state[ch];
-        }
+        case 'clear':
+          for (const ch in state) {
+            delete state[ch];
+          }
       }
     }
   }
