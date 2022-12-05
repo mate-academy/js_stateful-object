@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const type in actions) {
+  for (let type = 0; type < actions.length; type++) {
     const bot = actions[type];
 
     for (const pool in bot) {
