@@ -6,7 +6,7 @@
  */
 
 function transformState(state, actions) {
-  let trans = state;
+  const trans = state;
 
   for (const a in actions) {
     switch (actions[a].type) {
@@ -19,7 +19,9 @@ function transformState(state, actions) {
         }
         break;
       case 'clear':
-        trans = {};
+        for (const k in trans) {
+          delete trans[k];
+        }
         break;
     }
   }
