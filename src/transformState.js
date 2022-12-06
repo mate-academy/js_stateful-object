@@ -18,13 +18,13 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const key of Object.keys(state)) {
+        for (const key in state) {
           delete state[key];
         }
         break;
 
       default:
-        return state;
+        return 'invalid type of action';
     }
   }
 }
