@@ -11,10 +11,10 @@ function transformState(state, actions) {
         Object.assign(state, { ...action.extraData });
         break;
       case 'removeProperties':
-        const bro = action.keysToRemove;
+        const allProperties = action.keysToRemove;
 
-        for (const n of bro) {
-          delete state[n];
+        for (const property of allProperties) {
+          delete state[property];
         }
         break;
 
@@ -22,6 +22,9 @@ function transformState(state, actions) {
         for (const ch in state) {
           delete state[ch];
         }
+        break;
+
+      default: return `invalid type of action`;
     }
   }
 
