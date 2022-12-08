@@ -24,9 +24,11 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'invalid type of action';
+        break;
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
