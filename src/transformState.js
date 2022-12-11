@@ -14,8 +14,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const keyRemove of action.keysToRemove) {
-          delete state[keyRemove];
+        for (const keyToRemove of action.keysToRemove) {
+          delete state[keyToRemove];
         }
         break;
 
@@ -23,6 +23,10 @@ function transformState(state, actions) {
         for (const key in state) {
           delete state[key];
         }
+        break;
+
+      default:
+        throw new Error('unknown action type');
     }
   }
 }
