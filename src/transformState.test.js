@@ -2,6 +2,21 @@
 
 const transformState = require('./transformState');
 
+test('Should remove an existing property keeping the other ones', () => {
+  const state = {
+    foo: 'bar', bar: 'foo',
+  };
+
+  transformState(state, [
+    {
+      type: 'removeProperties', keysToRemove: ['bar'],
+    },
+  ]);
+
+  expect(state)
+    .toEqual({ foo: 'bar' });
+});
+
 test('Should add a single property to an empty state', () => {
   const state = {};
 
