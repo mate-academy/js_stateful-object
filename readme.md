@@ -38,7 +38,7 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
      keysToRemove: ['bar', 'hello'],
    },
    {
-     type: 'addProperties',
+     type: 'addProperties', 
      extraData: { another: 'one' },
    }
  ])
