@@ -27,7 +27,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'action type';
+        throw new Error('unknown action type');
     }
   }
 
