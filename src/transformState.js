@@ -6,21 +6,24 @@
  */
 
 function transformState(state, actions) {
-  for (const i of actions) {
-    const check = Object.values(i);
+  for (const action of actions) {
+    const check = Object.values(action);
 
-    if (check[0] === 'clear') {
-      Object.keys(state).forEach(key => delete state[key]);
-    } else if (check[0] === 'addProperties') {
-      Object.assign(state, check[1]);
-    } else if (check[0] === 'removeProperties') {
-      for (const property of check[1]) {
-        delete state[property];
-      }
+    switch (check[0]) {
+      case 'clear' :
+        Object.keys(state).forEach(key => delete state[key]);
+        break;
+      case 'addProperties' :
+        Object.assign(state, check[1]);
+        break;
+      case 'removeProperties' :
+        for (const property of check[1]) {
+          delete state[property];
+        }
+        break;
+      default:
+        break;
     }
   }
-
-  return (state);
 }
-
 module.exports = transformState;
