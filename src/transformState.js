@@ -6,20 +6,18 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    if (action['type'] === 'addProperties') {
-      Object.assign(state, action['extraData']);
-    }
-
-    if (action['type'] === 'removeProperties') {
-      for (const el of action['keysToRemove']) {
-        delete state[el];
-      }
-    }
-
-    if (action['type'] === 'clear') {
-      for (const el in state) {
-        delete state[el];
-      }
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
+      case 'removeProperties':
+        action.keysToRemove.forEach(key => delete state[key]);
+        break;
+      case 'clear':
+        Object.keys(state).forEach(key => delete state[key]);
+        break;
+      default:
+        throw new Error('Unexpected type of action');
     }
   }
 
