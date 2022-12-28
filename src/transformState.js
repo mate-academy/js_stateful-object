@@ -15,7 +15,7 @@ function transformState(state, actions) {
       case 'removeProperties':
         action.keysToRemove.forEach(key => delete state[key]);
         break;
-      case 'clear':
+      default :
         Object.keys(state).forEach(key => delete state[key]);
     }
   }
