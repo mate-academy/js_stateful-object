@@ -5,23 +5,29 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const prop of actions) {
-    if (prop.type === 'addProperties') {
-      for (const proper in prop.extraData) {
-        state[proper] = prop.extraData[proper];
-      }
-    }
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        for (const proper in action.extraData) {
+          state[proper] = action.extraData[proper];
+        };
+        break;
 
-    if (prop.type === 'removeProperties') {
-      for (const proper of prop.keysToRemove) {
-        delete state[proper];
-      }
-    }
+      case 'removeProperties':
+        for (const proper of action.keysToRemove) {
+          delete state[proper];
+        };
+        break;
 
-    if (prop.type === 'clear') {
-      for (const proper in state) {
-        delete state[proper];
-      }
+      case 'clear':
+        for (const proper in state) {
+          delete state[proper];
+        };
+        break;
+
+      default:
+        // eslint-disable-next-line no-console
+        console.log('Check input value');
     }
   }
 
