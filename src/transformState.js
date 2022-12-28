@@ -4,13 +4,6 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-// const state = { x: 1 };
-
-//  transformState(state, [
-//    { type: 'addProperties', extraData: { yet: 'another property' } }
-//    { type: 'clear' },
-//    { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
-//  ]);
 function transformState(state, actions) {
   for (const action of actions) {
     if (action.type === 'addProperties') {
