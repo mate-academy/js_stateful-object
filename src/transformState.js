@@ -24,6 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
+        throw new Error('Unknown condition value');
     }
   }
 }
