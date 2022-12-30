@@ -6,14 +6,14 @@
  */
 
 function transformState(state, actions) {
-  for (const action of actions) {
-    switch (action.type) {
+  for (const { type, extraData, keysToRemove } of actions) {
+    switch (type) {
       case 'addProperties':
-        Object.assign(state, action.extraData);
+        Object.assign(state, extraData);
         break;
 
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
+        for (const key of keysToRemove) {
           delete state[key];
         }
         break;
@@ -25,7 +25,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw new Error(Error);
+        throw new Error('Function is invalid');
     }
   }
 
