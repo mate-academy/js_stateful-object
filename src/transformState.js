@@ -13,8 +13,8 @@ function transformState(state, actions) {
         };
         break;
       case 'removeProperties':
-        for (const removekey of action.keysToRemove) {
-          delete state[removekey];
+        for (const removeKey of action.keysToRemove) {
+          delete state[removeKey];
         }
         break;
 
@@ -23,7 +23,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw Error('error')
+        throw Error('error');
     }
   }
 }
