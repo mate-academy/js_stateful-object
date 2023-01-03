@@ -19,7 +19,7 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
+      case 'clear':
         const objKeys = Object.keys(state);
 
         objKeys.forEach(key => {
