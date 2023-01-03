@@ -5,21 +5,21 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (let action of actions) {
+  for (const action of actions) {
     switch (action.type) {
-      case ('clear'):
+      case 'clear':
         for (const prop in state) {
           delete state[prop];
         }
 
         break;
 
-      case ('addProperties'):
+      case 'addProperties':
         Object.assign(state, action.extraData);
 
         break;
 
-      case ('removeProperties'):
+      case 'removeProperties':
         for (const prop of action.keysToRemove) {
           delete state[prop];
         }
@@ -27,7 +27,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        action = null;
+        throw new Error('Unexpected state');
     }
   }
 
