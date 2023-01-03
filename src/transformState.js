@@ -30,8 +30,6 @@ function transformState(state, actions) {
         throw new Error('Unexpected state');
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
