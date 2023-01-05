@@ -4,36 +4,34 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
+
 function transformState(state, actions) {
-  for (const act of actions) {
-    for (const type in act) {
-      if (act[type] === 'addProperties') {
-        addProp(state, act);
-      } else if (act[type] === 'removeProperties') {
-        removeProp(state, act);
-      } else if (act[type] === 'clear') {
+  for (const action of actions) {
+    const { type, keysToRemove, extraData } = action;
+
+    switch (type) {
+      case 'addProperties':
+        addProp(state, extraData);
+        break;
+
+      case 'removeProperties':
+        removeProp(state, keysToRemove);
+        break;
+
+      case 'clear':
         clear(state);
-      }
     }
   }
-
-  return state;
 };
 
-const addProp = (state, act) => {
-  Object.assign(state, act.extraData);
+const addProp = (state, extraData) => {
+  Object.assign(state, extraData);
 };
 
-const removeProp = (state, act) => {
-  const stateKeys = Object.keys(state);
-
-  for (const key of act.keysToRemove) {
-    for (const stateKey of stateKeys) {
-      if (key === stateKey) {
-        delete state[stateKey];
-      };
-    };
-  };
+const removeProp = (state, keysToRemove) => {
+  for (const key of keysToRemove) {
+    delete state[key];
+  }
 };
 
 const clear = (state) => {
