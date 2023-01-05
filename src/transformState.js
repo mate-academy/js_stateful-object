@@ -22,6 +22,9 @@ function transformState(state, actions) {
           delete state[index];
         }
         break;
+
+      default:
+        return 'Sorry, no types matched';
     }
   }
 
