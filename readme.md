@@ -70,3 +70,5 @@ Another example:
 
 // state === { foo: 'bar', name: 'Jim' }
 ```
+
+Test
