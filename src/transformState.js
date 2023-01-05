@@ -6,18 +6,18 @@
  */
 function transformState(state, actions) {
   for (const arr of actions) {
-    switch (true) {
-      case arr['type'] === 'clear':
+    switch (arr['type']) {
+      case 'clear':
         for (const prop in state) {
           delete state[prop];
         };
         break;
 
-      case arr['type'] === 'addProperties':
+      case 'addProperties':
         Object.assign(state, arr['extraData']);
         break;
 
-      case arr['type'] === 'removeProperties':
+      case 'removeProperties':
         for (const prop of arr['keysToRemove']) {
           delete state[prop];
         };
