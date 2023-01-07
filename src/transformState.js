@@ -7,9 +7,9 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    const { type, keysToRemove, extraData } = action;
+    const { type, keysToRemove, extraData } = action; // деструктурую.
 
-    switch (type) {
+    switch (type) { // switch для збігів по типу
       case 'addProperties':
         addProp(state, extraData);
         break;
@@ -20,6 +20,10 @@ function transformState(state, actions) {
 
       case 'clear':
         clear(state);
+        break;
+
+      default:
+        return 'error';
     }
   }
 };
