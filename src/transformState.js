@@ -25,6 +25,10 @@ function transformState(state, actions) {
         objKeys.forEach(key => {
           delete state[key];
         });
+        break;
+
+      default:
+        return `Something goes wrong! Check: State:${state}. Action:${actions}`;
     }
   }
 }
