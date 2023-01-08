@@ -23,7 +23,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'error';
+        throw new Error('Unhandled action type');
     }
   }
 };
