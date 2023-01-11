@@ -6,14 +6,14 @@
  */
 function transformState(state, actions) {
   // write code here
-  function addProps(add) {
-    for (const key in add) {
-      state[key] = add[key];
+  function addProps(propsToAdd) {
+    for (const key in propsToAdd) {
+      state[key] = propsToAdd[key];
     }
   }
 
-  function removeProps(remove) {
-    for (const key of remove) {
+  function removeProps(propsToRemove) {
+    for (const key of propsToRemove) {
       delete state[key];
     }
   }
@@ -25,12 +25,14 @@ function transformState(state, actions) {
   }
 
   for (const action of actions) {
-    switch (action.type) {
+    const { type, keysToRemove, extraData } = action;
+
+    switch (type) {
       case 'addProperties':
-        addProps(action.extraData);
+        addProps(extraData);
         break;
       case 'removeProperties':
-        removeProps(action.keysToRemove);
+        removeProps(keysToRemove);
         break;
       case 'clear':
         clearAllProps();
