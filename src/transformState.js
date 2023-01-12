@@ -6,7 +6,13 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (action.type) {
+    const {
+      type,
+      extraData,
+      keysToRemove,
+    } = action;
+
+    switch (type) {
       case 'clear':
         for (const prop in state) {
           delete state[prop];
@@ -14,18 +20,17 @@ function transformState(state, actions) {
         break;
 
       case 'addProperties':
-        Object.assign(state, action.extraData);
+        Object.assign(state, extraData);
         break;
 
       case 'removeProperties':
-        for (const prop of action.keysToRemove) {
+        for (const prop of keysToRemove) {
           delete state[prop];
         };
         break;
 
       default:
-        // eslint-disable-next-line no-console
-        console.log('Action not found');
+        break;
     }
   }
 }
