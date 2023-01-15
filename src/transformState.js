@@ -13,21 +13,18 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
       case 'addProperties':
-        for (const item in action) {
-          if (item === 'extraData') {
-            Object.assign(state, action[item]);
-          }
-        }
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        for (const key of action['keysToRemove']) {
+        for (const key of action.keysToRemove) {
           delete state[key];
         }
         break;
 
-      default: return 'Something went wrong!';
+      default: throw new Error('Unknown action type');
     }
   }
 
