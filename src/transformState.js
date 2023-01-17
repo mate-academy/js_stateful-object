@@ -6,7 +6,11 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    const { type, extraData, keysToRemove } = action;
+    const {
+      type,
+      extraData,
+      keysToRemove,
+    } = action;
 
     switch (type) {
       case 'addProperties':
@@ -14,8 +18,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const j of keysToRemove) {
-          delete state[j];
+        for (const key of keysToRemove) {
+          delete state[key];
         }
         break;
 
@@ -23,6 +27,10 @@ function transformState(state, actions) {
         for (const key in state) {
           delete state[key];
         }
+        break;
+
+      default:
+        console.log('Unexpected action type'); // eslint-disable-line no-console
         break;
     }
   }
