@@ -61,11 +61,26 @@ Another example:
 
 ```
  const state = { x: 1 };
+  1. { x: 1,
+    yet:'another property'
+  }
 
+  2. { } 
+  3. {
+    foo: 'bar',
+    name: 'Jim'
+  }
  transformState(state, [
-   { type: 'addProperties', extraData: { yet: 'another property' } }
+   { type: 'addProperties', 
+     extraData: {
+       yet: 'another property' 
+       }
+     }
    { type: 'clear' },
-   { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
+   { type: 'addProperties',
+     extraData: {
+        foo: 'bar',
+        name: 'Jim' } }
  ]);
 
 // state === { foo: 'bar', name: 'Jim' }
