@@ -19,9 +19,9 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        Object.getOwnPropertyNames(state).forEach(function(prop) {
-          delete state[prop];
-        });
+        for (const del in state) {
+          delete state[del];
+        }
         break;
     }
   }
