@@ -5,8 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // console.log(state, actions);
-
   for (const part in actions) {
     const action = actions[part];
 
@@ -25,11 +23,11 @@ function transformState(state, actions) {
     }
 
     if (action.type === 'clear') {
-      // eslint-disable-next-line no-param-reassign
-      state = {};
+      for (const key in state) {
+        delete state[key];
+      }
     }
   }
-  // console.log(state);
 }
 
 module.exports = transformState;

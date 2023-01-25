@@ -150,18 +150,18 @@ test('Should not fail when removing not existing property', () => {
     });
 });
 
-// test('Should clear the state', () => {
-//   const state = {
-//     foo: 'bar', name: 'Jim', another: 'one',
-//   };
+test('Should clear the state', () => {
+  const state = {
+    foo: 'bar', name: 'Jim', another: 'one',
+  };
 
-//   transformState(state, [
-//     { type: 'clear' },
-//   ]);
+  transformState(state, [
+    { type: 'clear' },
+  ]);
 
-//   expect(state)
-//     .toEqual({});
-// });
+  expect(state)
+    .toEqual({});
+});
 
 test('Should not fails when clearing an empty state', () => {
   const state = {};
@@ -200,33 +200,33 @@ test('Should apply several types', () => {
     });
 });
 
-// test('Should work with a long list of types', () => {
-//   const state = {
-//     foo: 'bar', name: 'Jim', another: 'one',
-//   };
+test('Should work with a long list of types', () => {
+  const state = {
+    foo: 'bar', name: 'Jim', another: 'one',
+  };
 
-//   transformState(state, [
-//     {
-//       type: 'removeProperties', keysToRemove: ['another'],
-//     },
-//     { type: 'clear' },
-//     { type: 'clear' },
-//     { type: 'clear' },
-//     {
-//       type: 'addProperties', extraData: { yet: 'another property' },
-//     },
-//     { type: 'clear' },
-//     {
-//       type: 'addProperties',
-//       extraData: {
-//         foo: 'bar', name: 'Jim',
-//       },
-//     },
-//     {
-//       type: 'removeProperties', keysToRemove: ['name', 'hello'],
-//     },
-//   ]);
+  transformState(state, [
+    {
+      type: 'removeProperties', keysToRemove: ['another'],
+    },
+    { type: 'clear' },
+    { type: 'clear' },
+    { type: 'clear' },
+    {
+      type: 'addProperties', extraData: { yet: 'another property' },
+    },
+    { type: 'clear' },
+    {
+      type: 'addProperties',
+      extraData: {
+        foo: 'bar', name: 'Jim',
+      },
+    },
+    {
+      type: 'removeProperties', keysToRemove: ['name', 'hello'],
+    },
+  ]);
 
-//   expect(state)
-//     .toEqual({ foo: 'bar' });
-// });
+  expect(state)
+    .toEqual({ foo: 'bar' });
+});
