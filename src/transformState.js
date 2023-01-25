@@ -5,6 +5,8 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
+  const caseDefault = 'An error because of an unknown type';
+
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -22,6 +24,9 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        return caseDefault;
     }
   }
 }
