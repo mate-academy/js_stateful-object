@@ -8,24 +8,22 @@ function transformState(state, actions) {
   for (const part in actions) {
     const action = actions[part];
 
-    if (action.type === 'addProperties') {
-      Object.assign(state, action['extraData']);
-    };
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action['extraData']);
+        break;
 
-    if (action.type === 'removeProperties') {
-      for (const removeElement in action.keysToRemove) {
-        for (const key in state) {
-          if (key === action.keysToRemove[removeElement]) {
-            delete state[key];
-          }
+      case 'removeProperties':
+        for (const removeElement of action.keysToRemove) {
+          delete state[removeElement];
         }
-      }
-    }
+        break;
 
-    if (action.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
     }
   }
 }
