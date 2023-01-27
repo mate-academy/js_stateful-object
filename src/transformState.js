@@ -6,28 +6,27 @@
  */
 function transformState(state, actions) {
   // write code here
-  for (const i in actions) {
-    const { type, extraData = {} } = actions[i];
-    let { keysToRemove = [] } = actions[i];
+  actions.forEach((el, index) => {
+    const { type, extraData = {}, keysToRemove = [] } = el;
 
-    if (type === 'addProperties') {
-      Object.assign(state, extraData);
-
-      continue;
+    switch (type) {
+      case 'addProperties':
+        Object.assign(state, extraData);
+        break;
+      case 'clear':
+        Object.keys(state).forEach(key => delete state[key]);
+        break;
+      case 'removeProperties':
+        keysToRemove.forEach((key) => {
+          if (Object.prototype.hasOwnProperty.call(state, key)) {
+            delete state[key];
+          }
+        });
+        break;
+      default:
+        throw new Error(`No cases for type: ${type}`);
     }
-
-    if (type === 'clear') {
-      keysToRemove = Object.keys(state);
-    }
-
-    for (const j in keysToRemove) {
-      const key = keysToRemove[j];
-
-      if (Object.prototype.hasOwnProperty.call(state, key)) {
-        delete state[key];
-      }
-    }
-  }
+  });
 }
 
 module.exports = transformState;
