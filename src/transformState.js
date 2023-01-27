@@ -12,27 +12,19 @@ function transformState(state, actions) {
       for (const item in actions[i].extraData) {
         state[item] = actions[i].extraData[item];
       }
-
-      resultArray.push({
-        ...state,
-      });
     } else if (actions[i].type === 'removeProperties') {
       for (let j = 0; j < actions[i].keysToRemove.length; j++) {
         delete state[actions[i].keysToRemove[j]];
       }
-
-      resultArray.push({
-        ...state,
-      });
     } else {
       for (const item in state) {
         delete state[item];
       }
-
-      resultArray.push({
-        ...state,
-      });
     }
+
+    resultArray.push({
+      ...state,
+    });
   }
 
   return resultArray;
