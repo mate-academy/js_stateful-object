@@ -8,12 +8,12 @@ function transformState(state, actions) {
   const resultArray = [];
 
   for (let i = 0; i < actions.length; i++) {
-    switch (true) {
-      case actions[i].type === 'addProperties':
+    switch (actions[i].type) {
+      case 'addProperties':
         Object.assign(state, actions[i].extraData);
         break;
 
-      case actions[i].type === 'removeProperties':
+      case 'removeProperties':
         for (let j = 0; j < actions[i].keysToRemove.length; j++) {
           delete state[actions[i].keysToRemove[j]];
         };
@@ -26,9 +26,7 @@ function transformState(state, actions) {
         }
     }
 
-    resultArray.push({
-      ...state,
-    });
+    resultArray.push(state);
   }
 
   return resultArray;
