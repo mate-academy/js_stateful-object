@@ -21,11 +21,15 @@ function transformState(state, actions) {
 
         break;
 
-      default:
-        // type === 'clear'
+      case 'clear':
         for (const key in state) {
           delete state[key];
         }
+
+        break;
+
+      default:
+        // do nothing
     }
   }
 }
