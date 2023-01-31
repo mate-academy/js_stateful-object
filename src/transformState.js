@@ -5,25 +5,31 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
+  let cloneState = state;
+
   for (const action of actions) {
-    if (action.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
-    }
+    const { type, extraData, keysToRemove } = action;
 
-    if (action.type === 'addProperties') {
-      for (const key in action.extraData) {
-        state[key] = action.extraData[key];
-      }
-    }
+    switch (type) {
+      case 'addProperties':
+        cloneState = Object.assign(cloneState, extraData);
+        break;
 
-    if (action.type === 'removeProperties') {
-      for (const key in action.keysToRemove) {
-        delete state[action.keysToRemove[key]];
-      }
+      case 'removeProperties':
+        for (const key of keysToRemove) {
+          delete cloneState[key];
+        }
+        break;
+
+      case 'clear':
+        for (const key in cloneState) {
+          delete cloneState[key];
+        };
+        break;
     }
   }
+
+  return cloneState;
 }
 
 module.exports = transformState;
