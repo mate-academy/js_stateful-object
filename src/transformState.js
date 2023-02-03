@@ -7,7 +7,6 @@
 function transformState(state, actions) {
   const add = 'addProperties';
   const remove = 'removeProperties';
-  const clear = 'clear';
 
   for (const action of actions) {
     switch (action.type) {
@@ -23,7 +22,7 @@ function transformState(state, actions) {
         }
         break;
 
-      case clear:
+      default:
         for (const prop in state) {
           delete state[prop];
         }
