@@ -5,7 +5,36 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
+  for (const action of actions) {
+    const type = action.type;
+
+    switch (type) {
+      case 'clear':
+        for (const clear in state) {
+          delete state[clear];
+        }
+        break;
+
+      case 'addProperties':
+        for (const additionalProps in action) {
+          if (additionalProps === 'extraData') {
+            Object.assign(state, action[additionalProps]);
+          }
+        }
+        break;
+
+      case 'removeProperties':
+        for (const input of action.keysToRemove) {
+          delete state[input];
+        }
+        break;
+
+      default:
+        throw new Error('Unsupported action type');
+    }
+  }
+
+  return state;
 }
 
 module.exports = transformState;
