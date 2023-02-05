@@ -6,13 +6,11 @@
  */
 function transformState(state, actions) {
   // write code here
-  let addedState = {};
-
   for (const action of actions) {
     switch (true) {
-      // eslint-disable-next-line no-lone-blocks
       case action.type === 'addProperties': {
-        addedState = action.extraData;
+        const addedState = action.extraData;
+
         Object.assign(state, addedState);
         break;
       };
