@@ -5,25 +5,25 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  actions.forEach((elem) => {
-    switch (true) {
-      case (elem['type'] === 'addProperties'):
-        Object.assign(state, elem['extraData']);
+  actions.forEach(action => {
+    switch (action.type) {
+      case ('addProperties'):
+        Object.assign(state, action['extraData']);
         break;
 
-      case (elem['type'] === 'removeProperties'):
-        const arrayToDelete = elem['keysToRemove'];
-
-        for (let j = 0; j < arrayToDelete.length; j++) {
-          delete state[arrayToDelete[j]];
+      case ('removeProperties'):
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
-      case (elem['type'] === 'clear'):
+      case ('clear'):
         for (const name in state) {
           delete state[name];
         }
         break;
+
+      default: return 'Please, enter the valid data';
     }
   });
 }
