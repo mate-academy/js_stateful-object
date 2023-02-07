@@ -6,14 +6,14 @@
  */
 function transformState(state, actions) {
   // write code here
-  for (const transform of actions) {
-    switch (transform.type) {
+  for (const { type, extraData, keysToRemove } of actions) {
+    switch (type) {
       case 'addProperties':
-        Object.assign(state, transform.extraData);
+        Object.assign(state, extraData);
         break;
 
       case 'removeProperties':
-        for (const remove of transform.keysToRemove) {
+        for (const remove of keysToRemove) {
           delete state[remove];
         }
         break;
@@ -22,6 +22,8 @@ function transformState(state, actions) {
         for (const key in state) {
           delete state[key];
         }
+        break;
+      default:
         break;
     }
   }
