@@ -28,8 +28,7 @@ function transformState(state, actions) {
         break;
 
       default:
-
-        return state;
+        throw new Error('Unexpected action');
     }
   }
 
