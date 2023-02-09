@@ -6,25 +6,25 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (true) {
-      case (action.type === 'addProperties'):
+    switch (action.type) {
+      case ('addProperties'):
         Object.assign(state, action.extraData);
         break;
 
-      case (action.type === 'removeProperties'):
+      case ('removeProperties'):
         for (const key of action.keysToRemove) {
           delete state[key];
         };
         break;
 
-      case (action.type === 'clear'):
+      case ('clear'):
         for (const property in state) {
           delete state[property];
         };
         break;
 
       default:
-        return state;
+        return 'Dear use, there might be some wrong action type';
     }
   }
 
