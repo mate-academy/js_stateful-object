@@ -11,19 +11,19 @@ function transformState(state, actions) {
         for (const key in state) {
           delete state[key];
         }
-
         break;
 
       case 'addProperties':
         Object.assign(state, action.extraData);
-
         break;
 
       case 'removeProperties':
-
         for (const remove of action.keysToRemove) {
           delete state[remove];
         }
+        break;
+
+      default: throw new Error('invalid type of action');
     }
   }
 
