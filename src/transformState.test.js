@@ -2,7 +2,7 @@
 
 const transformState = require('./transformState');
 
-test('Should add a single property to an empty state', () => {
+test('Shonpm testuld add a single property to an empty state', () => {
   const state = {};
 
   transformState(state, [
