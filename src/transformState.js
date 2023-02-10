@@ -17,12 +17,16 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
+      case 'removeProperties':
         for (const key of action.keysToRemove) {
           if (state[key]) {
             delete state[key];
           }
         }
+        break;
+
+      default:
+        throw new Error('Unexpected action');
     }
   }
 }
