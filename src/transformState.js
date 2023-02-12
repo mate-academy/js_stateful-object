@@ -9,9 +9,7 @@ function transformState(state, actions) {
     const values = Object.values(action);
 
     if (values[0] === 'addProperties') {
-      for (const el in values[1]) {
-        state[el] = values[1][el];
-      }
+      Object.assign(state, action.extraData);
     }
 
     if (values[0] === 'removeProperties') {
