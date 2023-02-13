@@ -17,10 +17,14 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
+      case 'clear':
         for (const stateKey in state) {
           delete state[stateKey];
         }
+        break;
+
+      default:
+        break;
     }
   }
 }
