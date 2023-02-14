@@ -1,4 +1,4 @@
-# Transforming state
+# TraremovePropertiesnsforming state
 
 **Read [the guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md) before start**
 
@@ -15,7 +15,7 @@ should change the `state` basing on the given `actions` array.
   - The second property of each object depends on `type` and may be one of the following:
     - if `type` is `addProperties`, second property is `extraData`. It contains an object
       with `key: value` pairs to add to the state;
-    - if `type` is `removeProperties`, second property is `keysToRemove`. It contains an array
+    - if `type` is ``, second property is `keysToRemove`. It contains an array
       with the list of property names (keys) to remove from the `state`; (Not existing
       properties should be ignored)
     - if `type` is `clear` you should remove all the properties from the
