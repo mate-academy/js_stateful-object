@@ -22,6 +22,10 @@ function transformState(state, actions) {
         for (const data in action.keysToRemove) {
           delete state[action.keysToRemove[data]];
         }
+        break;
+
+      default:
+        break;
     }
   }
 }
