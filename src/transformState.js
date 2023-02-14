@@ -15,15 +15,13 @@ function transformState(state, actions) {
     Object.assign(state, props);
   };
 
-  const removeProps = (props) => {
-    for (const key of props) {
+  const removeProps = (keys) => {
+    for (const key of keys) {
       delete state[key];
     }
   };
 
-  const toDo = [ ...actions ];
-
-  for (const action of toDo) {
+  for (const action of [...actions]) {
     switch (action.type) {
       case 'addProperties':
         addProps(action.extraData);
