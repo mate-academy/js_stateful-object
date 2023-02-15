@@ -7,17 +7,17 @@
 function transformState(state, actions) {
   for (const action of actions) {
     const whatWeMustDo = action.type;
-    const isAdding = whatWeMustDo === 'addProperties';
-    const isDeleting = whatWeMustDo === 'removeProperties';
-    const isClearing = whatWeMustDo === 'clear';
+    const isAdding = 'addProperties';
+    const isDeleting = 'removeProperties';
+    const isClearing = 'clear';
 
-    switch (true) {
+    switch (whatWeMustDo) {
       case (isAdding):
         Object.assign(state, action.extraData);
         break;
 
       case (isDeleting):
-        deletProp(state, action.keysToRemove);
+        deleteProp(state, action.keysToRemove);
         break;
 
       case (isClearing):
@@ -25,11 +25,9 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Unknow error';
+        throw new Error(`Unknown key: "${whatWeMustDo}"`);
     }
   }
-
-  return state;
 }
 
 function clearingTheObject(state) {
@@ -40,7 +38,7 @@ function clearingTheObject(state) {
   return state;
 }
 
-function deletProp(state, props) {
+function deleteProp(state, props) {
   for (const prop of props) {
     delete state[prop];
   }
