@@ -4,7 +4,6 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-/*eslint-disable*/
 function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
@@ -23,8 +22,13 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        throw new Error('Do not match any property!');
     }
   }
+
+  return transformState;
 }
 
 module.exports = transformState;
