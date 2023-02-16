@@ -9,25 +9,21 @@ const REMOVE_ACTION = 'removeProperties';
 const CLEAR_ACTION = 'clear';
 
 function transformState(state, actions) {
-  // write code here
-  let newState = state;
-
   for (const action of actions) {
     switch (action.type) {
       case ADD_ACTION:
-        newState = Object.assign(state, action.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case REMOVE_ACTION:
         for (const key of action.keysToRemove) {
-          delete newState[key];
+          delete state[key];
         }
         break;
 
       case CLEAR_ACTION:
-        for (const key in newState) {
-          delete [key];
-          delete newState[key];
+        for (const keyState in state) {
+          delete state[keyState];
         }
         break;
 
@@ -35,8 +31,6 @@ function transformState(state, actions) {
         throw new Error(`Unknown action type ${action.type}`);
     }
   }
-
-  return newState;
 }
 
 module.exports = transformState;
