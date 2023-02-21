@@ -20,7 +20,7 @@ function transformState(state, actions) {
       case 'addProperties':
         return Object.assign(initialState, action.extraData);
       case 'removeProperties':
-        // Удаляем каждое свойство, указанное в массиве `action.keysToRemove`, 
+        // Удаляем каждое свойство, указанное в массиве `action.keysToRemove`,
         // из `state`
         // и возвращаем модифицированный объект
         action.keysToRemove.forEach(key => delete initialState[key]);
