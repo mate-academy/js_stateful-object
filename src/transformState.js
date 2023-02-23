@@ -6,26 +6,14 @@
  */
 function transformState(state, actions) {
   for (const { type, extraData, keysToRemove } of actions) {
-    switch ({
-      type,
-      extraData,
-      keysToRemove,
-    }.type) {
+    switch (type) {
       case 'addProperties':
-        Object.assign(state, {
-          type,
-          extraData,
-          keysToRemove,
-        }.extraData);
+        Object.assign(state, extraData);
         break;
 
       case 'removeProperties':
-        for (const arr of {
-          type,
-          extraData,
-          keysToRemove,
-        }.keysToRemove) {
-          delete state[arr];
+        for (const key of keysToRemove) {
+          delete state[key];
         }
         break;
 
@@ -36,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Something wrong...';
+        throw new Error(`There is no action like: ${type}`);
     }
   }
 }
