@@ -7,7 +7,7 @@
 
 function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
-    const current = actions[i];
+    const { type, .... }= actions[i];
 
     switch (current.type) {
       case 'addProperties':
