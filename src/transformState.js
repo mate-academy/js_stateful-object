@@ -9,8 +9,8 @@ function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
     const current = actions[i];
 
-    switch (true) {
-      case current.type === 'addProperties':
+    switch (current.type) {
+      case 'addProperties':
         const first = current.extraData;
 
         for (const key in first) {
@@ -18,7 +18,7 @@ function transformState(state, actions) {
         }
         break;
 
-      case current.type === 'removeProperties':
+      case 'removeProperties':
         const second = current.keysToRemove;
 
         for (const key of second) {
@@ -26,7 +26,7 @@ function transformState(state, actions) {
         }
         break;
 
-      case current.type === 'clear':
+      case 'clear':
         for (const key in state) {
           delete state[key];
         }
