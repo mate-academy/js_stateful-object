@@ -8,10 +8,8 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'clear':
-        const keys = Object.keys(state);
-
-        for (const key in keys) {
-          delete state[keys[key]];
+        for (const key in state) {
+          delete state[key];
         }
         break;
 
@@ -26,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        return 'Invalid type data';
     }
   }
 
