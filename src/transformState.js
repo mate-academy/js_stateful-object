@@ -6,14 +6,12 @@
  */
 
 function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    const { type, ...Keys } = actions[i];
+  for (const act of actions) {
+    const { type, ...Keys } = act;
 
     switch (type) {
       case 'addProperties':
-        for (const key in Keys.extraData) {
-          state[key] = Keys.extraData[key];
-        }
+        Object.assign(state, Keys.extraData);
         break;
 
       case 'removeProperties':
