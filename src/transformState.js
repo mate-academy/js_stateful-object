@@ -4,52 +4,49 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
+
 function transformState(state, actions) {
   const addProperties = 'addProperties';
   const clear = 'clear';
   const removeProperties = 'removeProperties';
 
-  for (const arrayItem of actions) {
-    if (isPresent(arrayItem.type, addProperties)) {
-      assignNewDataToState(state, arrayItem);
-    }
+  for (const action of actions) {
+    switch (action.type) {
+      case addProperties:
+        assignNewDataToState(state, action);
+        break;
+      case removeProperties:
+        for (const key of getRemoveKeys(action)) {
+          deleteFromState(state, key);
+        }
+        break;
+      case clear:
+        const keysState = getSateKeys(state);
 
-    if (isPresent(arrayItem.type, clear)) {
-      const keysState = getSateKeys(state);
-
-      for (const key of keysState) {
-        deleteFromState(state, key);
-      }
-    }
-
-    if (isPresent(arrayItem.type, removeProperties)) {
-      for (const keyToRemove of getRemoveKeys(arrayItem)) {
-        deleteFromState(state, keyToRemove);
-      }
+        for (const key of keysState) {
+          deleteFromState(state, key);
+        }
+        break;
     }
   }
 
   return state;
 }
 
-function assignNewDataToState(state, arrayItem) {
-  Object.assign(state, arrayItem.extraData);
+function assignNewDataToState(state, action) {
+  Object.assign(state, action.extraData);
 }
 
 function deleteFromState(state, key) {
   delete state[key];
 }
 
-function getRemoveKeys(arrayItem) {
-  return arrayItem.keysToRemove;
+function getRemoveKeys(action) {
+  return action.keysToRemove;
 }
 
 function getSateKeys(myObject) {
   return Object.keys(myObject);
-}
-
-function isPresent(param1, param2) {
-  return param1 === param2;
 }
 
 module.exports = transformState;
