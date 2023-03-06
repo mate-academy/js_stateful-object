@@ -5,21 +5,23 @@
  */
 
 function transformState(state, actions) {
-  const addProperties = 'addProperties';
-  const clear = 'clear';
-  const removeProperties = 'removeProperties';
+  const properties = {
+    addProperties: 'addProperties',
+    clear: 'clear',
+    removeProperties: 'removeProperties',
+  };
 
   for (const action of actions) {
     switch (action.type) {
-      case addProperties:
+      case properties.addProperties:
         assignNewDataToState(state, action);
         break;
-      case removeProperties:
+      case properties.removeProperties:
         for (const key of getRemoveKeys(action)) {
           deleteFromState(state, key);
         }
         break;
-      case clear:
+      case properties.clear:
         const keysState = getSateKeys(state);
 
         for (const key of keysState) {
