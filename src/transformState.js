@@ -25,6 +25,11 @@ function transformState(state, actions) {
           }
         }
         break;
+
+      default:
+        return (
+          'Pick the right action: addProperties, clear, removeProperties!'
+        );
     }
   }
 
