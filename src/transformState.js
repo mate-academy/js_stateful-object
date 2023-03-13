@@ -33,12 +33,8 @@ function addProperties(state, action) {
 }
 
 function removeProperties(state, action) {
-  for (const key in state) {
-    for (const keyToRemove in action.keysToRemove) {
-      if (action.keysToRemove[keyToRemove] === key) {
-        delete state[key];
-      }
-    }
+  for (const keyToRemove in action.keysToRemove) {
+    delete state[action.keysToRemove[keyToRemove]];
   }
 }
 
