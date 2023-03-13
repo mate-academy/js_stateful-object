@@ -1,30 +1,10 @@
 'use strict';
 
-// function transformState(state, actions) {
-//   for (const action of actions) {
-//     if (action.type === 'clear') {
-//       for (const key in state) {
-//         delete state[key];
-//       }
-//     }
-
-//     if (action.type === 'addProperties') {
-//       Object.assign(state, action.extraData);
-//     }
-
-//     if (action.type === 'removeProperties') {
-//       for (const key of action.keysToRemove) {
-//         delete state[key];
-//       }
-//     }
-//   }
-
-//   return state;
-// }
-
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (action.type) {
+    const { type, extraData, keysToRemove } = action;
+
+    switch (type) {
       case 'clear':
         for (const key in state) {
           delete state[key];
@@ -32,14 +12,17 @@ function transformState(state, actions) {
         break;
 
       case 'addProperties':
-        Object.assign(state, action.extraData);
+        Object.assign(state, extraData);
         break;
 
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
+        for (const key of keysToRemove) {
           delete state[key];
         }
         break;
+
+      default:
+        return null;
     }
   }
 
