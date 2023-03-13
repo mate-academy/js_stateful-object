@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  let transformedState = state;
+  const transformedState = state;
 
   for (const action in actions) {
     switch (actions[action].type) {
