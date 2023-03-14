@@ -11,17 +11,18 @@ function transformState(state, actions) {
     switch (actions[action].type) {
       case 'addProperties' :
         addProperties(transformedState, actions[action]);
-
         break;
+
       case 'removeProperties' :
         removeProperties(transformedState, actions[action]);
+        break;
 
+      case 'clear' :
+        clearState(transformedState);
         break;
 
       default :
-        clearState(transformedState);
-
-        break;
+        return 'error';
     }
   }
 
