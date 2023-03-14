@@ -5,6 +5,8 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
+  const error = 'Unexpected action';
+
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -19,11 +21,14 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
+      case 'clear':
         for (const key in state) {
           delete state[key];
         }
         break;
+
+      default:
+        throw error;
     }
   }
 }
