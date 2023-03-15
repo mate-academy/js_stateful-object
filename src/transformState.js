@@ -9,6 +9,7 @@ function transformState(state, actions) {
     switch (action.type) {
       case 'addProperties': Object.assign(state, action.extraData);
         break;
+
       case 'removeProperties':
         if (action.keysToRemove.length > 0) {
           for (const key of action.keysToRemove) {
