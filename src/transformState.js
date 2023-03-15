@@ -18,13 +18,13 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const removable of version.keysToRemove) {
-          delete state[removable];
+        for (const key of version.keysToRemove) {
+          delete state[key];
         }
         break;
 
       default:
-        break;
+        throw new Error('Unknown type');
     }
   }
 }
