@@ -2,24 +2,21 @@
 
 /**
  * @param {Object} state
- * @param {Object[]} actions
+ * @param {Object[]} actionions
  */
-function transformState(state, actions) {
-  const err1 = Error('Something went wrong');
-
-  for (const act of actions) {
-    switch (act.type) {
+function transformState(state, actionions) {
+  for (const action of actionions) {
+    switch (action.type) {
       case 'addProperties':
-        Object.assign(state, act.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        for (const removeKeys of act.keysToRemove) {
-          delete state[removeKeys];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
-      // eslint-disable-next-line no-fallthrough
       case 'clear':
         for (const stateKey in state) {
           delete state[stateKey];
@@ -27,11 +24,9 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw err1;
+        throw new Error();
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
