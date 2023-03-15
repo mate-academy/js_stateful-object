@@ -27,6 +27,10 @@ function transformState(state, actions) {
         for (const key in state) {
           delete state[key];
         }
+        break;
+
+      default:
+        throw new Error('Invalid action type');
     }
   }
 
