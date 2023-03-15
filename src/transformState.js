@@ -24,6 +24,9 @@ function transformState(state, actions) {
           delete state[keys];
         }
         break;
+
+      default:
+        throw new Error();
     }
   }
 
