@@ -5,8 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const errorMessage = 'Error';
-
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -14,8 +12,8 @@ function transformState(state, actions) {
         break;
 
       case `removeProperties`:
-        for (const value of action.keysToRemove) {
-          delete state[value];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
@@ -26,11 +24,9 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw errorMessage;
+        throw new Error('Input error!');
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
