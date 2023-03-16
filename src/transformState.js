@@ -21,6 +21,10 @@ function transformState(state, actions) {
         for (const key of action.keysToRemove) {
           delete state[key];
         }
+        break;
+
+      default:
+        throw new Error('Unknown type');
     }
   }
 
