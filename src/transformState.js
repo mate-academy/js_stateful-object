@@ -17,6 +17,10 @@ function transformState(state, actions) {
 
       case 'clear':
         Object.keys(state).forEach(key => delete state[key]);
+        break;
+
+      default:
+        throw new Error('invalid action type');
     }
   }
 
