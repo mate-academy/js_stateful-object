@@ -25,7 +25,7 @@ function transformState(state, actions) {
         break;
 
       default: {
-        return 'An error occured';
+        throw new Error('An error occured');
       }
     }
   }
