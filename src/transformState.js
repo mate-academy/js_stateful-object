@@ -23,6 +23,10 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
+      default: {
+        return 'An error occured';
+      }
     }
   }
 }
