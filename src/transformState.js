@@ -7,14 +7,14 @@
 function transformState(state, actions) {
   const transformedState = state;
 
-  for (const action in actions) {
-    switch (actions[action].type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties' :
-        addProperties(transformedState, actions[action]);
+        addProperties(transformedState, action);
         break;
 
       case 'removeProperties' :
-        removeProperties(transformedState, actions[action]);
+        removeProperties(transformedState, action);
         break;
 
       case 'clear' :
@@ -22,7 +22,7 @@ function transformState(state, actions) {
         break;
 
       default :
-        return 'error';
+        return null;
     }
   }
 
