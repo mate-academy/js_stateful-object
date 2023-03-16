@@ -13,8 +13,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const key in action.keysToRemove) {
-          delete state[action.keysToRemove[key]];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
@@ -25,28 +25,9 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Input is invalid');
     }
   }
 }
-
-// loops === EVIL
-// function transformState(state, actions) {
-//   for (const action of actions) {
-//     if (action.type === 'addProperties') {
-//       Object.assign(state, action.extraData);
-//     } else if (action.type === 'removeProperties') {
-//       for (const key in action.keysToRemove) {
-//         delete state[action.keysToRemove[key]];
-//       }
-//     } else if (action.type === 'clear') {
-//       for (const key in state) {
-//         delete state[key];
-//       }
-//     }
-//   }
-
-//   return state;
-// }
 
 module.exports = transformState;
