@@ -22,7 +22,7 @@ function transformState(state, actions) {
         break;
 
       default :
-        return null;
+        throw new Error('Wrong action type');
     }
   }
 
