@@ -19,11 +19,12 @@ function transformState(state, actions) {
 
       case 'removeProperties' :
         for (const keyForState of action.keysToRemove) {
-          if (state[keyForState]) {
-            delete state[keyForState];
-          }
+          delete state[keyForState];
         }
         break;
+
+      default:
+        throw new Error('other type');
     }
   }
 
