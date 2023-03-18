@@ -10,18 +10,21 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
       case 'removeProperties':
         action.keysToRemove.forEach(key => {
           delete state[key];
         });
         break;
+
       case 'clear':
-        for (let key in state) {
+        for (const key in state) {
           delete state[key];
         }
         break;
+
       default:
-        break;
+        throw new Error(`Input is invalid - ${action.type}`);
     }
   });
 }
