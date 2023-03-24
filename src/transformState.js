@@ -12,7 +12,10 @@ function transformState(state, actions) {
 
     switch (type) {
       case 'clear':
-        Object.keys(state).forEach(key => delete state[key]);
+        // Object.keys(state).forEach(key => delete state[key]);
+        for (const key in state) {
+          delete state[key];
+        }
         break;
       case 'addProperties':
         Object.assign(state, action.extraData);
@@ -23,7 +26,7 @@ function transformState(state, actions) {
         }
         break;
       default:
-        break;
+        return null;
     }
   }
 
