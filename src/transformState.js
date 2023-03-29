@@ -9,26 +9,31 @@ function transformState(state, actions) {
     const actionType = actions[i];
     const type = actionType.type;
 
-    if (type === 'clear') {
-      for (const key of Object.keys(state)) {
-        delete state[key];
-      }
-    }
+    switch (type) {
+      case 'clear':
+        for (const key of Object.keys(state)) {
+          delete state[key];
+        }
+        break;
 
-    if (type === 'addProperties') {
-      const extraData = actionType.extraData;
+      case 'addProperties':
+        const extraData = actionType.extraData;
 
-      for (const [key, value] of Object.entries(extraData)) {
-        state[key] = value;
-      }
-    }
+        for (const [key, value] of Object.entries(extraData)) {
+          state[key] = value;
+        }
+        break;
 
-    if (type === 'removeProperties') {
-      const keysToRemove = actionType.keysToRemove;
+      case 'removeProperties':
+        const keysToRemove = actionType.keysToRemove;
 
-      for (const key of keysToRemove) {
-        delete state[key];
-      }
+        for (const key of keysToRemove) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        throw new Error('Wrong input!');
     }
   }
 }
