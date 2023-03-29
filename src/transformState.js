@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * @param {Object} state
@@ -6,18 +6,20 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    if (action.type === 'addProperties') {
-      Object.assign(state, action.extraData);
-    }
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
+      case 'removeProperties':
+        action.keysToRemove.forEach(key => delete state[key]);
+        break;
 
-    if (action.type === 'removeProperties') {
-      for (const key of action.keysToRemove) {
-        delete state[key];
-      }
-    }
+      case 'clear':
+        Object.keys(state).forEach(key => delete state[key]);
+        break;
 
-    if (action.type === 'clear') {
-      Object.keys(state).forEach(key => delete state[key]);
+      default:
+        return console.error('Error, probably the wrong parameter was specified.');
     }
   }
 }
