@@ -5,28 +5,33 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
-  for (const key in actions) {
-    switch (actions[key].type) {
+  for (const action of actions) {
+    const { type, extraData, keysToRemove } = action;
+
+    switch (type) {
       case 'addProperties':
-        Object.assign(state, actions[key].extraData);
+
+        Object.assign(state, extraData);
         break;
+
       case 'removeProperties':
-        for (const kInStat in state) {
-          for (let n = 0; n < actions[key].keysToRemove.length; n++) {
-            if (kInStat === actions[key].keysToRemove[n]) {
-              delete state[kInStat];
-            }
-          }
+
+        for (const key of keysToRemove) {
+          delete state[key];
         }
         break;
+
       case 'clear':
+
         for (const del in state) {
+          // used for in because for of does not work(
+          // Uncaught TypeError: state is not iterable)
           delete state[del];
         }
         break;
+
       default:
-        return state;
+        return `ERROR. wrong data ${type}`;
     }
   }
 
