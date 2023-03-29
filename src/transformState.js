@@ -7,53 +7,36 @@
 function transformState(state, actions) {
   // write code here
 
-  for (const action of actions) {
-    if (action.type === 'addProperties') {
-      for (const key in action.extraData) {
-        state[key] = action.extraData[key];
-      }
-    }
-
-    if (action.type === 'removeProperties') {
-      for (const key of action.keysToRemove) {
-        if (state.hasOwnProperty(key)) {
-          delete state[key];
+  for (let i = 0; i < actions.length; i++) {
+    switch (actions[i].type) {
+      case 'addProperties':
+        for (const key in actions[i].extraData) {
+          state[key] = actions[i].extraData[key];
         }
-      }
-    }
+        break;
 
-    if (action.type === 'clear') {
-      if (Object.keys(state).length !== 0) {
-        for (const key in state) {
-          delete state[key];
+      case 'removeProperties':
+        for (const key of actions[i].keysToRemove) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
         }
-      }
+        break;
+
+      case 'clear':
+        if (Object.keys(state).length !== 0) {
+          for (const key in state) {
+            delete state[key];
+          }
+        }
+        break;
+
+      default:
+        return 0;
     }
   }
 
   return state;
 }
-
-transformState({}, [
-  {
-    type: 'removeProperties', keysToRemove: ['another'],
-  },
-  { type: 'clear' },
-  { type: 'clear' },
-  { type: 'clear' },
-  {
-    type: 'addProperties', extraData: { yet: 'another property' },
-  },
-  { type: 'clear' },
-  {
-    type: 'addProperties',
-    extraData: {
-      foo: 'bar', name: 'Jim',
-    },
-  },
-  {
-    type: 'removeProperties', keysToRemove: ['name', 'hello'],
-  },
-]);
 
 module.exports = transformState;
