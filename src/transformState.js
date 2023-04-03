@@ -32,7 +32,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 0;
+        throw new Error('Wrong action!');
     }
   }
 
