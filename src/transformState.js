@@ -27,6 +27,8 @@ function transformState(state, actions) {
           }
         }
         break;
+      default:
+        return 'Invalid request. Please, try again';
     }
   }
 }
