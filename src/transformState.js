@@ -9,9 +9,9 @@ function transformState(state, actions) {
   for (let n = 0; n < actions.length; n++) {
     switch (actions[n].type) {
       case 'addProperties':
-        const actEntries = Object.entries(actions[n].extraData);
+        const actionEntries = Object.entries(actions[n].extraData);
 
-        for (const [key, value] of actEntries) {
+        for (const [key, value] of actionEntries) {
           state[key] = value;
         }
 
