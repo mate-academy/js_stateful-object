@@ -19,7 +19,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return console.error('Error, probably the wrong parameter was specified.');
+        return 'Error, probably the wrong parameter was specified.';
     }
   }
 }
