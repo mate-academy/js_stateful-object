@@ -6,19 +6,16 @@
  */
 function transformState(state, actions) {
   // write code here
-  const robotActions = Object.assign({}, actions);
-  const a = Object.keys(robotActions);
-
-  for (let actionNumber = 0; actionNumber < a.length; actionNumber++) {
-    const robotAction = robotActions[actionNumber];
+  for (let actionNumber = 0;
+    actionNumber < Object.keys(actions).length;
+    actionNumber++) {
+    const robotAction = actions[actionNumber];
 
     switch (robotAction.type) {
       case 'addProperties':
 
-        const keys = Object.keys(robotAction.extraData);
-
-        for (let j = 0; j < keys.length; j++) {
-          state[keys[j]] = robotAction.extraData[keys[j]];
+        for (const key of Object.keys(robotAction.extraData)) {
+          state[key] = robotAction.extraData[key];
         }
         break;
 
@@ -30,16 +27,16 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        const keysToRemove2 = Object.keys(state);
+        const propertiesToRemove = Object.keys(state);
 
-        for (let j = 0; j < keysToRemove2.length; j++) {
-          delete state[keysToRemove2[j]];
+        for (let j = 0; j < propertiesToRemove.length; j++) {
+          delete state[propertiesToRemove[j]];
         }
         break;
       default:
         return {};
     }
-  }// for
+  }
 
   return state;
 }
