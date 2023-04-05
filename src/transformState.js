@@ -6,10 +6,8 @@
  */
 function transformState(state, actions) {
   // write code here
-  for (let actionNumber = 0;
-    actionNumber < Object.keys(actions).length;
-    actionNumber++) {
-    const robotAction = actions[actionNumber];
+  for (let i = 0; i < actions.length; i++) {
+    const robotAction = actions[i];
 
     switch (robotAction.type) {
       case 'addProperties':
