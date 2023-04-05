@@ -25,10 +25,8 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        const stateKeys = [ ...Object.keys(state) ];
-
-        for (let i = 0; i < stateKeys.length; i++) {
-          delete state[stateKeys[i]];
+        for (let i = (Object.keys(state).length - 1); i >= 0; i--) {
+          delete state[Object.keys(state)[i]];
         }
     }
   }
