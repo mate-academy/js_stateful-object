@@ -1,73 +1,73 @@
-# Transforming state
+# Трансформаційний стан
 
-**Read [the guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md) before start**
-## ❗️❗️❗️ DON'T FORGET TO PROOFREAD YOUR CODE WITH [CHECKLIST](https://github.com/mate-academy/js_stateful-object/blob/master/checklist.md) BEFORE SENDING YOUR PULL REQUEST❗️❗️❗️
+** Прочитайте [керівництво] (https://github.com/mate-academy/js_task-guidel/blob/master/readme.md) перед запуском **
+## ❗ Не забудьте прочитайте свій код за допомогою [контрольного списку] (https://github.com/mate-academy/js_stateful-object/blob/master/checklist.md), перш ніж надсилати запит на тяг
 
-# Task description
+# Опис завдання
 
-Implement a function accepting 2 arguments: `state` and `actions`. The function
-should change the `state` basing on the given `actions` array.
+Впроваджуйте функцію, що приймає 2 аргументи: `State` та` ``.Функція
+повинні змінити `` ґрунтування на даному масиві дій.
 
-- `state` is an object. You are supposed to add, change, or delete its
-  properties instead of creating a new object
+- `State` - це об'єкт.Ви повинні додавати, змінити або видалити його
+  Властивості замість створення нового об'єкта
 
-- `actions` is an array of objects. Each object in this array has the next properties:
-  - `type` contains a string: either `'addProperties'`, `'removeProperties'` or `'clear'`;
-  - The second property of each object depends on `type` and may be one of the following:
-    - if `type` is `addProperties`, second property is `extraData`. It contains an object
-      with `key: value` pairs to add to the state;
-    - if `type` is `removeProperties`, second property is `keysToRemove`. It contains an array
-      with the list of property names (keys) to remove from the `state`; (Not existing
-      properties should be ignored)
-    - if `type` is `clear` you should remove all the properties from the
-      state. No second property in this case;
+- `Дії` - це масив об'єктів.Кожен об'єкт у цьому масиві має наступні властивості:
+  - `type` містить рядок: або` 'addproperties'`, `' remeproperties'` або` 'очистити' '';
+  - Друга властивість кожного об'єкта залежить від `type` і може бути одним із наступних:
+    - Якщо `type` -` addproperties`, друге властивість - `extradata`.Він містить об'єкт
+      з `ключовим: value` пар, щоб додати до стану;
+    - Якщо `type` -` remeproperties`, друге властивість - `keystoremove`.Він містить масив
+      зі списком імен властивостей (ключів) для видалення з `стан ';(Не існує
+      Властивості слід ігнорувати)
+    - Якщо `type` - це` очистити ', слід видалити всі властивості з
+      держава.Немає другої властивості в цьому випадку;
 
-Example of usage:
+Приклад використання:
 
-If `state` is {foo: 'bar', bar: 'foo'}, then
-```
- transformState(state, [
+Якщо `state` є {foo: 'bar', bar: 'foo'}, то
+`` `
+ TransformState (стан, [
    {
-     type: 'addProperties',
-     extraData: {
-       name: 'Jim',
-       hello: 'world',
+     Тип: 'AddProperties',
+     Extradata: {
+       Ім'я: 'Джим',
+       Привіт Світ',
      }
    },
    {
-     type: 'removeProperties',
-     keysToRemove: ['bar', 'hello'],
+     Тип: "Видалення пропозицій",
+     KeyStoreMove: ['бар', 'Привіт'],
    },
    {
-     type: 'addProperties',
-     extraData: { another: 'one' },
+     Тип: 'AddProperties',
+     extradata: {інший: 'один'},
    }
  ])
-```
-should modify the `state`, doing the following:
-- add two properties to the `state`
-- then remove keys `bar` and `hello` from the `state`
-- and finally add another one property to the `state`
+`` `
+повинен змінювати `` `, роблячи наступне:
+- Додайте два властивості до `State`
+- Потім видаліть клавіші `bar` і` Привіт 'з `State`'
+- і, нарешті, додайте ще одне властивість до "стану"
 
-After these operations the object `state` will have the following look
- ```
+Після цих операцій об’єкт "стан" матиме наступний погляд
+ `` `
  {
-   foo: 'bar',
-   name: 'Jim',
-   another: 'one',
+   foo: 'бар',
+   Ім'я: 'Джим',
+   інший',
  }
-```
+`` `
 
-Another example:
+Ще один приклад:
 
-```
- const state = { x: 1 };
+`` `
+ const State = {x: 1};
 
- transformState(state, [
-   { type: 'addProperties', extraData: { yet: 'another property' } }
-   { type: 'clear' },
-   { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
+ TransformState (стан, [
+   {type: 'addproperties', extradata: {ще: 'інша властивість'}}
+   {type: 'очистити'},
+   {type: 'addproperties', extradata: {foo: 'bar', name: 'jim'}}
  ]);
 
-// state === { foo: 'bar', name: 'Jim' }
-```
+// state === {foo: 'bar', name: 'jim'}
+`` `
