@@ -29,7 +29,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        return 'Unknown action type';
     }
   }
 
