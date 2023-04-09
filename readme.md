@@ -1,30 +1,23 @@
-# Transforming state
+Реалізувати функцію, яка отримує 2 аргументи: `state` та `actions`. Функція
+повинна змінювати значення `state` на основі заданого масиву `actions`.
 
-**Read [the guideline](https://github.com/mate-academy/js_task-guideline/blob/master/README.md) before start**
-## ❗️❗️❗️ DON'T FORGET TO PROOFREAD YOUR CODE WITH [CHECKLIST](https://github.com/mate-academy/js_stateful-object/blob/master/checklist.md) BEFORE SENDING YOUR PULL REQUEST❗️❗️❗️
+- Стан - це об'єкт. Ви повинні додавати, змінювати або видаляти його
+  властивості замість того, щоб створювати новий об'єкт
 
-# Task description
+- `actions` - масив об'єктів. Кожен об'єкт у цьому масиві має наступні властивості:
+  - `type` містить рядок: або `addProperties`, або `removeProperties`, або `clear`;
+  - Друга властивість кожного об'єкта залежить від `type` і може бути однією з наступних:
+    - якщо `type` - `addProperties`, друга властивість - `extraData`. Вона містить об'єкт
+      з парами `ключ: значення`, які потрібно додати до стану;
+    - якщо `type` - `removeProperties`, друга властивість - `keysToRemove`. Вона містить масив
+      зі списком назв властивостей (ключів), які потрібно видалити зі стану; (Неіснуючі
+      властивості слід ігнорувати)
+    - якщо `type` має значення `clear`, ви повинні видалити всі властивості зі стану
+      state. Друга властивість у цьому випадку не потрібна;
 
-Implement a function accepting 2 arguments: `state` and `actions`. The function
-should change the `state` basing on the given `actions` array.
+Приклад використання:
 
-- `state` is an object. You are supposed to add, change, or delete its
-  properties instead of creating a new object
-
-- `actions` is an array of objects. Each object in this array has the next properties:
-  - `type` contains a string: either `'addProperties'`, `'removeProperties'` or `'clear'`;
-  - The second property of each object depends on `type` and may be one of the following:
-    - if `type` is `addProperties`, second property is `extraData`. It contains an object
-      with `key: value` pairs to add to the state;
-    - if `type` is `removeProperties`, second property is `keysToRemove`. It contains an array
-      with the list of property names (keys) to remove from the `state`; (Not existing
-      properties should be ignored)
-    - if `type` is `clear` you should remove all the properties from the
-      state. No second property in this case;
-
-Example of usage:
-
-If `state` is {foo: 'bar', bar: 'foo'}, then
+Якщо `state` має вигляд {foo: 'bar', bar: 'foo'}, то
 ```
  transformState(state, [
    {
@@ -44,12 +37,12 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
    }
  ])
 ```
-should modify the `state`, doing the following:
-- add two properties to the `state`
-- then remove keys `bar` and `hello` from the `state`
-- and finally add another one property to the `state`
+повинен модифікувати `state`, зробивши наступне:
+- додати до `state` дві властивості
+- потім видалити ключі `bar` та `hello` зі стану `state`
+- і нарешті додати ще одну властивість до `state`.
 
-After these operations the object `state` will have the following look
+Після цих операцій об'єкт `state` матиме наступний вигляд
  ```
  {
    foo: 'bar',
@@ -58,16 +51,18 @@ After these operations the object `state` will have the following look
  }
 ```
 
-Another example:
+Інший приклад:
 
 ```
  const state = { x: 1 };
 
  transformState(state, [
-   { type: 'addProperties', extraData: { yet: 'another property' } }
+   { type: 'addProperties', extraData: { yet: 'інша властивість' } }
    { type: 'clear' },
    { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
  ]);
 
-// state === { foo: 'bar', name: 'Jim' }
+// стан === { foo: 'bar', name: 'Jim' }
 ```
+
+Translated with www.DeepL.com/Translator (free version)
