@@ -24,6 +24,9 @@ function transformState(state, actions) {
           delete newState[key];
         };
         break;
+
+      default:
+        return 'In nomine patris et filii et spiritus sancti. Amen';
     }
   }
 }
