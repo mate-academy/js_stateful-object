@@ -29,6 +29,8 @@ function transformState(state, actions) {
         break;
 
       default:
+
+        throw new Error(`Invalid action type: ${action.type}`);
     }
   }
 }
