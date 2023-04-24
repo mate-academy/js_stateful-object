@@ -7,6 +7,10 @@
 function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
     if (actions[i].type === 'addProperties') {
+      // state = {
+      //   ...state, ...actions[i].extraData,
+      // };
+
       Object.assign(state, actions[i].extraData);
     }
 
@@ -27,7 +31,7 @@ function transformState(state, actions) {
     }
   }
 
-  return (state);
+  // return (state1);
 }
 
 module.exports = transformState;
