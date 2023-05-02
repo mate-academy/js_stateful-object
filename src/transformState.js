@@ -4,15 +4,18 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-function transformState(state, actions) {
-  for (let i = 0; i < actions.length; i++) {
-    const action = actions[i];
 
+/**
+ * @param {Object} state
+ * @param {Object[]} actions
+ */
+function transformState(state, actions) {
+  for (const action of actions) {
     switch (action.type) {
       case 'addProperties': {
         const extraData = action.extraData;
 
-        for (const key in extraData) {
+        for (const key of Object.keys(extraData)) {
           state[key] = extraData[key];
         }
         break;
@@ -21,9 +24,7 @@ function transformState(state, actions) {
       case 'removeProperties': {
         const keysToRemove = action.keysToRemove;
 
-        for (let j = 0; j < keysToRemove.length; j++) {
-          const key = keysToRemove[j];
-
+        for (const key of keysToRemove) {
           if (state.hasOwnProperty(key)) {
             delete state[key];
           }
@@ -32,15 +33,16 @@ function transformState(state, actions) {
       }
 
       case 'clear': {
-        for (const key in state) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+        for (const key of Object.keys(state)) {
+          delete state[key];
         }
         break;
       }
-      default:
-        break;
+
+      default: {
+        // default case for error handling
+        throw new Error(`Unknown action type: ${action.type}`);
+      }
     }
   }
 
