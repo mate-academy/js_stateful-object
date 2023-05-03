@@ -6,20 +6,20 @@
  */
 function transformState(state, actions) {
   for (let i = 0; i < actions.length; i++) {
-    const action = actions[i].type;
+    const action = actions[i];
 
-    if (action === 'clear') {
+    if (action.type === 'clear') {
       for (const stateKey in state) {
         delete state[stateKey];
       }
-    } else if (action === 'addProperties') {
-      const addObject = actions[i].extraData;
+    } else if (action.type === 'addProperties') {
+      const addObject = action.extraData;
 
       for (const addKey in addObject) {
         state[addKey] = addObject[addKey];
       }
-    } else if (action === 'removeProperties') {
-      const removeArray = actions[i].keysToRemove;
+    } else if (action.type === 'removeProperties') {
+      const removeArray = action.keysToRemove;
 
       for (const removeKey of removeArray) {
         delete state[removeKey];
