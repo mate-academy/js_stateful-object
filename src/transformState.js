@@ -17,12 +17,15 @@ function doAction(action, state) {
     case 'addProperties':
       addProperties(action.extraData, state);
       break;
+
     case 'removeProperties':
       removeProperties(action.keysToRemove, state);
       break;
+
     case 'clear':
       clear(state);
       break;
+
     default:
       throw Error('Something went wrong');
   }
