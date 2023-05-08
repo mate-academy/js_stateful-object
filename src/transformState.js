@@ -36,6 +36,9 @@ function transformState(state, actions) {
       case 'clear':
         clear(state);
         break;
+
+      default:
+        throw new Error('something went wrong');
     }
   }
 }
