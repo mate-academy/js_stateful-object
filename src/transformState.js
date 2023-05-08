@@ -20,8 +20,6 @@ function transformState(state, actions) {
         break;
     }
   }
-
-  return state;
 }
 
 function remove(object, keysToRemove) {
