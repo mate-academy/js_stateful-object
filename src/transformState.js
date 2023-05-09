@@ -22,6 +22,9 @@ function transformState(state, actions) {
       case object.type === 'clear':
         deleteAllProperties(state);
         break;
+
+      default:
+        return state;
     }
   }
 
