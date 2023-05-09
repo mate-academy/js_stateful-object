@@ -7,9 +7,7 @@
 function transformState(state, actions) {
   // write code here
   for (const action of actions) {
-    const type = action.type;
-
-    switch (type) {
+    switch (action.type) {
       case 'addProperties':
         add(state, action.extraData);
         break;
