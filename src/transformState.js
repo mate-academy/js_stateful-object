@@ -25,9 +25,9 @@ function transformState(state, actions) {
   }
 }
 
-function removeProperty(object, keys) {
-  for (const key of keys) {
-    delete object[key];
+function removeProperty(object, properties) {
+  for (const property of properties) {
+    delete object[property];
   }
 }
 
