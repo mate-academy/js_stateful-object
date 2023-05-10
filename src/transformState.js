@@ -12,26 +12,26 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        removeProperty(state, action.keysToRemove);
+        removeProperties(state, action.keysToRemove);
         break;
 
       case 'clear':
-        clearObject(state);
+        clearState(state);
         break;
 
       default:
-        return state;
+        break;
     }
   }
 }
 
-function removeProperty(object, properties) {
+function removeProperties(object, properties) {
   for (const property of properties) {
     delete object[property];
   }
 }
 
-function clearObject(object) {
+function clearState(object) {
   for (const key in object) {
     delete object[key];
   }
