@@ -9,23 +9,36 @@ function transformState(state, actions) {
   for (const action of actions) {
     const { type } = action;
 
-    if (type === 'addProperties') {
-      const { extraData } = action;
+    switch (type) {
+      case 'addProperties': {
+        const { extraData } = action;
 
-      for (const key in extraData) {
-        state[key] = extraData[key];
+        for (const [key, value] of Object.entries(extraData)) {
+          state[key] = value;
+        }
+        break;
       }
-    } else if (type === 'removeProperties') {
-      const { keysToRemove } = action;
 
-      for (const key of keysToRemove) {
-        if (key in state) {
+      case 'removeProperties': {
+        const { keysToRemove } = action;
+
+        for (const key of keysToRemove) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
+        }
+        break;
+      }
+
+      case 'clear': {
+        for (const key of Object.keys(state)) {
           delete state[key];
         }
+        break;
       }
-    } else if (type === 'clear') {
-      for (const key of Object.keys(state)) {
-        delete state[key];
+
+      default: {
+        throw new Error(`Unknown action type: ${type}`);
       }
     }
   }
