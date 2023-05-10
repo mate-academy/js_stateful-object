@@ -24,6 +24,10 @@ function transformState(state, actions) {
         for (const key in stateModified) {
           delete stateModified[key];
         }
+        break;
+
+      case 'default':
+        throw new Error(`No ${action.type} action type found`);
     }
   }
 
