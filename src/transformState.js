@@ -19,13 +19,14 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
-        const arayKeys = Object.keys(state);
-
-        for (const key of arayKeys) {
+      case 'clear':
+        for (const key in state) {
           delete state[key];
         }
         break;
+
+      default:
+        return false;
     }
   }
 
