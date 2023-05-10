@@ -12,7 +12,7 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        removeProperties(action.keysToRemove, state);
+        removeProperties(state, action.keysToRemove);
         break;
 
       case 'clear':
@@ -27,7 +27,7 @@ function transformState(state, actions) {
   return state;
 }
 
-function removeProperties(keysToRemove, state) {
+function removeProperties(state, keysToRemove) {
   for (const key of keysToRemove) {
     delete state[key];
   }
