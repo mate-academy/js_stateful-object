@@ -12,17 +12,17 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        Object.keys(state).forEach(key => {
+        for (const key in state) {
           if (action.keysToRemove.includes(key)) {
             delete state[key];
           }
-        });
+        }
         break;
 
       case 'clear':
-        Object.keys(state).forEach(key => {
+        for (const key in state) {
           delete state[key];
-        });
+        }
         break;
 
       default:
