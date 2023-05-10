@@ -30,7 +30,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error(`${type} doesn't exist`);
     }
   }
 }
