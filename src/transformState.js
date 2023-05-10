@@ -14,15 +14,17 @@ function transformState(state, actions) {
       case 'removeProperties' :
         for (const key of action.keysToRemove) {
           delete state[key];
-        } break;
+        }
+        break;
 
       case 'clear' :
         for (const key in state) {
           delete state[key];
-        } break;
+        }
+        break;
 
       default:
-        throw new Error('Error');
+        throw new Error('Invalid action type');
     }
   }
 
