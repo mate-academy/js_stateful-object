@@ -24,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw new Error('undefined type of actions');
+        throw new Error('invalid type of actions');
     }
   }
 
