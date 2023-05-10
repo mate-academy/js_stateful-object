@@ -13,21 +13,21 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const item of action.keysToRemove) {
-          delete state[item];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
 
         break;
 
       case 'clear':
-        for (const item in state) {
-          delete state[item];
+        for (const key in state) {
+          delete state[key];
         }
 
         break;
 
       default:
-        throw new Error('Error');
+        throw new Error('Undefined action type');
     }
   }
 }
