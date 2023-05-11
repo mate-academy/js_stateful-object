@@ -26,11 +26,9 @@ function transformState(state, actions) {
         break;
 
       default:
-        return `Unknown type ${type} `;
+        throw new Error(`Unknown type ${type}`);
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
