@@ -4,41 +4,16 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-// function transformState(state, actions) {
-//   for (const index of actions) {
-//     if (index.type === 'addProperties') {
-//       for (const key in index.extraData) {
-//         state[key] = index.extraData[key];
-//       }
-//     } else if (index.type === 'removeProperties') {
-//       for (const property of index.keysToRemove) {
-//         if (state[property]) {
-//           delete state[property];
-//         }
-//       }
-//     } else if (index.type === 'clear') {
-//       for (const key1 in state) {
-//         delete state[key1];
-//       }
-//     }
-//   }
-
-//   return state;
-// }
 function transformState(state, actions) {
-  for (const index of actions) {
-    switch (index.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        for (const key in index.extraData) {
-          state[key] = index.extraData[key];
+        for (const key in action.extraData) {
+          state[key] = action.extraData[key];
         }
         break;
       case 'removeProperties':
-        for (const property of index.keysToRemove) {
-          if (state[property]) {
-            delete state[property];
-          }
-        }
+        removeProperties(action, state);
         break;
       case 'clear':
         for (const key1 in state) {
@@ -46,11 +21,17 @@ function transformState(state, actions) {
         }
         break;
       default:
-        break;
+        throw new Error(`Unknown action type ${action.type}.`);
     }
   }
 
   return state;
+}
+
+function removeProperties(a, b) {
+  for (const property of a.keysToRemove) {
+    delete b[property];
+  }
 }
 
 module.exports = transformState;
