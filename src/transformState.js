@@ -25,6 +25,9 @@ function transformState(state, actions) {
         }
 
         break;
+
+      default:
+        return 'Unknown command';
     }
   }
 }
