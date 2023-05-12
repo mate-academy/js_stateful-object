@@ -13,28 +13,22 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        removeSpecificKeys(action);
+        removeKeys(state, action.keysToRemove);
         break;
 
       case 'clear':
-        removeAllKeys();
+        removeKeys(state);
         break;
 
       default:
         throw new Error(`No ${action.type} action type found`);
     }
   }
+}
 
-  function removeAllKeys() {
-    for (const key in state) {
-      delete state[key];
-    }
-  }
-
-  function removeSpecificKeys(arrayToClean) {
-    for (const key of arrayToClean.keysToRemove) {
-      delete state[key];
-    }
+function removeKeys(objectToClean, keys = Object.keys(objectToClean)) {
+  for (const key of keys) {
+    delete objectToClean[key];
   }
 }
 
