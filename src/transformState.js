@@ -18,9 +18,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
-          delete state[key];
-        }
+        removeProperty(state, action.keysToRemove);
+
         break;
 
       default:
@@ -32,6 +31,12 @@ function transformState(state, actions) {
 function clearObject(obj) {
   for (const key in obj) {
     delete obj[key];
+  }
+}
+
+function removeProperty(state, properties) {
+  for (const property of properties) {
+    delete state[property];
   }
 }
 
