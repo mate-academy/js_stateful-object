@@ -5,26 +5,22 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const meaning in actions) {
-    const point = actions[meaning];
+  for (const action in actions) {
+    const point = actions[action];
 
-    for (const keys in point) {
-      const intermediate = point[keys];
+    if (point.type === 'addProperties') {
+      Object.assign(state, point.extraData);
+    }
 
-      if (keys === 'extraData') {
-        Object.assign(state, intermediate);
+    if (point.type === 'removeProperties') {
+      for (let i = 0; i < point.keysToRemove.length; i++) {
+        delete state[point.keysToRemove[i]];
       }
+    }
 
-      if (keys === 'keysToRemove') {
-        for (let i = 0; i < intermediate.length; i++) {
-          delete state[intermediate[i]];
-        }
-      }
-
-      if (point[keys] === 'clear') {
-        for (const n in state) {
-          delete state[n];
-        }
+    if (point.type === 'clear') {
+      for (const n in state) {
+        delete state[n];
       }
     }
   }
