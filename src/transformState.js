@@ -7,39 +7,41 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    const { type } = action;
+    const { type, extraData, keysToRemove } = action;
 
     switch (type) {
       case 'addProperties': {
-        const { extraData } = action;
-
-        for (const [key, value] of Object.entries(extraData)) {
-          state[key] = value;
-        }
+        Object.assign(state, extraData);
         break;
       }
 
       case 'removeProperties': {
-        const { keysToRemove } = action;
-
-        for (const key of keysToRemove) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
-        }
+        removeProperties(state, keysToRemove);
         break;
       }
 
       case 'clear': {
-        for (const key of Object.keys(state)) {
-          delete state[key];
-        }
+        clearProperties(state);
         break;
       }
 
       default: {
         throw new Error(`Unknown action type: ${type}`);
       }
+    }
+  }
+
+  function removeProperties(obj, keysToRemove) {
+    for (const key of keysToRemove) {
+      if (obj.hasOwnProperty(key)) {
+        delete obj[key];
+      }
+    }
+  }
+
+  function clearProperties(obj) {
+    for (const key of Object.keys(obj)) {
+      delete obj[key];
     }
   }
 }
