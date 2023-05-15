@@ -4,11 +4,12 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-function transformState(state, actions) {
-  function deleteParam(params) {
-    delete state[params];
-  }
 
+function deleteParam(state, params) {
+  delete state[params];
+}
+
+function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -18,20 +19,20 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         for (const key of action.keysToRemove) {
-          deleteParam(key);
+          deleteParam(state, key);
         }
 
         break;
 
       case 'clear':
         for (const key in state) {
-          deleteParam(key);
+          deleteParam(state, key);
         }
 
         break;
 
       default:
-        throw new Error('Unknown command');
+        throw new Error(`${action.type} is not defined !`);
     }
   }
 }
