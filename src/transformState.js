@@ -24,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return ('Invalid action type:', action.type);
+        return (`Invalid action type: ${action.type}`);
     }
   }
 }
