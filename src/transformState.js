@@ -4,18 +4,16 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-const removeKey = function(actionObject, object) {
-  const { keysToRemove } = actionObject;
+const removeKey = (action, data) => {
+  const { keysToRemove } = action;
 
   for (const keyToRemove of keysToRemove) {
-    delete object[keyToRemove];
+    delete data[keyToRemove];
   }
 };
-const clearProperties = function(actionObject, object) {
-  for (const key in object) {
-    if (object.hasOwnProperty(key)) {
-      delete object[key];
-    }
+const clearProperties = (action, data) => {
+  for (const key in data) {
+    delete data[key];
   }
 };
 
