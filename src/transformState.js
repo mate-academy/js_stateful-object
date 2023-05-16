@@ -5,8 +5,16 @@
  * @param {Object[]} actions
  */
 
-function deleteParam(state, params) {
-  delete state[params];
+function removeProperties(object, params) {
+  for (const property of params) {
+    delete object[property];
+  }
+}
+
+function clear(object) {
+  for (const key in object) {
+    delete object[key];
+  }
 }
 
 function transformState(state, actions) {
@@ -18,16 +26,12 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
-          deleteParam(state, key);
-        }
+        removeProperties(state, action.keysToRemove);
 
         break;
 
       case 'clear':
-        for (const key in state) {
-          deleteParam(state, key);
-        }
+        clear(state);
 
         break;
 
@@ -36,4 +40,5 @@ function transformState(state, actions) {
     }
   }
 }
+
 module.exports = transformState;
