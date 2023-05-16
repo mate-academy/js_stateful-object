@@ -10,12 +10,15 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
       case 'removeProperties':
         removeProperties(action, state);
         break;
+
       case 'clear':
         clear(state);
         break;
+
       default:
         throw new Error(`Unknown action type ${action.type}.`);
     }
@@ -25,14 +28,14 @@ function transformState(state, actions) {
 }
 
 function removeProperties(object, keysToRemove) {
-  for (const property of object.keysToRemove) {
-    delete keysToRemove[property];
+  for (const key of object.keysToRemove) {
+    delete keysToRemove[key];
   }
 }
 
 function clear(object) {
-  for (const key1 in object) {
-    delete object[key1];
+  for (const key in object) {
+    delete object[key];
   }
 }
 
