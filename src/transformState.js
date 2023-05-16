@@ -5,18 +5,6 @@
  * @param {Object[]} actions
  */
 
-function removeProperties(object, params) {
-  for (const property of params) {
-    delete object[property];
-  }
-}
-
-function clear(object) {
-  for (const key in object) {
-    delete object[key];
-  }
-}
-
 function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
@@ -38,6 +26,18 @@ function transformState(state, actions) {
       default:
         throw new Error(`${action.type} is not defined !`);
     }
+  }
+}
+
+function removeProperties(object, params) {
+  for (const property of params) {
+    delete object[property];
+  }
+}
+
+function clear(object) {
+  for (const key in object) {
+    delete object[key];
   }
 }
 
