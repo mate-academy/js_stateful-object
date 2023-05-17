@@ -4,9 +4,7 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-const removeKey = (action, data) => {
-  const { keysToRemove } = action;
-
+const removeKey = (keysToRemove, data) => {
   for (const keyToRemove of keysToRemove) {
     delete data[keyToRemove];
   }
@@ -18,25 +16,23 @@ const clearProperties = (action, data) => {
 };
 
 function transformState(state, actions) {
-  const stateCopy = state;
-
   for (const action of actions) {
-    const { type, extraData } = action;
+    const { type, extraData, keysToRemove } = action;
 
     switch (type) {
       case 'clear':
-        clearProperties(action, stateCopy);
+        clearProperties(action, state);
         break;
       case 'addProperties':
-        Object.assign(stateCopy, extraData);
+        Object.assign(state, extraData);
         break;
       case 'removeProperties':
-        removeKey(action, stateCopy);
+        removeKey(keysToRemove, state);
         break;
+      default:
+        throw new Error(`Invalid action type: ${action.type}`);
     }
   }
-
-  return stateCopy;
 }
 
 module.exports = transformState;
