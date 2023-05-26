@@ -22,6 +22,8 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+        default:
+      console.log("Error while reading data");
     }
   }
 
