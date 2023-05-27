@@ -26,7 +26,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Wrong Type';
+        throw new Error('Wrong Type');
     }
   }
 }
