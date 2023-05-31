@@ -14,8 +14,6 @@ function transformState(state, actions) {
 
     if (act.type === 'removeProperties') {
       for (const removeItem of act.keysToRemove) {
-        // eslint-disable-next-line no-console
-        console.log(state, state[removeItem], removeItem);
         delete state[removeItem];
       }
     }
@@ -26,7 +24,6 @@ function transformState(state, actions) {
       }
     }
   }
-  // eslint-disable-next-line no-console
 
   return state;
 }
