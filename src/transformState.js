@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  let newState = { ...state };
+  const newState = state;
 
   for (const action of actions) {
     const { type } = action;
@@ -25,7 +25,9 @@ function transformState(state, actions) {
     }
 
     if (type === 'clear') {
-      newState = {};
+      for (const key in newState) {
+        delete newState[key];
+      }
     }
   }
 
