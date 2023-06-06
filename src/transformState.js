@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const newState = state;
+  const newState = Object.assign(state);
 
   for (const action of actions) {
     const { type } = action;
