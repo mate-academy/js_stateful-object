@@ -23,26 +23,18 @@ function transformState(state, actions) {
 }
 
 function addProperties(state, extraData) {
-  // I do not understand why this option of adding to the object did not work
-
-  // for (const key in extraData) {
-  //   state.key = extraData[key];
-  // }
-
   Object.assign(state, extraData);
 }
 
 function removeProperties(state, keysToRemove) {
   for (const key of keysToRemove) {
     delete state[key];
-    delete state.key;
   }
 }
 
 function clear(state) {
   for (const key in state) {
     delete state[key];
-    delete state.key;
   }
 }
 
