@@ -34,7 +34,6 @@ function modifyState(state, actions) {
         break;
 
       default:
-        // Handle unrecognized action types
         throw new Error(`Unsupported action type: ${type}`);
     }
   }
