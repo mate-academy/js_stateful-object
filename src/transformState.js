@@ -6,26 +6,30 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    const { type } = action;
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
 
-    if (type === 'addProperties') {
-      const { extraData } = action;
-
-      Object.assign(state, extraData);
-    } else if (type === 'removeProperties') {
-      const { keysToRemove } = action;
-
-      for (const key of keysToRemove) {
-        if (state.hasOwnProperty(key)) {
-          delete state[key];
+      case 'removeProperties':
+        for (const key of action.keysToRemove) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
         }
-      }
-    } else if (type === 'clear') {
-      for (const key in state) {
-        if (state.hasOwnProperty(key)) {
-          delete state[key];
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
         }
-      }
+        break;
+
+      default:
+
+        throw new Error(`Unsupported action type: ${action.type}`);
     }
   }
 }
