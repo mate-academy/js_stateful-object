@@ -25,25 +25,7 @@ should change the `state` basing on the given `actions` array.
 Example of usage:
 
 If `state` is {foo: 'bar', bar: 'foo'}, then
-```
- transformState(state, [
-   {
-     type: 'addProperties',
-     extraData: {
-       name: 'Jim',
-       hello: 'world',
-     }
-   },
-   {
-     type: 'removeProperties',
-     keysToRemove: ['bar', 'hello'],
-   },
-   {
-     type: 'addProperties',
-     extraData: { another: 'one' },
-   }
- ])
-```
+
 should modify the `state`, doing the following:
 - add two properties to the `state`
 - then remove keys `bar` and `hello` from the `state`
