@@ -8,15 +8,11 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
-        const dataToExtract = action.extraData;
-
-        Object.assign(state, { ...dataToExtract });
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
-        const dataToRemove = action.keysToRemove;
-
-        [ ...dataToRemove ].forEach(list => delete state[list]);
+        action.keysToRemove.forEach(property => delete state[property]);
         break;
 
       case 'clear':
@@ -24,6 +20,9 @@ function transformState(state, actions) {
           delete state[member];
         }
 
+        break;
+
+      default:
         break;
     }
   }
