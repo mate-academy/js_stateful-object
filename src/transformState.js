@@ -19,13 +19,10 @@ function transformState(state, actions) {
         break;
       case 'clear':
         for (const key in state) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
       default:
-        // Unknown action type, do nothing
         break;
     }
   }
