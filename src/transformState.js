@@ -18,6 +18,8 @@ function transformState(state, actions) {
       case 'clear':
         Object.keys(tempState).forEach(key => delete tempState[key]);
         break;
+      default:
+        throw new Error('Invalid action type');
     }
   });
 
