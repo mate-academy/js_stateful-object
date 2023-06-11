@@ -9,18 +9,20 @@ function transformState(state, actions) {
     reducer(action);
   }
 
-  function reducer(action) {
-    switch (action.type) {
+  function reducer({ type, extraData, keysToRemove }) {
+    switch (type) {
       case 'addProperties':
-        for (const key in action.extraData) {
-          state[key] = action.extraData[key];
+        for (const key in extraData) {
+          state[key] = extraData[key];
         }
 
         break;
 
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
-          delete state[key];
+        for (const key of keysToRemove) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
         }
 
         break;
