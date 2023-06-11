@@ -21,6 +21,10 @@ function transformState(state, actions) {
         Object.keys(state).forEach(key => {
           delete state[key];
         });
+        break;
+
+      default:
+        throw new Error('Error');
     }
   }
 }
