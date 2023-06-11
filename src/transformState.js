@@ -1,23 +1,27 @@
 'use strict';
 
-/**
- * @param {Object} state
- * @param {Object[]} actions
- */
 function transformState(state, actions) {
   const modifiedState = state;
 
   actions.forEach(action => {
-    if (action.type === 'addProperties') {
-      Object.assign(modifiedState, action.extraData);
-    } else if (action.type === 'removeProperties') {
-      for (const key of action.keysToRemove) {
-        delete modifiedState[key];
-      }
-    } else if (action.type === 'clear') {
-      for (const key in modifiedState) {
-        delete modifiedState[key];
-      }
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(modifiedState, action.extraData);
+        break;
+      case 'removeProperties':
+        for (const key of action.keysToRemove) {
+          delete modifiedState[key];
+        }
+
+        break;
+      case 'clear':
+        for (const key in modifiedState) {
+          delete modifiedState[key];
+        }
+
+        break;
+      default:
+        throw new Error(`No action type - '${action.type}'`);
     }
   });
 }
