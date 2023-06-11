@@ -12,26 +12,23 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case ADD_OPTION:
-        for (const key in action.extraData) {
+        for (const key of Object.keys(action.extraData)) {
           state[key] = action.extraData[key];
         }
 
         break;
-
       case REMOVE_OPTION:
         for (const key of action.keysToRemove) {
           delete state[key];
         }
 
         break;
-
       case CLEAR_OPTION:
         for (const key of Object.keys(state)) {
           delete state[key];
         }
 
         break;
-
       default:
         return 'Something wrong';
     }
