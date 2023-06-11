@@ -19,7 +19,7 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        clearObject(state);
+        removeProperties(state, Object.keys(state));
         break;
 
       default:
@@ -34,12 +34,6 @@ function addProperties(object, extraData) {
 
 function removeProperties(object, keys) {
   for (const key of keys) {
-    delete object[key];
-  }
-}
-
-function clearObject(object) {
-  for (const key of Object.keys(object)) {
     delete object[key];
   }
 }
