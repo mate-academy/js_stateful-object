@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1686565617932" clover="3.2.0">
+  <project timestamp="1686565617932" name="All files">
+    <metrics statements="12" coveredstatements="3" conditionals="5" coveredconditionals="0" methods="1" coveredmethods="1" elements="18" coveredelements="4" complexity="0" loc="12" ncloc="12" packages="1" files="1" classes="1"/>
+    <file name="transformState.js" path="D:\work\mate\JavaScript\object\js_stateful-object\src\transformState.js">
+      <metrics statements="12" coveredstatements="3" conditionals="5" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="9" count="13" type="stmt"/>
+      <line num="10" count="22" type="cond" truecount="0" falsecount="3"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="30" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
