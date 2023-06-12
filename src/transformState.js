@@ -12,9 +12,7 @@ function transformState(state, actions) {
   function reducer({ type, extraData, keysToRemove }) {
     switch (type) {
       case 'addProperties':
-        for (const key in extraData) {
-          state[key] = extraData[key];
-        }
+        Object.assign(state, extraData);
 
         break;
 
@@ -35,7 +33,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return state;
+        throw new Error('Unexpected type');
     }
   }
 
