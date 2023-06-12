@@ -20,7 +20,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw new Error();
+        throw new Error("Something went wrond! Please check your data!");
     }
   }
 }
