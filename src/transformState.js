@@ -5,8 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // let resultObj = Object.assign(state);
-
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
@@ -26,6 +24,8 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+      default:
+        throw new Error('Incorrect action type');
     }
   }
 }
