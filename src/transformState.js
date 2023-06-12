@@ -30,7 +30,7 @@ function transformState(state, actions) {
 
         break;
       default:
-        return 'Something wrong';
+        throw new Error('No defined action type');
     }
   }
 }
