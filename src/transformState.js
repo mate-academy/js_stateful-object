@@ -7,24 +7,21 @@
 function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
-      // eslint-disable-next-line
-      case 'addProperties': {
+      case 'addProperties':
         Object.assign(state, action.extraData);
-      } break;
-      // eslint-disable-next-line
-      case 'removeProperties': {
+        break;
+      case 'removeProperties':
         for (const key of action.keysToRemove) {
           if (state.hasOwnProperty(key)) {
             delete state[key];
           }
         }
-      } break;
-      // eslint-disable-next-line
-      case 'clear': {
+        break;
+      case 'clear':
         for (const stateKey in state) {
           delete state[stateKey];
         }
-      } break;
+        break;
       default:
         break;
     }
