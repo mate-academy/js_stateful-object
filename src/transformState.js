@@ -6,7 +6,6 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    // Extracting multiple properties:
     const { type, extraData, keysToRemove } = action;
 
     switch (type) {
