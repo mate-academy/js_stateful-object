@@ -12,10 +12,7 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case ADD_OPTION:
-        for (const key of Object.keys(action.extraData)) {
-          state[key] = action.extraData[key];
-        }
-
+        Object.assign(state, action.extraData);
         break;
       case REMOVE_OPTION:
         for (const key of action.keysToRemove) {
