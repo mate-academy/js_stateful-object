@@ -32,11 +32,9 @@ function addProperties(state, data) {
 }
 
 function removeProperties(state, data) {
-  for (const key in data) {
-    const currentKey = data[key];
-
-    if (state[currentKey] !== undefined) {
-      delete state[currentKey];
+  for (const key of data) {
+    if (state[key] !== undefined) {
+      delete state[key];
     }
   }
 }
