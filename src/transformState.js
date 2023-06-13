@@ -21,6 +21,8 @@ function transformState(state, actions) {
           delete state[clearItem];
         }
         break;
+      default :
+        throw new Error('Unknown action! Please, enter valid value');
     }
   }
 
