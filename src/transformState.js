@@ -17,21 +17,15 @@ function transformState(state, actions) {
         break;
 
       case REMOVE_PROPERTY_TYPE:
-        for (let j = 0; j < action.keysToRemove.length; j++) {
-          const key = action.keysToRemove[j];
-
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
 
         break;
 
       case CLEAR_TYPE:
         for (const key in state) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
 
         break;
