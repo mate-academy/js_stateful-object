@@ -5,11 +5,8 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // write code here
   function addProperties(extraData) {
-    for (const [key, value] of Object.entries(extraData)) {
-      state[key] = value;
-    }
+    Object.assign(state, extraData);
   }
 
   function clear() {
@@ -36,7 +33,7 @@ function transformState(state, actions) {
         removeProperties(action.keysToRemove);
         break;
       default:
-        throw Error;
+        throw Error('action type is wrong');
     }
   }
 
