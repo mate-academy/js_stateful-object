@@ -14,8 +14,8 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const key in action.keysToRemove) {
-          delete state[action.keysToRemove[key]];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
@@ -32,3 +32,29 @@ function transformState(state, actions) {
 }
 
 module.exports = transformState;
+
+const stat = {
+  foo: 'bar', name: 'Jim', another: 'one',
+};
+
+transformState(stat, [
+  {
+    type: 'removeProperties', keysToRemove: ['another'],
+  },
+  { type: 'clear' },
+  { type: 'clear' },
+  { type: 'clear' },
+  {
+    type: 'addProperties', extraData: { yet: 'another property' },
+  },
+  { type: 'clear' },
+  {
+    type: 'addProperties',
+    extraData: {
+      foo: 'bar', name: 'Jim',
+    },
+  },
+  {
+    type: 'removeProperties', keysToRemove: ['name', 'hello'],
+  },
+]);
