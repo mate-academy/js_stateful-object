@@ -5,30 +5,32 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const removeAction = 'removeProperties';
-  const addAction = 'addProperties';
-  const clearAction = 'clear';
+  const ADD_ACTION = 'addProperties';
+  const REMOVE_ACTION = 'removeProperties';
+  const CLEAR_ACTION = 'clear';
 
   for (const action of actions) {
-    switch (action.type) {
-      case addAction:
-        Object.assign(state, action.extraData);
+    const { type, extraData, keysToRemove } = action;
+
+    switch (type) {
+      case ADD_ACTION:
+        Object.assign(state, extraData);
         break;
 
-      case removeAction:
-        action.keysToRemove.forEach(key => {
+      case REMOVE_ACTION:
+        keysToRemove.forEach(key => {
           delete state[key];
         });
         break;
 
-      case clearAction:
+      case CLEAR_ACTION:
         Object.keys(state).forEach(key => {
           delete state[key];
         });
         break;
 
       default:
-        break;
+        throw new Error(`Action error with ${type}`);
     }
   }
 }
