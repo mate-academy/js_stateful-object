@@ -20,9 +20,7 @@ function transformState(state, actions) {
         const { keysToRemove } = action;
 
         for (const key of keysToRemove) {
-          if (Object.hasOwnProperty.call(state, key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
       }
