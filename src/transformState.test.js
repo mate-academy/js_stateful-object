@@ -27,10 +27,9 @@ test('Should add multiple properties to an empty state', () => {
     },
   ]);
 
-  expect(state)
-    .toEqual({
-      name: 'Jim', hello: 'world',
-    });
+  expect(state).toEqual({
+    name: 'Jim', hello: 'world',
+  });
 });
 
 test('Should add multiple properties to non empty state', () => {
