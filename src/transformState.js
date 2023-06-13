@@ -44,8 +44,6 @@ function transformState(state, actions) {
         throw new Error(`Action error with ${type}`);
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
