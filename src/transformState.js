@@ -20,7 +20,11 @@ function transformState(state, actions) {
       case 'clear':
         for (const property of Object.keys(state)) {
           delete state[property];
-        }
+        };
+        break;
+
+      default:
+        throw new Error('InvalidActionName');
     }
   }
 }
