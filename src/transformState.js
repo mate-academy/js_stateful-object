@@ -22,8 +22,9 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
       default:
-        return 'Sorry, we does not have actions for your state';
+        throw new Error('Sorry, we does not have actions for your state');
     }
   }
 }
