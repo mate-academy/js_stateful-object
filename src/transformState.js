@@ -14,20 +14,23 @@ function transformState(state, actions) {
       case addOption:
         Object.assign(state, action.extraData);
         break;
+
       case removeOption:
         for (const key of action.keysToRemove) {
           delete state[key];
         }
 
         break;
+
       case clearOption:
         for (const key of Object.keys(state)) {
           delete state[key];
         }
 
         break;
+
       default:
-        return 'There is no options to change';
+        throw new Error('Unknown action type.');
     }
   }
 }
