@@ -10,16 +10,19 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
       case 'removeProperties':
         for (const val of action.keysToRemove) {
           delete state[val];
         }
         break;
+
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
         break;
+
       default:
         throw new Error('This type doesn`t exist');
     }
