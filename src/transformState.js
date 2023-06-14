@@ -19,14 +19,12 @@ function transformState(state, actions) {
         for (const key of action.keysToRemove) {
           delete state[key];
         }
-
         break;
 
       case clearOption:
         for (const key of Object.keys(state)) {
           delete state[key];
         }
-
         break;
 
       default:
