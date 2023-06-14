@@ -6,26 +6,26 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    if (action.type === 'addProperties') {
-      const extraData = action.extraData;
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
 
-      for (const key in extraData) {
-        state[key] = extraData[key];
-      }
-    } else if (action.type === 'removeProperties') {
-      const keysToRemove = action.keysToRemove;
-
-      for (const key of keysToRemove) {
-        if (state.hasOwnProperty(key)) {
+      case 'removeProperties':
+        for (const key of action.keysToRemove) {
           delete state[key];
         }
-      }
-    } else if (action.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+        break;
+
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        throw new Error('Do not exist');
     }
   }
 }
-
 module.exports = transformState;
