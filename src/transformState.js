@@ -5,32 +5,27 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  
-actions.forEach((action) => {
+  for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
-        const extraData = action.extraData;
-        Object.keys(extraData).forEach((key) => {
-          state[key] = extraData[key];
-        });
+        Object.assign(state, action.extraData);
         break;
       case 'removeProperties':
-        const keysToRemove = action.keysToRemove;
-        keysToRemove.forEach((key) => {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
-        });
+        for (const deleteItem of action.keysToRemove) {
+          delete state[deleteItem];
+        }
         break;
+
       case 'clear':
-        Object.keys(state).forEach((key) => {
-          delete state[key];
-        });
+        for (const clearItem in state) {
+          delete state[clearItem];
+        }
         break;
-      default:
-        break;
+      default :
+        throw new Error('Unknown action! Please, enter valid value');
     }
-  });
+  }
+  return state;
 }
 
 module.exports = transformState;
