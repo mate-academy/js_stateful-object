@@ -4,34 +4,38 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-
 function transformState(state, actions) {
+  // debugger;
+
+  const results = [];
+
   for (const action of actions) {
-    const { type } = action;
+    applyAction(state, action);
 
-    switch (type) {
-      case 'addProperties':
-        const { extraData } = action;
+    results.push(state);
+  }
+}
 
-        Object.assign(state, extraData);
-        break;
-      case 'removeProperties':
-        const { keysToRemove } = action;
+function applyAction(state, action) {
+  switch (action.type) {
+    case 'addProperties':
+      Object.assign(state, action.extraData);
+      break;
 
-        for (const key of keysToRemove) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
-        }
-        break;
-      case 'clear':
-        for (const key in state) {
-          delete state[key];
-        }
-        break;
-      default:
-        throw new Error(`Invalid action type: ${type}`);
-    }
+    case 'removeProperties':
+      for (const key of action.keysToRemove) {
+        delete state[key];
+      }
+      break;
+
+    case 'clear':
+      for (const key in state) {
+        delete state[key];
+      }
+      break;
+
+    default:
+      throw new Error(`Invalid action type: ${action.type}`);
   }
 }
 
