@@ -9,28 +9,24 @@ function transformState(state, actions) {
     const { type, extraData, keysToRemove } = action;
 
     switch (type) {
-      case 'addProperties': {
+      case 'addProperties':
         Object.assign(state, extraData);
         break;
-      }
 
-      case 'removeProperties': {
-        for (let i = 0; i < keysToRemove.length; i++) {
-          delete state[keysToRemove[i]];
-        }
-        break;
-      }
-
-      case 'clear' : {
-        for (const key of Object.keys(state)) {
+      case 'removeProperties':
+        for (const key of keysToRemove) {
           delete state[key];
         }
         break;
-      }
 
-      default : {
-        throw new Error('ERROR');
-      }
+      case 'clear' :
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default :
+        throw new Error('Action type does not exist');
     }
   }
 }
