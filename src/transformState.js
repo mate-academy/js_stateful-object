@@ -5,13 +5,13 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const value of actions) {
-    switch (value.type) {
+  for (const action of actions) {
+    switch (action.type) {
       case 'addProperties':
-        Object.assign(state, value.extraData);
+        Object.assign(state, action.extraData);
         break;
       case 'removeProperties':
-        for (const val of value.keysToRemove) {
+        for (const val of action.keysToRemove) {
           delete state[val];
         }
         break;
@@ -20,6 +20,8 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+      default:
+        throw new Error('This type doesn`t exist');
     }
   }
 }
