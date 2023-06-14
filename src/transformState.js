@@ -7,14 +7,15 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (true) {
-      case (action.type === 'addProperties'):
+    switch (action.type) {
+      case 'addProperties':
         for (const key in action.extraData) {
           state[key] = action.extraData[key];
         }
+
         break;
 
-      case (action.type === 'removeProperties'): {
+      case 'removeProperties':
         const array = action.keysToRemove;
 
         for (const item of array) {
@@ -22,14 +23,13 @@ function transformState(state, actions) {
             delete state[item];
           }
         }
-      }
+
         break;
 
-      case (action.type === 'clear'): {
+      case 'clear':
         for (const key in state) {
           delete state[key];
         }
-      }
     }
   }
 }
