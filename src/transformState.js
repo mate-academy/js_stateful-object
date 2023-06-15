@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * @param {Object} state
@@ -10,14 +10,12 @@ function transformState(state, actions) {
       for (const key in state) {
         delete state[key];
       }
-      continue;
     }
 
     if (action.type === 'removeProperties') {
       for (const keyToRemove of action.keysToRemove) {
         delete state[keyToRemove];
       }
-      continue;
     }
 
     if (action.type === 'addProperties') {
