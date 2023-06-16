@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * @param {Object} state
- * @param {Object[]} actions
- */
 function transformState(state, actions) {
   actions.forEach(action => {
     const { type, extraData, keysToRemove } = action;
