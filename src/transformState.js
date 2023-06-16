@@ -22,6 +22,10 @@ function transformState(state, actions) {
       case action.type === 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
+      default:
+        return `Something went wrong:/ .
+        Please check if you have written the values correctly`;
     }
   }
 }
