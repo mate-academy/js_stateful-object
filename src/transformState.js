@@ -6,29 +6,27 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    switch (true) {
-      case action.type === 'addProperties':
+    switch (action.type) {
+      case 'addProperties':
         for (const key in action.extraData) {
           state[key] = action.extraData[key];
         }
         break;
 
-      case action.type === 'removeProperties':
-        const actionKeysToRemove = action.keysToRemove;
-
-        for (let i = 0; i < actionKeysToRemove.length; i++) {
-          delete state[action.keysToRemove[i]];
+      case 'removeProperties':
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
 
-      case action.type === 'clear':
+      case 'clear':
         for (const keyState in state) {
           delete state[keyState];
         }
         break;
 
       default:
-        return;
+        throw Error(`Action type ${action.type} is not found`);
     }
   }
 }
