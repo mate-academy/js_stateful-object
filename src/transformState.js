@@ -21,6 +21,10 @@ function transformState(state, actions) {
 
       case 'clear':
         Object.keys(state).forEach(key => delete state[key]);
+        break;
+
+      default:
+        throw new Error(`type in array 'actions' is not found`);
     }
   }
 }
