@@ -6,28 +6,26 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    if (action.type === 'addProperties') {
-      const extraData = action.extraData;
+    const { type, extraData, keysToRemove } = action;
 
-      for (const key in extraData) {
-        state[key] = extraData[key];
-      }
-    }
+    switch (type) {
+      case 'addProperties':
+        for (const key in extraData) {
+          state[key] = extraData[key];
+        }
+        break;
 
-    if (action.type === 'removeProperties') {
-      const keysToRemove = action.keysToRemove;
+      case 'removeProperties':
+        for (const key of keysToRemove) {
+          delete state[key];
+        }
+        break;
 
-      for (const key of keysToRemove) {
-        delete state[key];
-      }
-    }
-
-    if (action.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+      default:
+        for (const key in state) {
+          delete state[key];
+        }
     }
   }
 }
-
 module.exports = transformState;
