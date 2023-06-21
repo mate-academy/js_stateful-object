@@ -21,10 +21,14 @@ function transformState(state, actions) {
         }
         break;
 
-      default:
+      case 'clear':
         for (const key in state) {
           delete state[key];
         }
+        break;
+
+      default:
+        throw new Error(`type in array 'actions' is not found`);
     }
   }
 }
