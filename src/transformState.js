@@ -29,8 +29,6 @@ function transformState(state, actions) {
         throw new Error('Unexpected action type');
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
