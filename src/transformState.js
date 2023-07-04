@@ -14,16 +14,12 @@ function transformState(state, actions) {
         action.keysToRemove.forEach(key => delete state[key]);
         break;
       case 'clear':
-        if (Object.keys(state).length > 0) {
-          Object.keys(state).forEach(key => delete state[key]);
-        }
+        Object.keys(state).forEach(key => delete state[key]);
         break;
       default:
         return state;
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
