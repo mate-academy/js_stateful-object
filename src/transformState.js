@@ -11,8 +11,10 @@ function transformState(state, actions) {
 
     switch (type) {
       case 'addProperties':
+
         Object.assign(state, extraData);
         break;
+      
       case 'removeProperties':
         for (const key of keysToRemove) {
           if (state.hasOwnProperty(key)) {
@@ -20,11 +22,13 @@ function transformState(state, actions) {
           }
         }
         break;
+      
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
         break;
+      
       default:
         break;
     }
