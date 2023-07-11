@@ -17,11 +17,13 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
-      default:
+      case 'clear':
         for (const key of Object.keys(state)) {
           delete state[key];
         }
         break;
+      default:
+        throw new Error('Unrecognised action.type');
     }
   }
 }
