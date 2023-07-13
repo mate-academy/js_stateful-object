@@ -17,6 +17,9 @@ function transformState(state, actions) {
         item.keysToRemove.forEach((key) => {
           delete state[key];
         });
+        break;
+      default:
+        break;
     }
   });
 }
