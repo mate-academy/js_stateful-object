@@ -22,7 +22,7 @@ function transformState(state, actions) {
         const { keysToRemove } = action;
 
         for (const key of keysToRemove) {
-          if (state.hasOwnProperty(key)) {
+          if (key in state) {
             delete state[key];
           }
         }
@@ -37,7 +37,6 @@ function transformState(state, actions) {
       }
 
       default: {
-        throw new Error(`Unknown action type: ${type}`);
       }
     }
   }
