@@ -6,9 +6,9 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    const valueOfType = action['type'];
+    const { type } = action;
 
-    switch (valueOfType) {
+    switch (type) {
       case 'addProperties':
         (Object.assign(state, action['extraData']));
         break;
