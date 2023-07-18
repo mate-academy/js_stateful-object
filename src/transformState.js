@@ -10,7 +10,7 @@ function transformState(state, actions) {
 
     switch (type) {
       case 'addProperties':
-        (Object.assign(state, action['extraData']));
+        (Object.assign(state, action.extraData));
         break;
 
       case 'clear':
@@ -20,7 +20,7 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        for (const keyToDelete of action['keysToRemove']) {
+        for (const keyToDelete of action.keysToRemove) {
           delete state[keyToDelete];
         }
         break;
