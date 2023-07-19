@@ -31,7 +31,6 @@ function transformState(state, actions) {
   });
 
   return state;
-  // write code here
 }
 
 module.exports = transformState;
