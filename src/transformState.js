@@ -7,7 +7,9 @@
 
 function transformState(state, actions) {
   actions.forEach((action) => {
-    switch (action.type) {
+    const { type } = action;
+
+    switch (type) {
       case 'clear':
         for (const stateProper in state) {
           if (state.hasOwnProperty(stateProper)) {
@@ -29,8 +31,6 @@ function transformState(state, actions) {
         break;
     }
   });
-
-  return state;
 }
 
 module.exports = transformState;
