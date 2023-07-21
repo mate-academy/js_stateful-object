@@ -16,11 +16,7 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const key in state) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
-        }
+        Object.keys(state).forEach((key) => delete state[key]);
         break;
 
       default:
