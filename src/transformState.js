@@ -5,8 +5,8 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  actions.forEach(howTransform => {
-    const { type, extraData, keysToRemove } = howTransform;
+  for (const action of actions) {
+    const { type, extraData, keysToRemove } = action;
 
     switch (type) {
       case 'addProperties':
@@ -24,8 +24,10 @@ function transformState(state, actions) {
           }
         });
         break;
+      default:
+        continue;
     }
-  });
+  };
 }
 
 module.exports = transformState;
