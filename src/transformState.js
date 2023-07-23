@@ -13,9 +13,7 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         for (const prop of action.keysToRemove) {
-          if (state[prop]) {
-            delete state[prop];
-          }
+          delete state[prop];
         }
         break;
 
