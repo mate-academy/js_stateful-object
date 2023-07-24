@@ -5,18 +5,16 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const ActionTypes = {};
-
-  actions.map(action => {
-    ActionTypes[action.type] = action.type;
-  });
+  const ActionTypes = {
+    addProperties: 'addProperties',
+    removeProperties: 'removeProperties',
+    clear: 'clear',
+  };
 
   for (const action of actions) {
     switch (action.type) {
       case ActionTypes.addProperties:
-        for (const data in action.extraData) {
-          state[data] = action.extraData[data];
-        };
+        Object.assign(state, action.extraData);
 
         break;
 
