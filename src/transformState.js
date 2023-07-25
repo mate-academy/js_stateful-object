@@ -11,8 +11,12 @@ function transformState(state, actions) {
         key.keysToRemove.forEach(el => delete state[el]);
         break;
 
-      default:
+      case 'clear':
         Object.keys(state).forEach(el => delete state[el]);
+        break;
+
+      default:
+        throw new Error('Error! Please check input data!');
     }
   }
 
