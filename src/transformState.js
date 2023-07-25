@@ -21,7 +21,7 @@ function transformState(state, actions) {
         }
         break;
       default:
-        return 'Error';
+        throw Error('Something went wrong');
     }
   }
 }
