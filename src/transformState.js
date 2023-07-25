@@ -21,6 +21,7 @@ function transformState(state, actions) {
         }
         break;
       default:
+        Error('sth gone wrong :(');
         break;
     }
   }
