@@ -22,6 +22,8 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+      default:
+        throw new Error('Invalid action: ' + action);
     }
   }
 
