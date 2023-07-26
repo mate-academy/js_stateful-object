@@ -12,9 +12,7 @@ function transformState(state, actions) {
       case 'addProperties':
         const { extraData } = action;
 
-        for (const [key, value] of Object.entries(extraData)) {
-          state[key] = value;
-        }
+        Object.assign(state, extraData);
         break;
 
       case 'removeProperties':
@@ -37,6 +35,8 @@ function transformState(state, actions) {
         throw new Error(`Invalid action: ${type}`);
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
