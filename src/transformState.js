@@ -20,6 +20,7 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
       default:
         Error('sth gone wrong :(');
         break;
