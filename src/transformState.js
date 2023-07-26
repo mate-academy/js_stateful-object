@@ -1,35 +1,30 @@
 'use strict';
 
+const REMOVE_PROPERTIES = 'removeProperties';
+const ACTION_AND_PROPERTIES = 'addProperties';
+const CLEAR = 'clear';
+
 /**
  * @param {Object} state
- * @param {Object[]} actions
+ * @typedef {Object} Action
+ * @property {string} type
+ * @property {Object} extraData
+ * @property {strinmg[]} keysToRemove
+ * @param {Action[]} actions
  */
+
 function transformState(state, actions) {
-  actions.forEach((action) => {
-    switch (action.type) {
-      case 'addProperties':
-        if (action.extraData && typeof action.extraData === 'object') {
-          Object.assign(state, action.extraData);
-        }
-        break;
-      case 'removeProperties':
-        if (action.keysToRemove && Array.isArray(action.keysToRemove)) {
-          action.keysToRemove.forEach((key) => {
-            if (state.hasOwnProperty(key)) {
-              delete state[key];
-            }
-          });
-        }
-        break;
-      case 'clear':
-        for (const key in state) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
-        }
-        break;
-      default:
-        break;
+  actions.forEach(action => {
+    if (action.type === ACTION_AND_PROPERTIES) {
+      Object.assign(state, action.extraData);
+    } else if (action.type === REMOVE_PROPERTIES) {
+      action.keysToRemove.forEach(key => {
+        delete state[key];
+      });
+    } else if (action.type === CLEAR) {
+      Object.keys(state).forEach(key => {
+        delete state[key];
+      });
     }
   });
 }
