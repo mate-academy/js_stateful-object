@@ -5,18 +5,18 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const obj of actions) {
-    const operation = obj.type;
+  for (const action of actions) {
+    const operation = action.type;
 
     switch (operation) {
       case 'addProperties':
-        const property = obj.extraData;
+        const property = action.extraData;
 
         Object.assign(state, property);
         break;
 
       case 'removeProperties':
-        const removeKeys = obj.keysToRemove;
+        const removeKeys = action.keysToRemove;
 
         for (const key of removeKeys) {
           delete state[key];
@@ -24,13 +24,15 @@ function transformState(state, actions) {
         break;
 
       case 'clear':
-        for (const key in state) {
-          delete state[key];
+        for (const value in state) {
+          delete state[value];
         }
         break;
 
       default:
-        break;
+        const ERROR = new Error('Wrong "state" or "actions" value!');
+
+        return ERROR;
     }
   }
 }
