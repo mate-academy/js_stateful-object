@@ -28,6 +28,8 @@ function transformState(state, actions) {
         throw new Error('Action not found!');
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
