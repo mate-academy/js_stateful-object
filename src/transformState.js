@@ -5,27 +5,33 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
+  const actionClear = 'clear';
+  const actionRemProp = 'removeProperties';
+  const actionAddProp = 'addProperties';
+  let typeOfAction = '';
+
   for (const action of actions) {
-    switch (action.type) {
-      case 'clear':
+    typeOfAction = action.type;
+
+    switch (typeOfAction) {
+      case actionClear:
         for (const key in state) {
           delete state[key];
         }
         break;
 
-      case 'removeProperties':
+      case actionRemProp:
         for (const keyToRemove of action.keysToRemove) {
           delete state[keyToRemove];
         }
         break;
 
-      case 'addProperties':
-        for (const extraKey in action.extraData) {
-          state[extraKey] = action.extraData[extraKey];
-        }
+      case actionAddProp:
+        Object.assign(state, action.extraData);
         break;
 
-      default: ;
+      default:
+        window.alert(`${typeOfAction} is a wrong action. Nothing to do`);
     }
   }
 }
