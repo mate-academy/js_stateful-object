@@ -28,7 +28,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        Error('unsupported value');
+        throw new Error('unsupported value');
     }
   }
 
