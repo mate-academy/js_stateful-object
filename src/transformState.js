@@ -5,13 +5,11 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-
   for (const action of actions) {
-
     switch (action.type) {
       case 'addProperties':
 
-         Object.assign(state, action.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
@@ -27,9 +25,13 @@ function transformState(state, actions) {
           delete state[key];
         }
         break;
+
+      default:
+        throw new Error('Unknown action type');
     }
   }
 
+  return state;
 }
 
 module.exports = transformState;
