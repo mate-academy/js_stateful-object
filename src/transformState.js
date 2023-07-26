@@ -6,7 +6,7 @@
  */
 function transformState(state, actions) {
   const actionClear = 'clear';
-  const actionRemProp = 'removeProperties';
+  const actionRemoveProp = 'removeProperties';
   const actionAddProp = 'addProperties';
   let typeOfAction = '';
 
@@ -20,7 +20,7 @@ function transformState(state, actions) {
         }
         break;
 
-      case actionRemProp:
+      case actionRemoveProp:
         for (const keyToRemove of action.keysToRemove) {
           delete state[keyToRemove];
         }
