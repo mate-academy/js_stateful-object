@@ -10,11 +10,13 @@ function transformState(state, actions) {
       case 'addProperties':
         Object.assign(state, action.extraData);
         break;
+
       case 'removeProperties':
-        for (let j = 0; j < action.keysToRemove.length; j++) {
-          delete state[action.keysToRemove[j]];
+        for (const key of action.keysToRemove) {
+          delete state[key];
         }
         break;
+
       case 'clear':
         for (const key in state) {
           if (state.hasOwnProperty(key)) {
@@ -22,10 +24,13 @@ function transformState(state, actions) {
           }
         }
         break;
+
       default:
         throw new Error('Something went wrong !');
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
