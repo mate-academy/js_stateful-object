@@ -6,11 +6,15 @@ function transformState(state, actions) {
 
     if (type === 'addProperties') {
       Object.assign(state, extraData);
-    } else if (type === 'removeProperties') {
+    }
+
+    if (type === 'removeProperties') {
       keysToRemove.forEach((key) => {
         delete state[key];
       });
-    } else if (type === 'clear') {
+    }
+
+    if (type === 'clear') {
       for (const key in state) {
         delete state[key];
       }
