@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 /**
@@ -12,6 +13,7 @@ function transformState(state, actions) {
           Object.assign(state, action.extraData);
         }
         break;
+
       case 'removeProperties':
         for (const key of action.keysToRemove) {
           if (state.hasOwnProperty(key)) {
@@ -19,6 +21,7 @@ function transformState(state, actions) {
           }
         }
         break;
+
       case 'clear':
         for (const key in state) {
           if (state.hasOwnProperty(key)) {
@@ -26,8 +29,9 @@ function transformState(state, actions) {
           }
         }
         break;
+
       default:
-        throw new Error(`Error: ${action.type}`);
+        console.error(`Error: ${action.type} is incorrect action type`);
     }
   }
 }
