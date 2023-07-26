@@ -24,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        throw Error('Something went wrong');
+        throw new Error(`Error: ${action.type} is incorrect action type`);
     }
   }
 
