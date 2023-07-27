@@ -29,20 +29,4 @@ function transformState(state, actions) {
   return state;
 }
 
-const a = {
-  foo: 'bar',
-  bar: 'foo',
-};
-
-const b = [
-  {
-    type: 'addProperties',
-    extraData: {
-      name: 'Jim', hello: 'world',
-    },
-  },
-];
-
-transformState(a, b);
-
 module.exports = transformState;
