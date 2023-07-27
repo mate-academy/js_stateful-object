@@ -1,8 +1,7 @@
 'use strict';
 
 const REMOVE_PROPERTIES = 'removeProperties';
-const ACTION_AND_PROPERTIES = 'addProperties';
-const CLEAR = 'clear';
+const ACTION_ADD_PROPERTIES = 'addProperties';
 
 /**
  * @param {Object} state
@@ -14,19 +13,20 @@ const CLEAR = 'clear';
  */
 
 function transformState(state, actions) {
-  actions.forEach(action => {
-    if (action.type === ACTION_AND_PROPERTIES) {
-      Object.assign(state, action.extraData);
-    } else if (action.type === REMOVE_PROPERTIES) {
-      action.keysToRemove.forEach(key => {
-        delete state[key];
-      });
-    } else if (action.type === CLEAR) {
-      Object.keys(state).forEach(key => {
-        delete state[key];
-      });
+  for (const key of actions) {
+    switch (key.type) {
+      case ACTION_ADD_PROPERTIES:
+        Object.assign(state, key.extraData);
+        break;
+      case REMOVE_PROPERTIES:
+        key.keysToRemove.forEach(item => delete state[item]);
+        break;
+      default:
+        Object.keys(state).forEach(item => delete state[item]);
     }
-  });
+  }
+
+  return state;
 }
 
 module.exports = transformState;
