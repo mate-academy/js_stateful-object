@@ -5,23 +5,28 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  actions.forEach((obj) => {
-    if (obj.type === 'addProperties') {
-      Object.assign(state, obj.extraData);
-    }
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
 
-    if (obj.type === 'removeProperties') {
-      for (const key of obj.keysToRemove) {
-        delete state[key];
-      }
-    }
+      case 'removeProperties':
+        for (const key of action.keysToRemove) {
+          delete state[key];
+        }
+        break;
 
-    if (obj.type === 'clear') {
-      for (const key in state) {
-        delete state[key];
-      }
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
+
+      default:
+        throw new Error('Error: unknown action type');
     }
-  });
+  }
 
   return state;
 }
