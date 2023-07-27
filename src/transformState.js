@@ -4,8 +4,8 @@
  * @param {Object} state
  * @param {Object[]} actions
  */
-function transformState(states, actions) {
-  const state = states;
+function transformState(state, actions) {
+  // const state = states;
 
   for (const action of actions) {
     switch (action.type) {
@@ -28,9 +28,11 @@ function transformState(states, actions) {
         break;
       default:
         // Ignoring unknown action types
-        break;
+        throw new Error('Unknow type of actions');
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
