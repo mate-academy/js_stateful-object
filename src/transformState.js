@@ -18,9 +18,12 @@ function transformState(state, actions) {
 
       case ACTION_REMOVE_PROPERTIES:
         action.keysToRemove.forEach((key) => {
-          delete state[key];
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
         });
         break;
+
       case ACTION_CLEAR:
         for (const key in state) {
           delete state[key];
