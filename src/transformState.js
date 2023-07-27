@@ -10,15 +10,15 @@ function transformState(state, actions) {
       case 'addProperties':
         const extraData = currentAction.extraData;
 
-        for (const key in extraData) {
-          state[key] = extraData[key];
-        }
+        Object.assign(state, extraData);
+
         break;
 
       case 'removeProperties':
         const keysToRemove = currentAction.keysToRemove;
 
         for (const key of keysToRemove) {
+          // is it not easier this way, than with object destructuring?
           if (state.hasOwnProperty(key)) {
             delete state[key];
           }
@@ -32,7 +32,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('incorrect type');
     }
   }
 }
