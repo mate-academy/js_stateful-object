@@ -15,18 +15,27 @@ const CLEAR = 'clear';
 
 function transformState(state, actions) {
   actions.forEach((action) => {
-    if (action.type === ADD_PROPERTIES) {
-      Object.assign(state, action.extraData);
-    } else if (action.type === REMOVE_PROPERTIES) {
-      action.keysToRemove.forEach((key) => {
-        delete state[key];
-      });
-    } else if (action.type === CLEAR) {
-      Object.keys(state).forEach((key) => {
-        delete state[key];
-      });
+    switch (action.type) {
+      case ADD_PROPERTIES:
+        Object.assign(state, action.extraData);
+        break;
+      case REMOVE_PROPERTIES:
+        action.keysToRemove.forEach((key) => {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
+        });
+        break;
+      case CLEAR:
+        Object.keys(state).forEach((key) => {
+          delete state[key];
+        });
+        break;
+      default:
     }
   });
+
+  return state;
 }
 
 module.exports = transformState;
