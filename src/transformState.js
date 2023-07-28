@@ -32,6 +32,7 @@ function transformState(state, actions) {
         });
         break;
       default:
+        throw Error(`invalid input`);
     }
   });
 
