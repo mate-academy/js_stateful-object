@@ -23,7 +23,9 @@ function transformState(state, actions) {
         }
         break;
       default:
-        continue;
+        const errorMessage = new Error('Array have not correct action value');
+
+        return errorMessage;
     }
   }
 
