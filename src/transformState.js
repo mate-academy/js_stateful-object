@@ -2,6 +2,7 @@
 
 const REMOVE_PROPERTIES = 'removeProperties';
 const ACTION_ADD_PROPERTIES = 'addProperties';
+const CLEAR = 'clear';
 
 /**
  * @param {Object} state
@@ -21,8 +22,11 @@ function transformState(state, actions) {
       case REMOVE_PROPERTIES:
         key.keysToRemove.forEach(item => delete state[item]);
         break;
-      default:
+      case CLEAR:
         Object.keys(state).forEach(item => delete state[item]);
+        break;
+      default:
+        throw new Error('Values are not valid');
     }
   }
 
