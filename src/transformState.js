@@ -7,14 +7,14 @@
 
 function transformState(state, actions) {
   // write code here
-  for (let i = 0; i < actions.length; i++) {
-    switch (actions[i].type) {
+  for (const action in actions) {
+    switch (actions[action].type) {
       case 'addProperties':
-        Object.assign(state, { ...actions[i].extraData });
+        Object.assign(state, { ...actions[action].extraData });
         break;
       case 'removeProperties':
-        for (let j = 0; j < actions[i].keysToRemove.length; j++) {
-          delete state[actions[i].keysToRemove[j]];
+        for (const keyToRemove in actions[action].keysToRemove) {
+          delete state[actions[action].keysToRemove[keyToRemove]];
         }
         break;
       case 'clear':
@@ -23,13 +23,9 @@ function transformState(state, actions) {
         }
         break;
       default:
-        const errorMessage = new Error('Array have not correct action value');
-
-        return errorMessage;
+        throw new Error('Array have not correct action value');
     }
   }
-
-  return state;
 }
 
 module.exports = transformState;
