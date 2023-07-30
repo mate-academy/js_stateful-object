@@ -21,19 +21,6 @@ function transformState(state, actions) {
       default:
         return state;
     }
-    // if (actions[i].type === 'addProperties') {
-    //   Object.assign(state, actions[i].extraData);
-    // }
-
-    // if (actions[i].type === 'removeProperties') {
-    //   for (const action of actions[i].keysToRemove) {
-    //     delete state[action];
-    //   }
-    // }
-
-    // if (actions[i].type === 'clear') {
-    //   Object.keys(state).forEach(key => delete state[key]);
-    // }
   }
 }
 
