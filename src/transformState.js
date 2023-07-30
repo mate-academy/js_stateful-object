@@ -21,7 +21,7 @@ function transformState(state, actions) {
         Object.keys(state).forEach(key => delete state[key]);
         break;
     }
-  }п
+  }
 }
 
 module.exports = transformState;
