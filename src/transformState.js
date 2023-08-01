@@ -17,7 +17,7 @@ function transformState(state, actions) {
         Object.keys(state).map(key => delete state[key]);
         break;
       default:
-        break;
+        return new Error('Something wrong');
     }
   }
 }
