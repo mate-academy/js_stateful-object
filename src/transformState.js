@@ -5,30 +5,28 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  actions.forEach((obj) => {
-    const ADD_PROPERTIES = obj.type === 'addProperties';
-    const REMOVE_PROERTIES = obj.type === 'removeProperties';
-    const CLEAR_ALL = obj.type === 'clear';
+  for (const action of actions) {
+    switch (action.type) {
+      case ('addProperties') :
+        Object.assign(state, action.extraData);
 
-    if (ADD_PROPERTIES) {
-      Object.assign(state, obj.extraData);
+        break;
+
+      case `removeProperties`:
+        for (const i of action.keysToRemove) {
+          delete state[i];
+        }
+
+        break;
+
+      case `clear`:
+        for (const i in state) {
+          delete state[i];
+        }
+
+        break;
     }
-
-    if (REMOVE_PROERTIES) {
-      for (const i of obj.keysToRemove) {
-        delete state[i];
-      }
-    }
-
-    if (CLEAR_ALL) {
-      for (const i in state) {
-        delete state[i];
-      }
-    }
-  });
-
-  // return state;  <-- works without it and
-  //  works when in uncommented, it's redundant?
+  };
 }
 
 module.exports = transformState;
