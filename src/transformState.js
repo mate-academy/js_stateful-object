@@ -2,39 +2,30 @@
 
 /**
  * @param {Object} state
- * @param {Object[]} actions
- */
+ * @param {Object[]} actions */
 function transformState(state, actions) {
   const removeKeyFromStateObj = (key) => {
     delete state[key];
   };
 
   for (const action of actions) {
-    if (Object.hasOwnProperty.call(action, 'type')) {
-      switch (action.type) {
-        case 'addProperties':
-          Object.keys(action.extraData).forEach(
-            (key) => {
-              state[key] = action.extraData[key];
-            });
-          continue;
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
+        break;
 
-        case 'removeProperties':
-          action.keysToRemove.forEach(removeKeyFromStateObj);
-          continue;
+      case 'removeProperties':
+        action.keysToRemove.forEach(removeKeyFromStateObj);
+        break;
 
-        case 'clear':
-          Object.keys(state).forEach(removeKeyFromStateObj);
-          continue;
+      case 'clear':
+        Object.keys(state).forEach(removeKeyFromStateObj);
+        break;
 
-        default:
-          throw new Error(
-            'unknown "type" of "action" from "@param {Object[]} actions"');
-      }
+      default:
+        throw new Error(
+          'unknown "type" of "action" from "@param {Object[]} actions"');
     }
-
-    throw new Error(
-      '"type" is not key of "action" from "@param {Object[]} actions"');
   }
 }
 
