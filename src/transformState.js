@@ -5,34 +5,35 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const finiteStateMachine = ({ type, extraData, keysToRemove }) => {
+  const changeState = ({ type, extraData, keysToRemove }) => {
     switch (type) {
       case 'addProperties':
         Object.assign(state, extraData);
-        break;
+
+        return;
 
       case 'removeProperties':
         keysToRemove.forEach(keyToRemove => {
           delete state[keyToRemove];
         });
-        break;
+
+        return;
 
       case 'clear':
         for (const key in state) {
           delete state[key];
         }
-        break;
+
+        return;
 
       default:
-        break;
+        return 'error';
     }
   };
 
   actions.forEach(action => {
-    finiteStateMachine(action);
+    changeState(action);
   });
-
-  return state;
 }
 
 module.exports = transformState;
