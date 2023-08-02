@@ -17,27 +17,15 @@ function transformState(state, actions) {
         break;
 
       case ACTION_REMOVE:
-        deleteProperties(state, action.keysToRemove);
+        action.keysToRemove.forEach(key => delete state[key]);
         break;
 
       case ACTION_CLEAR:
-        deleteProperties(state, Object.keys(state));
+        Object.keys(state).forEach(key => delete state[key]);
         break;
 
       default:
         throw new Error(ERROR_MSG);
-    }
-  }
-}
-
-/**
- * @param {Object} object
- * @param {String[]} properties
- */
-function deleteProperties(object, properties) {
-  for (const name of properties) {
-    if (object.hasOwnProperty(name)) {
-      delete object[name];
     }
   }
 }
