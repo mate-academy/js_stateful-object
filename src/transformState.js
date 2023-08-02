@@ -23,7 +23,7 @@ function transformState(state, actions) {
         });
         break;
       default:
-        break;
+        return new Error('Something went wrong');
     }
   });
 }
