@@ -21,7 +21,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Something went wrong, please check your input data');
     }
   });
 }
