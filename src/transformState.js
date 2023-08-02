@@ -8,9 +8,7 @@ function transformState(state, actions) {
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
-        for (const key of Object.keys(action.extraData)) {
-          state[key] = action.extraData[key];
-        };
+        Object.assign(state, action.extraData);
         break;
 
       case 'removeProperties':
@@ -26,7 +24,8 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+
+        return `Unknown action type: ${action.type}`;
     }
   }
 
