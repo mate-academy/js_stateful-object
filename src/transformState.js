@@ -12,19 +12,17 @@ function transformState(state, actions) {
         break;
 
       case 'removeProperties':
-        action.keysToRemove.forEach((key) => {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+        action.keysToRemove.forEach((keyToRemove) => {
+          delete state[keyToRemove];
         });
         break;
 
       case 'clear':
-        Object.keys(state).forEach((key) => delete state[key]);
+        Object.keys(state).forEach((keyToDelete) => delete state[keyToDelete]);
         break;
 
       default:
-        throw Error('Invalid input.');
+        throw new Error('Invalid input.');
     }
   }
 
