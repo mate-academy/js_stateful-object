@@ -21,7 +21,7 @@ function transformState(state, actions) {
         });
         break;
       default:
-        break;
+        return `Something went wrong, there's no '${action.type}' action type`;
     }
   }
 }
