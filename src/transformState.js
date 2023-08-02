@@ -13,22 +13,18 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         for (const key of action.keysToRemove) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
 
       case 'clear' :
         for (const key of Object.keys(state)) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
 
       default:
-        break;
+        throw new Error('Invalid action type');
     }
   }
 }
