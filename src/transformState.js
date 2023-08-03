@@ -32,6 +32,8 @@ function transformState(state, actions) {
         throw new Error('Input is invalid');
     }
   }
+
+  return state;
 }
 
 module.exports = transformState;
