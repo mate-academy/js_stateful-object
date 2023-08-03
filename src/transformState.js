@@ -6,15 +6,14 @@
  */
 
 function transformState(state, actions) {
-  // write code here
-  actions.forEach(item => {
-    switch (item.type) {
+  actions.forEach(action => {
+    switch (action.type) {
       case `addProperties`:
-        Object.assign(state, item.extraData);
+        Object.assign(state, action.extraData);
         break;
 
       case `removeProperties`:
-        item.keysToRemove.forEach(key => {
+        action.keysToRemove.forEach(key => {
           delete state[key];
         });
         break;
@@ -26,7 +25,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        break;
+        throw new Error('Invalid type property');
     }
   });
 }
