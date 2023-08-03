@@ -24,7 +24,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Error';
+        throw new Error('Not existing properties');
     }
   }
 }
