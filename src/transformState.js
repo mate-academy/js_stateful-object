@@ -5,32 +5,28 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const i in actions) {
-    const action = actions[i];
+  for (const action of actions) {
+    switch (action.type) {
+      case 'addProperties':
+        Object.assign(state, action.extraData);
 
-    if (!action.type) {
-      continue;
-    }
+        break;
+      case 'removeProperties':
+        for (const property of action.keysToRemove) {
+          delete state[property];
+        };
 
-    if (action.type === 'addProperties') {
-      Object.assign(state, action.extraData);
-    }
+        break;
+      case 'clear':
+        for (const key in state) {
+          delete state[key];
+        };
 
-    if (action.type === 'removeProperties') {
-      for (const key in action.keysToRemove) {
-        delete state[action.keysToRemove[key]];
-      }
-    }
-
-    if (action.type === 'clear') {
-      for (const k in state) {
-        delete state[k];
-      }
+        break;
+      default:
+        throw new Error(`Unexpected action type', ${action.type} action type`);
     }
   }
-
-  return state;
 }
-// transformState(state, action);
 
 module.exports = transformState;
