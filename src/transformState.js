@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  for (const action of actions) {
+  actions.forEach(action => {
     switch (action.type) {
       case 'addProperties':
         Object.assign(state, action.extraData);
@@ -13,24 +13,20 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         for (const key of action.keysToRemove) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
         break;
 
       case 'clear':
-        for (const key of Object.keys(state)) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+        for (const key in state) {
+          delete state[key];
         }
         break;
 
       default:
-        return new Error('Oops, something went wrong!');
+        throw new Error('Oops, something went wrong!');
     }
-  }
+  });
 }
 
 module.exports = transformState;
