@@ -5,9 +5,6 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  // const result = [];
-  // let newState = { ...state };
-
   for (const action of actions) {
     switch (action.type) {
       case 'addProperties':
