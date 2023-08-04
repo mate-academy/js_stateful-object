@@ -6,14 +6,14 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
-    const extraDatavalue = action.extraData;
+    const extraDataValue = action.extraData || {};
     const typeOfAction = action.type;
-    const removeValue = action.keysToRemove;
+    const removeValue = action.keysToRemove || {};
 
     switch (typeOfAction) {
       case 'addProperties':
-        for (const newProperty in extraDatavalue) {
-          state[newProperty] = extraDatavalue[newProperty];
+        for (const newProperty in extraDataValue) {
+          state[newProperty] = extraDataValue[newProperty];
         }
 
         break;
@@ -31,7 +31,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        return 'Error!';
+        throw new Error('Error!');
     }
   }
 
