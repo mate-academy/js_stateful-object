@@ -10,9 +10,7 @@ function transformState(state, actions) {
       case ('addProperties'):
         const extraData = action.extraData;
 
-        for (const key in extraData) {
-          state[key] = extraData[key];
-        }
+        Object.assign(state, extraData);
 
         continue;
 
@@ -20,9 +18,7 @@ function transformState(state, actions) {
         const keysToRemove = action.keysToRemove;
 
         for (const key of keysToRemove) {
-          if (state.hasOwnProperty(key)) {
-            delete state[key];
-          }
+          delete state[key];
         }
 
         continue;
