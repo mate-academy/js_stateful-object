@@ -23,6 +23,10 @@ function transformState(state, actions) {
 
       case 'removeProperties':
         keysToRemove.forEach(element => delete state[element]);
+        break;
+
+      default:
+        return 'invalid action';
     }
   }
 
