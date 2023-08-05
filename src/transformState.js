@@ -8,26 +8,32 @@ function transformState(state, actions) {
   // write code here
   const transformedState = state;
 
+  const addProperties = 'addProperties';
+  const removeProperties = 'removeProperties';
+  const clear = 'clear';
+
   for (const action of actions) {
-    switch (action.type) {
-      case 'addProperties':
-        Object.assign(transformedState, action.extraData);
+    const { type, extraData, keysToRemove } = action;
+
+    switch (type) {
+      case addProperties:
+        Object.assign(transformedState, extraData);
         break;
 
-      case 'removeProperties':
-        for (const key of action['keysToRemove']) {
+      case removeProperties:
+        for (const key of keysToRemove) {
           delete transformedState[key];
         }
         break;
 
-      case 'clear':
+      case clear:
         for (const key in transformedState) {
           delete transformedState[key];
         }
         break;
 
       default:
-        return `action.type is not found`;
+        return `type is not found`;
     }
   }
 
