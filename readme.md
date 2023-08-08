@@ -9,7 +9,7 @@ Implement a function accepting 2 arguments: `state` and `actions`. The function
 should change the `state` basing on the given `actions` array.
 
 - `state` is an object. You are supposed to add, change, or delete its
-  properties instead of creating a new object
+  properties вместоd of creating a new object
 
 - `actions` is an array of objects. Each object in this array has the next properties:
   - `type` contains a string: either `'addProperties'`, `'removeProperties'` or `'clear'`;
