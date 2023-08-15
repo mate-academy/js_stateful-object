@@ -10,22 +10,24 @@ function transformState(state, actions) {
   const CLEAR_PROPERTIES = 'clear';
 
   for (const action of actions) {
-    if (action.type === ADD_PROPERTIES) {
-      Object.assign(state, action.extraData);
-    }
+    switch (action.type) {
+      case ADD_PROPERTIES:
+        Object.assign(state, action.extraData);
+        break;
 
-    if (action.type === REMOVE_PROPERTIES) {
-      for (const remove of action.keysToRemove) {
-        if (state.hasOwnProperty(remove)) {
-          delete state[remove];
+      case REMOVE_PROPERTIES:
+        for (const key of action.keysToRemove) {
+          if (state.hasOwnProperty(key)) {
+            delete state[key];
+          }
         }
-      }
-    }
+        break;
 
-    if (action.type === CLEAR_PROPERTIES) {
-      for (const key in state) {
-        delete state[key];
-      }
+      case CLEAR_PROPERTIES:
+        for (const key in state) {
+          delete state[key];
+        }
+        break;
     }
   }
 
