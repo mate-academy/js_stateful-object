@@ -13,7 +13,9 @@ function transformState(state, actions) {
     const KEYS_TO_REMOVE_CONTENT = el.keysToRemove;
 
     if (el.type === 'clear') {
-      STATE = {};
+      for (const q in STATE) {
+        delete STATE[q];
+      }
     }
 
     if (el.type === 'addProperties') {
