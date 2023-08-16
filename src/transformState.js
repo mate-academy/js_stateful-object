@@ -21,7 +21,7 @@ function transformState(state, actions) {
     }
 
     if (el.type === 'removeProperties') {
-      for (let a = 0; i < KEYS_TO_REMOVE_CONTENT.length; i++) {
+      for (let a = 0; a < KEYS_TO_REMOVE_CONTENT.length; a++) {
         const elKr = KEYS_TO_REMOVE_CONTENT[a];
 
         delete STATE[elKr];
