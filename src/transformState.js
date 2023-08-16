@@ -5,7 +5,7 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  let STATE = { ...state };
+  let STATE = state;
 
   for (let i = 0; i < actions.length; i++) {
     const el = actions[i];
