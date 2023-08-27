@@ -5,33 +5,33 @@
  * @param {Object[]} actions
  */
 function transformState(state, actions) {
-  const STATE = state;
+  const stateCopy = state;
 
   for (let i = 0; i < actions.length; i++) {
     const el = actions[i];
-    const EXTRA_DATA_CONTENT = el.extraData;
-    const KEYS_TO_REMOVE_CONTENT = el.keysToRemove;
+    const extraDataContent = el.extraData;
+    const keysToRemoveContent = el.keysToRemove;
 
     if (el.type === 'clear') {
-      for (const q in STATE) {
-        delete STATE[q];
+      for (const q in stateCopy) {
+        delete stateCopy[q];
       }
     }
 
     if (el.type === 'addProperties') {
-      Object.assign(STATE, EXTRA_DATA_CONTENT);
+      Object.assign(stateCopy, extraDataContent);
     }
 
     if (el.type === 'removeProperties') {
-      for (let a = 0; a < KEYS_TO_REMOVE_CONTENT.length; a++) {
-        const elKr = KEYS_TO_REMOVE_CONTENT[a];
+      for (let a = 0; a < keysToRemoveContent.length; a++) {
+        const elKr = keysToRemoveContent[a];
 
-        delete STATE[elKr];
+        delete stateCopy[elKr];
       }
     }
   }
 
-  return STATE;
+  return stateCopy;
 }
 
 module.exports = transformState;
