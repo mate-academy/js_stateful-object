@@ -1,4 +1,5 @@
 "use strict";
+
 function transformState(state, actions) {
   let newState = { ...state };
   for (const action of actions) {
