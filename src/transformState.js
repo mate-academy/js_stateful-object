@@ -1,23 +1,27 @@
 "use strict";
 
 function transformState(state, actions) {
-  let newState = { ...state };
+  const newState = { ...state };
+
   for (const action of actions) {
     if (action.type === "addProperties") {
       if (typeof action.extraData === "object") {
-        newState = { ...newState, ...action.extraData };
+        for (const key in action.extraData) {
+          newState[key] = action.extraData[key];
+        }
       }
     } else if (action.type === "removeProperties") {
       if (Array.isArray(action.keysToRemove)) {
-        newState = Object.keys(newState)
-          .filter((key) => !action.keysToRemove.includes(key))
-          .reduce((filteredState, key) => {
-            filteredState[key] = newState[key];
-            return filteredState;
-          }, {});
+        for (const key of action.keysToRemove) {
+          if (newState.hasOwnProperty(key)) {
+            delete newState[key];
+          }
+        }
       }
     } else if (action.type === "clear") {
-      newState = {};
+      for (const key in newState) {
+        delete newState[key];
+      }
     }
   }
 
