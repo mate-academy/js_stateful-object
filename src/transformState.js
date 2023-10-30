@@ -1,31 +1,30 @@
 "use strict";
 
 function transformState(state, actions) {
-  const newState = { ...state };
-
   for (const action of actions) {
-    if (action.type === "addProperties") {
-      if (typeof action.extraData === "object") {
-        for (const key in action.extraData) {
-          newState[key] = action.extraData[key];
+    const { type, extraData, keysToRemove } = action;
+
+    switch (type) {
+      case "addProperties":
+        Object.assign(state, extraData);
+        break;
+
+      case "removeProperties":
+        for (const key of keysToRemove) {
+          delete state[key];
         }
-      }
-    } else if (action.type === "removeProperties") {
-      if (Array.isArray(action.keysToRemove)) {
-        for (const key of action.keysToRemove) {
-          if (newState.hasOwnProperty(key)) {
-            delete newState[key];
-          }
+        break;
+
+      case "clear":
+        for (const key in state) {
+          delete state[key];
         }
-      }
-    } else if (action.type === "clear") {
-      for (const key in newState) {
-        delete newState[key];
-      }
+        break;
+
+      default:
+        return "Error: Type Unknown";
     }
   }
-
-  return newState;
 }
 
 module.exports = transformState;
