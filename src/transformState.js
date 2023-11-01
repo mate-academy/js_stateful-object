@@ -2,27 +2,33 @@
 
 function transformState(state, actions) {
   for (const action of actions) {
-    const { type, extraData, keysToRemove } = action;
+    const { type } = action;
 
     switch (type) {
       case "addProperties":
-        Object.assign(state, extraData);
+        const { extraData } = action;
+        if (extraData) {
+          Object.assign(state, extraData);
+        }
         break;
 
       case "removeProperties":
-        for (const key of keysToRemove) {
-          delete state[key];
+        const { keysToRemove } = action;
+        if (keysToRemove) {
+          for (const key of keysToRemove) {
+            delete state[key];
+          }
         }
         break;
 
       case "clear":
-        for (const key in state) {
+        Object.keys(state).forEach((key) => {
           delete state[key];
-        }
+        });
         break;
 
       default:
-        return "Error: Type Unknown";
+        console.error("Error: Type Unknown");
     }
   }
 }
