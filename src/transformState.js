@@ -28,7 +28,7 @@ function transformState(state, actions) {
         break;
 
       default:
-        console.error("Error: Type Unknown");
+        break;
     }
   }
 }
