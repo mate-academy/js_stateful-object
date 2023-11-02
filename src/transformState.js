@@ -6,22 +6,24 @@
  */
 function transformState(state, actions) {
   for (const action of actions) {
+    // the function changes the given object `state` according to the
+    // specified conditions in `actions` array of objects
     switch (action.type) {
       case 'addProperties':
-        for (const data in action.extraData) {
-          const prop = action.extraData[data];
+        for (const property in action.extraData) {
+          const value = action.extraData[property];
 
-          state[data] = prop;
+          state[property] = value;
         }
         break;
       case 'removeProperties':
-        for (const key of action.keysToRemove) {
-          delete state[key];
+        for (const propertyName of action.keysToRemove) {
+          delete state[propertyName];
         }
         break;
       case 'clear':
-        for (const key in state) {
-          delete state[key];
+        for (const propertyName in state) {
+          delete state[propertyName];
         }
         break;
     }
