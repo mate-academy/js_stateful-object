@@ -25,6 +25,7 @@ should change the `state` basing on the given `actions` array.
 Example of usage:
 
 If `state` is {foo: 'bar', bar: 'foo'}, then
+
 ```
  transformState(state, [
    {
@@ -44,18 +45,21 @@ If `state` is {foo: 'bar', bar: 'foo'}, then
    }
  ])
 ```
+
 should modify the `state`, doing the following:
+
 - add two properties to the `state`
 - then remove keys `bar` and `hello` from the `state`
 - and finally add another one property to the `state`
 
 After these operations the object `state` will have the following look
- ```
- {
-   foo: 'bar',
-   name: 'Jim',
-   another: 'one',
- }
+
+```
+{
+  foo: 'bar',
+  name: 'Jim',
+  another: 'one',
+}
 ```
 
 Another example:
@@ -71,3 +75,76 @@ Another example:
 
 // state === { foo: 'bar', name: 'Jim' }
 ```
+
+Реализуйте функцию, принимающую 2 аргумента: `состояние` и `действия`. Функция
+должна изменить `состояние` на основе заданного массива `действий`.
+
+- `state` - это объект. Вы должны добавить, изменить или удалить его
+  свойства, а не создавать новый объект.
+
+- `actions` - это массив объектов. Каждый объект в этом массиве имеет следующие свойства:
+  - `type` содержит строку: либо `'addProperties'`, либо `'removeProperties'`, либо `'clear'`;
+  - Второе свойство каждого объекта зависит от `type` и может быть одним из следующих:
+    - если `type` - `addProperties`, второе свойство - `extraData`. Оно содержит объект
+      с парами `ключ: значение` для добавления в состояние;
+    - если `type` - `removeProperties`, второе свойство - `keysToRemove`. Оно содержит массив
+      со списком имен свойств (ключей) для удаления из `состояния`; (Не существующие
+      свойства должны быть проигнорированы)
+    - если `type` - `clear`, то необходимо удалить все свойства из
+      состояния. Второе свойство в данном случае отсутствует;
+
+Пример использования:
+
+Если `state` имеет вид {foo: 'bar', bar: 'foo'}, то
+
+```
+ transformState(state, [
+   {
+     type: 'addProperties',
+     extraData: {
+       name: 'Jim',
+       hello: 'world',
+     }
+   },
+   {
+     type: 'removeProperties',
+     keysToRemove: ['bar', 'hello'],
+   },
+   {
+     тип: 'addProperties',
+     extraData: { another: 'one' }
+   }
+ ])
+```
+
+должен модифицировать `state`, делая следующее:
+
+- добавить два свойства к `state`
+- затем удалить ключи `bar` и `hello` из `state`
+- и, наконец, добавить еще одно свойство к `state`.
+
+После этих операций объект `state` будет иметь следующий вид
+
+```
+{
+  foo: 'bar',
+  name: 'Jim',
+  another: 'one',
+}
+```
+
+Другой пример:
+
+```
+ const state = { x: 1 };
+
+ transformState(state, [
+   { type: 'addProperties', extraData: { еще: 'другое свойство' } }
+   { { type: 'clear' }
+   { { type: 'addProperties', extraData: { foo: 'bar', name: 'Jim' } }
+ ]);
+
+// state === { foo: 'bar', name: 'Jim' }
+```
+
+Переведено с помощью www.DeepL.com/Translator (бесплатная версия)
