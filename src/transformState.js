@@ -6,6 +6,7 @@
  */
 function transformState(state, actions) {
   // write code here
+  
 }
 
 module.exports = transformState;
