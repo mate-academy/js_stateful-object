@@ -8,20 +8,20 @@ function transformState(state, actions) {
   for (const action of actions) {
     const { type, extraData, keysToRemove } = action;
 
-    switch (true) {
-      case type === 'clear': {
+    switch (type) {
+      case 'clear': {
         for (const s in state) {
           delete state[s];
         }
         break;
       }
 
-      case type === 'addProperties': {
+      case 'addProperties': {
         Object.assign(state, extraData);
         break;
       }
 
-      case type === 'removeProperties': {
+      case 'removeProperties': {
         for (const key of keysToRemove) {
           delete state[key];
         }
@@ -29,7 +29,7 @@ function transformState(state, actions) {
       }
 
       default:
-        return 'Unexpected acrion';
+        return 'Unexpected action';
     };
   };
 
