@@ -1,11 +1,11 @@
 'use strict';
 
-/**
- * @param {Object} state
- * @param {Object[]} actions
- */
+
+  @param {Object} state
+  @param {Object[]} actions
+
 function transformState(state, actions) {
-  // write code here
+
   for (const action of actions) {
     const { type, extraData, keysToRemove } = action;
 
